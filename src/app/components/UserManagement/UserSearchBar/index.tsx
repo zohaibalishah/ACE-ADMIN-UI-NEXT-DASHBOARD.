@@ -9,7 +9,7 @@ export const UserSearchBar = (): React.ReactElement => {
   return (
     <>
       <section>
-        <div className="py-3 md:py-6">
+        <div className="pt-3 md:pt-6">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <Typography variant="h5Bold" className="text-white">
               Total User’s

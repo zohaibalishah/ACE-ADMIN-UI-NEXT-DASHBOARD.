@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { MImage, PrimaryButton, Typography } from "../../common";
 import { clubManagementIcons } from "../../../../../public/icons/clubManagementIcons";
 import { HiOutlinePlus } from "react-icons/hi";
-import Link from "next/link";
 import { CreateOwnerModal } from "../CreateOwnerModel";
 
 export const ClubOwnerSection = (): React.ReactElement => {
@@ -12,19 +11,19 @@ export const ClubOwnerSection = (): React.ReactElement => {
   return (
     <>
       <section>
-        <div className="py-6">
+        <div className="pt-4 md:pt-6">
           <div className="flex items-center justify-between flex-wrap gap-y-3">
             <Typography variant="h5Bold" className="text-white">
               Total Club Owner’s
             </Typography>
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="relative">
+            <div className="flex items-center gap-4 flex-wrap w-full sm:w-auto">
+              <div className="relative w-full sm:w-auto">
                 <input
                   type="text"
                   placeholder="Search"
                   className={`${
                     search ? "pl-10" : ""
-                  } pt-3 pb-4 px-3 placeholder:text-SecondaryColor !placeholder:text-[14px] w-[250px] sm:w-[310px] h-[44px] bg-black border-[1px] border-newLinear border-t-2  border-l-2 rounded-xl outline-none text-SecondaryColor`}
+                  } pt-3 pb-4 px-3 placeholder:text-SecondaryColor !placeholder:text-[14px] w-full sm:w-[310px] h-[44px] bg-black border-[1px] border-newLinear border-t-2  border-l-2 rounded-xl outline-none text-SecondaryColor`}
                   onClick={() => setSearch(false)}
                 />
                 <div
@@ -43,7 +42,7 @@ export const ClubOwnerSection = (): React.ReactElement => {
 
               <PrimaryButton
                 title="Add new"
-                className="!w-[120px] !h-[44px] !rounded-xl "
+                className="!w-[120px] !rounded-xl !h-[44px] "
                 icon={<HiOutlinePlus />}
                 onClick={() => setIsOpen(true)}
               />

@@ -117,7 +117,18 @@ export const clubOwnersTableData = [
   },
 ];
 
-export const TotalClubsData = [
+//----------CLUBS TABLE -----//
+export const CLUBS_TABLE_HEAD = [
+  "ID",
+  "Club name",
+  "Address",
+  "Owner name",
+  "Wallet balance",
+  "Status",
+  "Action",
+];
+
+export const CLUBS_TABLE_ROW = [
   {
     id: "101",
     clubName: "Downtown Club",

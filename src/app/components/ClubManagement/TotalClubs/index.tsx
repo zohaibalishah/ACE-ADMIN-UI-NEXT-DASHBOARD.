@@ -11,7 +11,7 @@ export const TotalClubs = (): React.ReactElement => {
   return (
     <>
       <section>
-        <div className="py-6">
+        <div className="pt-6">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <Typography variant="h5Bold" className="text-white">
               Total clubs
