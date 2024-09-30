@@ -1,17 +1,17 @@
 .resContainer {
   width: 1440px;
-  max-width: 94%;
+  max-width: 100%;
   margin: auto;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .resContainer {
     width: 100%;
     max-width: 100%;
     margin: auto;
     padding: 0 3px;
   }
-}
+} */
 
 ::-webkit-scrollbar {
   display: none;
@@ -29,6 +29,16 @@
 }
 
 select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("/icons/clubManagementIcons/downArrow.png");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Adjust right padding to fit your design */
+  background-position-y: 70%;
+}
+
+.MonthlyDropDown > select {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;

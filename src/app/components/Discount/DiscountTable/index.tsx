@@ -6,18 +6,18 @@ import { DiscountTableRow } from "./TableRow";
 export const DiscountTable = (): React.ReactElement => {
   return (
     <div className="w-full overflow-hidden overflow-x-scroll py-6">
-      <table className="min-w-[800px] w-full table-auto text-left">
+      <table className="min-w-[700px] w-full table-auto text-left">
         <thead>
-          <tr className="bg-boxOutline border-2 rounded-full border-boxOutline ">
+          <tr>
             {DISCOUNT_TABLE_HEAD.map((data, index) => (
               <th
                 key={index}
-                className={`${
-                  index === 0 ? "pl-2  rounded-tl-lg border-2" : ""
+                className={` bg-boxOutline ${
+                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
                 } ${index === 1 ? "pl-2" : ""}
                 ${
                   index === DISCOUNT_TABLE_HEAD.length - 1
-                    ? "pl-3 rounded-tr-lg border-2"
+                    ? "pl-3 rounded-tr-2xl"
                     : ""
                 } py-3`}
               >

@@ -6,15 +6,16 @@ import { TableRow } from "./TableRow";
 export const BookingTable = () => {
   return (
     <div className="flex-1 overflow-hidden overflow-x-scroll">
-      <table className="min-w-[800px] w-full table-auto text-left">
+      <table className="min-w-[700px] w-full table-auto text-left">
         <thead>
-          <tr className="border-2 border-boxOutline bg-boxOutline">
+          <tr>
             {TABLE_HEAD.map((head, index) => (
               <th
                 key={head}
-                className={`py-3 ${index === 1 ? "pl-4" : ""} ${
-                  index === 0 ? "pl-2" : ""
-                }`}
+                className={`py-3 bg-boxOutline ${index === 1 ? "pl-4 " : ""} ${
+                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
+                }
+                ${index === TABLE_HEAD.length - 1 ? "rounded-tr-2xl" : ""}`}
               >
                 <Typography
                   variant="bodyRegular"

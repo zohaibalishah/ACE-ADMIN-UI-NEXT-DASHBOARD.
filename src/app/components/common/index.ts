@@ -6,5 +6,6 @@ export * from "./ToggleButton";
 export * from "./DropDownMenu";
 export * from "./DashboardCard";
 export * from "./ThisMonth";
+export * from "./Monthly";
 export * from "./DatePicker";
 export * from "./DatePickerSecondary";

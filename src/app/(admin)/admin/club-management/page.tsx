@@ -1,7 +1,7 @@
 import {
   ClubCardSection,
   ClubOwnerSection,
-  ClubOwnersTable,
+  TotalClubsTable,
 } from "@/app/components/ClubManagement";
 import React from "react";
 
@@ -11,7 +11,7 @@ function ClubManagement() {
       <div>
         <ClubCardSection />
         <ClubOwnerSection />
-        <ClubOwnersTable />
+        <TotalClubsTable />
       </div>
     </>
   );

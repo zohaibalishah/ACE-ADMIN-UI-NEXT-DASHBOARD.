@@ -1,5 +1,5 @@
 import React from "react";
-import { MImage, Typography } from "../../common";
+import { MImage, Monthly, Typography } from "../../common";
 import { dashboardIcons } from "../../../../../public/icons/dashboardIcons";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
 import Link from "next/link";
@@ -54,17 +54,7 @@ export const DashboardCard = ({ card }: ICard): React.ReactElement => {
             </Typography>
           )}
         </div>
-        <div>
-          {card.select ? (
-            <select
-              name=""
-              id=""
-              className="bg-transparent text-SecondaryColor outline-none text-xs sm:text-sm md:text-base"
-            >
-              <option value="">Monthly</option>
-            </select>
-          ) : null}
-        </div>
+        <div>{card.select ? <Monthly /> : null}</div>
       </div>
     </div>
   );
