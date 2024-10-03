@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Typography } from "../Typography";
 
 interface Props {
   className?: string;
@@ -29,8 +30,8 @@ export function DatePickerSecondary({ className }: Props) {
             !date && "text-muted-foreground text-SecondaryColor"
           )}
         >
-          <LucideCalendarDays className="mr-2 h-[20px] w-[18px]" />
-          {date ? format(date, "PP") : <span>Pick a date</span>}
+          <LucideCalendarDays className="mr-6 h-[20px] w-[18px]" />
+          {date ? format(date, "PP") : <Typography>Pick a date</Typography>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">

@@ -1,15 +1,12 @@
 import { ThisMonth, Typography } from "@/app/components/common";
 import React from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import Link from "next/link";
+
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
   ResponsiveContainer,
   CartesianAxis,
 } from "recharts";

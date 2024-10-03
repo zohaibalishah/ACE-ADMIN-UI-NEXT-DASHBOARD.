@@ -16,7 +16,6 @@ import { colors } from "@/app/styles/colors";
 interface ISelectField<OptionType>
   extends Omit<SelectProps<OptionType>, "onChange" | "value"> {
   placeholder?: string;
-  error?: string | null;
   value?: SingleValue<OptionType> | null;
   className?: string;
   label?: string;
@@ -38,12 +37,15 @@ const customStyles = {
     ...baseStyles,
     color: colors.bgShadow,
   }),
+  menu: (style: any) => ({
+    ...style,
+    background: colors.bgBox,
+  }),
 };
 
 export const SelectField = <OptionType,>({
   placeholder,
   className,
-  error,
   value,
   onChange,
   label,

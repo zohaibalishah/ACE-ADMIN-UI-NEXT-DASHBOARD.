@@ -10,59 +10,57 @@ import { TextField } from "@/app/components/form";
 const ChangPassword = (): React.ReactElement => {
   return (
     <>
-      <section className="bg-bgDark pb-10 sm:pb-0">
-        <div className="resContainer">
-          <div className="flex flex-col md:flex-row">
-            <div className="w-full ">
-              <MImage
-                src={mImage.loginBg}
-                w={720}
-                h={1024}
-                alt="login"
-                className=""
-              />
-            </div>
-
-            <form className="w-full flex flex-col justify-center items-center  bg-bgBox text-SecondaryColor ">
-              <div className=" flex flex-col justify-center items-center gap-y-3 md:gap-y-5">
-                <MImage
-                  src={icons.ACELogo}
-                  w={136}
-                  h={57}
-                  alt="logo"
-                  className="object-scale-down"
-                />
-                <div className="text-center">
-                  <Typography variant="h4" className="sm:py-1">
-                    Change Password
-                  </Typography>
-                  <Typography>
-                    Change default password and set your own
-                  </Typography>
-                </div>
-                <div className="flex flex-col gap-y-2 w-full lg:w-[457px]">
-                  <TextField placeholder="New password" icon={<FiEye />} />
-                  <TextField placeholder="Confirm password" icon={<FiEye />} />
-                </div>
-                <div className=" sm:py-4">
-                  <Link href={routes.admin}>
-                    <PrimaryButton
-                      title="Update"
-                      className="!w-[284px] md:!w-[280px] lg:!w-[457px] mt-1 md:mt-3"
-                    />
-                  </Link>
-                </div>
-                <div>
-                  <Typography variant="bodyMedium">
-                    Need help? Contact us at{" "}
-                    <span className="text-PrimaryColor text-center">
-                      contact@aceofficial.com
-                    </span>
-                  </Typography>
-                </div>
-              </div>
-            </form>
+      <section className="bg-bgDark pb-10 sm:pb-0 h-screen overflow-y-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 relative h-full">
+          <div className="w-full md:h-screen  sticky top-0 hidden md:block ">
+            <MImage
+              src={mImage.loginBg}
+              w={720}
+              h={768}
+              alt="login"
+              className="w-full object-cover object-bottom h-full sticky top-0 "
+            />
           </div>
+
+          <form className="w-full h-full flex flex-col justify-center items-center  py-7  bg-bgBox text-SecondaryColor ">
+            <div className=" flex flex-col justify-center items-center gap-y-5">
+              <MImage
+                src={icons.ACELogo}
+                w={136}
+                h={57}
+                alt="logo"
+                className="object-scale-down"
+              />
+              <div className="text-center">
+                <Typography variant="h4" className="sm:py-1">
+                  Change Password
+                </Typography>
+                <Typography>
+                  Change default password and set your own
+                </Typography>
+              </div>
+              <div className="flex flex-col gap-y-2 w-full lg:w-[457px]">
+                <TextField placeholder="New password" icon={<FiEye />} />
+                <TextField placeholder="Confirm password" icon={<FiEye />} />
+              </div>
+              <div className=" sm:py-4">
+                <Link href={routes.admin}>
+                  <PrimaryButton
+                    title="Update"
+                    className="!w-[284px] md:!w-[280px] lg:!w-[457px] mt-1 md:mt-3"
+                  />
+                </Link>
+              </div>
+              <div>
+                <Typography variant="bodyMedium">
+                  Need help? Contact us at{" "}
+                  <span className="text-PrimaryColor text-center">
+                    contact@aceofficial.com
+                  </span>
+                </Typography>
+              </div>
+            </div>
+          </form>
         </div>
       </section>
     </>

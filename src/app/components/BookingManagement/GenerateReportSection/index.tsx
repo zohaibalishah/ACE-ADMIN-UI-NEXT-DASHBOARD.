@@ -1,5 +1,5 @@
 import React from "react";
-import { DatePicker, Typography } from "../../common";
+import { DatePicker, DatePickerSecondary, Typography } from "../../common";
 
 export const GenerateReport = (): React.ReactElement => {
   return (
@@ -13,7 +13,7 @@ export const GenerateReport = (): React.ReactElement => {
             Generate report
           </Typography>
         </button>
-        <DatePicker />
+        <DatePickerSecondary className="w-[219px] h-[49px]" />
       </div>
     </div>
   );
