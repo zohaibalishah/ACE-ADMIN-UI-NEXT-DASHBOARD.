@@ -1,6 +1,7 @@
 import { Typography } from "@/app/components/common";
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
+import { UserTableActionMenu } from "../../UserTableActionMenu";
 
 type Ikey = {
   index: number;
@@ -54,9 +55,9 @@ export const UserTableRow = ({ data, index }: IData): React.ReactElement => {
           </Typography>
         </td>
         <td className=" border-l-[1px] border-boxOutline pl-6 relative">
-          <button className="text-SecondaryColor">
-            <BsThreeDots />
-          </button>
+          <div>
+            <UserTableActionMenu index={index} />
+          </div>
         </td>
       </tr>
     </>

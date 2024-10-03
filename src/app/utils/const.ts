@@ -7,6 +7,7 @@ export const routes = {
   usermanagement: "/admin/user-management",
   addnewuser: "/admin/user-management/add-newuser",
   userdetails: "/admin/user-management/user-details",
+  chatRoom: "/admin/chat-room",
   bookingmanagement: "/admin/booking-management",
   matches: "/admin/booking-management/matches",
   transections: "/admin/booking-management/transections",

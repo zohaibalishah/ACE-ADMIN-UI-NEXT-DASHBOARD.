@@ -1,4 +1,7 @@
-import { RevenueReportStatics } from "@/app/components/FinancialManagement";
+import {
+  RevenueReportStatics,
+  RevenueRepotsChart,
+} from "@/app/components/FinancialManagement";
 import React from "react";
 
 const FinancialRevenueReport = () => {
@@ -6,6 +9,7 @@ const FinancialRevenueReport = () => {
     <>
       <div>
         <RevenueReportStatics />
+        <RevenueRepotsChart />
       </div>
     </>
   );

@@ -41,7 +41,8 @@ export const DropDownMenu = ({ item }: { item: IMenuItem }) => {
           {item.dropdown?.map((subItem, index) => {
             const subActive = subItem.link === pathname;
             return (
-              <MenuItem key={index}>
+              <MenuItem key={subItem.link || index}>
+                {/* Updated key */}
                 <Link
                   href={subItem.link}
                   className={` mb-4 px-2 flex gap-x-3 ${
