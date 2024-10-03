@@ -11,7 +11,7 @@ const UserManagementPage = () => {
     <>
       <section>
         <UserManagmentCardSection />
-        <UserSearchBar />
+        <UserSearchBar title="Total User's" />
         <UsersTable />
       </section>
     </>

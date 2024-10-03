@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { MImage, Typography } from "@/app/components/common";
 import { clubManagementIcons } from "../../../../../public/icons/clubManagementIcons";
 
-export const UserSearchBar = (): React.ReactElement => {
+type ITitle = {
+  title: string;
+};
+export const UserSearchBar = ({ title }: ITitle): React.ReactElement => {
   const [search, setSearch] = useState<boolean>(true);
 
   return (
@@ -12,7 +15,7 @@ export const UserSearchBar = (): React.ReactElement => {
         <div className="pt-3 md:pt-6">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <Typography variant="h5Bold" className="text-white">
-              Total User’s
+              {title}
             </Typography>
             <div className="flex items-center gap-4">
               <div className="relative">

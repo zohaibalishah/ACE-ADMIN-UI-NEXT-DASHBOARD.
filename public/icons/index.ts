@@ -10,6 +10,8 @@ import securityCamera from "./securityCamera.png";
 
 import iconUpload from "./Upload.png";
 
+import chatEllipsi from "./chatEllipsi.png";
+import msgsent from "./msg-sent.png";
 export const icons = {
   ACELogo,
   Notification,
@@ -20,4 +22,6 @@ export const icons = {
   bottle,
   securityCamera,
   iconUpload,
+  chatEllipsi,
+  msgsent,
 };

@@ -1,24 +1,22 @@
 import {
-  TotalBookingChart,
-  TotalRevenueChart,
-} from "@/app/components/Dashboard/Charts";
-import {
-  ActivityTracking,
-  BookingHistory,
-  PaymentDetails,
+  AcitivityTrackingTable,
+  AppUsesChart,
+  BookingHistoryTAble,
+  PaymentDetailsTable,
   ProfileSection,
 } from "@/app/components/UserManagement/UserDetails";
-import { AppUsesChart } from "@/app/components/UserManagement/UserDetails/AppUsesChart";
+import { ChartArea } from "lucide-react";
 import React from "react";
 
 const UserDetailsPage = () => {
   return (
     <>
-      <section className="w-full h-full p-3 md:p-6 md:pl-10 bg-gradient-to-t from-black via-bgDark to-bgBox">
+      <section>
         <ProfileSection />
-        <PaymentDetails />
-        <BookingHistory />
-        <ActivityTracking />
+        <PaymentDetailsTable />
+        <BookingHistoryTAble />
+        <AcitivityTrackingTable />
+        <AppUsesChart />
       </section>
     </>
   );

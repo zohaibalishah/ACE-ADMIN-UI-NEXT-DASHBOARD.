@@ -2,6 +2,7 @@ import { routes } from "@/app/utils/const";
 import { IconsNav } from "../../../public/icons/asideNavIcons";
 import { StaticImageData } from "next/image";
 import { icons } from "lucide-react";
+import { mImage } from "../../../public/images";
 
 export interface IDropdownItem {
   icon: string | StaticImageData;
@@ -28,7 +29,7 @@ export const AsideNavbarData: IMenuItem[] = [
     title: "User Management",
     link: routes.usermanagement,
   },
-  { icon: IconsNav.chat, title: "Chat Room", link: "#" },
+  { icon: IconsNav.chat, title: "Chat Room", link: routes.chatRoom },
   {
     icon: IconsNav.calendar,
     title: "Booking Management",
@@ -283,7 +284,19 @@ export const UserTableData = [
   },
 ];
 
-export const bookingHistoryData = [
+//----------BOOKING HISTORY TABLE DATA--------//
+export const BOOKIING_HISTORY_TABLE_HEAD = [
+  "S no",
+  "Booking ID",
+  "Date",
+  "Club name",
+  "Court type",
+  "Location",
+  "Payment",
+  "Status",
+];
+
+export const BOOKING_HISTORY_TABLE_ROW = [
   {
     bookingId: "001",
     date: "2024-06-15",
@@ -316,6 +329,38 @@ export const bookingHistoryData = [
     status: {
       completed: "completed",
     },
+  },
+];
+
+//--------PAYEMENT TABLE DATA----------//
+export const PAYMENT_TABLE_HEAD = [
+  "Payment method",
+  "Card number",
+  "Expiry date",
+  "Billing address",
+];
+
+export const PAYMENT_TABLE_ROW = [
+  {
+    paymentMethod: "Credit card",
+    cardNumber: "**** ***** **** 1234",
+    expiryDate: "12/25",
+    billingAddress: "123 Main St, Riyadh, KSA",
+  },
+];
+
+//----------ACTIVITY TRACKING TRABLE DATA ---------//
+export const ACTIVITY_TRACKING_TABLE_HEAD = [
+  "S no",
+  "Number of App Uses",
+  "Total Time Spent on App",
+  "Last active",
+];
+export const ACTIVITY_TRACKING_TABLE_ROW = [
+  {
+    appUses: "150 times",
+    timeSpent: "35 hours",
+    lastActive: "2024-07-14 14:30:00",
   },
 ];
 
@@ -914,5 +959,22 @@ export const CLUB_CONFIGURATION_TABLE_ROW = [
     profit: "10%",
     startContract: "2024-07-01",
     endContract: "2024-07-31",
+  },
+];
+
+//--------CHAT ROOM----------//
+export const chatRoomData = [
+  { msgSent: "Hey there!" },
+  { icon: mImage.avatar1, msgReceived: "Hello! Thanks for reaching out." },
+  {
+    msgSent:
+      "Hi there! I need to cancel my court booking for tomorrow. Can you help me with that?",
+    className: "sm:w-[345px]",
+  },
+  {
+    icon: mImage.avatar1,
+    msgReceived:
+      "Of course! Could you please provide me with your booking details?",
+    className: "sm:w-[345px]",
   },
 ];

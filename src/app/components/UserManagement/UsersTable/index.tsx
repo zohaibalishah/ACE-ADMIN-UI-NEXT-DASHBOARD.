@@ -1,7 +1,5 @@
 import React from "react";
 import { Typography } from "../../common";
-import { SingleUserRecord } from "../SingleUserRecod";
-import { UserTableData } from "@/app/utils/data";
 import { UserTableRow } from "./UserTableRow";
 
 const USER_TABLE_HEAD = [
