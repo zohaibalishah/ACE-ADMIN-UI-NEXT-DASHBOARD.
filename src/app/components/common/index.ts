@@ -9,3 +9,5 @@ export * from "./ThisMonth";
 export * from "./Monthly";
 export * from "./DatePicker";
 export * from "./DatePickerSecondary";
+export * from "./Modal";
+export * from "./TablePagination";

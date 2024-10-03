@@ -3,6 +3,7 @@ import {
   BookingTable,
   GenerateReport,
 } from "@/app/components/BookingManagement";
+import { TablePagination } from "@/app/components/common";
 import React from "react";
 
 const BookingManagementHome = () => {
@@ -12,6 +13,7 @@ const BookingManagementHome = () => {
         <BookingCardSection />
         <GenerateReport />
         <BookingTable />
+        <TablePagination />
       </div>
     </>
   );

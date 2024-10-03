@@ -42,14 +42,14 @@ export const TotalClubs = (): React.ReactElement => {
 
               <PrimaryButton
                 title="Add new"
-                className="!w-[120px] h-[44px] !rounded-xl "
+                className="!w-[120px] !h-[44px] !rounded-xl "
                 icon={<HiOutlinePlus />}
                 onClick={() => setIsOpen(true)}
               />
             </div>
-            {isOpen && <CreateClubModal />}
           </div>
         </div>
+        {isOpen && <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />}
       </section>
     </>
   );

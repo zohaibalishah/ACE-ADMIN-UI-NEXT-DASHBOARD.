@@ -1,8 +1,22 @@
-import { link } from "fs";
+import { routes } from "@/app/utils/const";
 import { IconsNav } from "../../../public/icons/asideNavIcons";
-import { routes } from "./const";
+import { StaticImageData } from "next/image";
+import { icons } from "lucide-react";
 
-export const AsideNavbarData = [
+export interface IDropdownItem {
+  icon: string | StaticImageData;
+  title: string;
+  link: string;
+}
+
+export interface IMenuItem {
+  icon: string | StaticImageData;
+  title: string;
+  link: string;
+  dropdown?: IDropdownItem[];
+}
+
+export const AsideNavbarData: IMenuItem[] = [
   { icon: IconsNav.category, title: "Dashboard", link: routes.admin },
   {
     icon: IconsNav.paper,
@@ -18,18 +32,94 @@ export const AsideNavbarData = [
   {
     icon: IconsNav.calendar,
     title: "Booking Management",
-    link: routes.bookingmanagement,
+    link: "#",
+    dropdown: [
+      {
+        icon: IconsNav.calendar,
+        title: "Bookings",
+        link: routes.bookingmanagement,
+      },
+      {
+        icon: IconsNav.paper,
+        title: "Matches",
+        link: routes.matches,
+      },
+      {
+        icon: IconsNav.chat,
+        title: "Transections",
+        link: routes.transections,
+      },
+    ],
   },
   { icon: IconsNav.discount, title: "Discount", link: routes.discount },
-  { icon: IconsNav.wallet, title: "Financial Management", link: "#" },
-  { icon: IconsNav.unlock, title: "Security and Audit", link: "#" },
-  { icon: IconsNav.setting, title: "Configuration", link: "#" },
+  {
+    icon: IconsNav.wallet,
+    title: "Financial Management",
+    link: "#",
+    dropdown: [
+      {
+        icon: IconsNav.calendar,
+        title: "Revenu Report",
+        link: routes.financialRevenuReport,
+      },
+      {
+        icon: IconsNav.paper,
+        title: "Incom and Spending logs",
+        link: routes.incomeAndSpendingLogs,
+      },
+      {
+        icon: IconsNav.chat,
+        title: "Treasury Management",
+        link: routes.TreasuryManagement,
+      },
+      { icon: IconsNav.chat, title: "Due Payment", link: routes.DuePayment },
+    ],
+  },
+  {
+    icon: IconsNav.unlock,
+    title: "Security and Audit",
+    link: "#",
+    dropdown: [
+      {
+        icon: IconsNav.calendar,
+        title: "Security Incidents",
+        link: routes.securityIncidents,
+      },
+      { icon: IconsNav.paper, title: "Audit Logs", link: routes.auditLogs },
+      {
+        icon: IconsNav.chat,
+        title: "System Error Logs",
+        link: routes.systemErrorsLogs,
+      },
+    ],
+  },
+  {
+    icon: IconsNav.setting,
+    title: "Configuration",
+    link: "#",
+    dropdown: [
+      {
+        icon: IconsNav.calendar,
+        title: "Application configuration",
+        link: routes.applicationConfiguration,
+      },
+      {
+        icon: IconsNav.paper,
+        title: "Club configuration",
+        link: routes.clubConfiguration,
+      },
+    ],
+  },
   {
     icon: IconsNav.notification,
     title: "Marketing and Notifications",
-    link: "#",
+    link: routes.marketingNotification,
   },
-  { icon: IconsNav.edit, title: "Support and Feedback", link: "#" },
+  {
+    icon: IconsNav.edit,
+    title: "Support and Feedback",
+    link: routes.supportAndFeedback,
+  },
 ];
 
 export const dashboardCardData = [
@@ -299,6 +389,83 @@ export const TABLE_ROWS = [
   },
 ];
 
+//--------BOOKING MANAGAEMENT--MATCHES TABLE DATA --------//
+export const MATCHES_TABLE_HEAD = [
+  "S no",
+  "Name",
+  "Club Name",
+  "Matches Date",
+  "Status",
+  "Location",
+  "Action",
+];
+export const MATCHES_TABLE_ROW = [
+  {
+    name: "John vs Jane",
+    clubName: "Sport Life",
+    matcheDate: "2024-07-18 10:00",
+    status: "Confirmed",
+    location: "Jeddah, KSA",
+  },
+  {
+    name: "John vs Jane",
+    clubName: "Sport Life",
+    matcheDate: "2024-07-18 10:00",
+    status: "Confirmed",
+    location: "Jeddah, KSA",
+  },
+  {
+    name: "John vs Jane",
+    clubName: "Sport Life",
+    matcheDate: "2024-07-18 10:00",
+    status: "Confirmed",
+    location: "Jeddah, KSA",
+  },
+];
+
+//--------BOOKING MANAGAEMENT--TRANSECTIONS TABLE DATA --------//
+export const TRANSECTIONS_TABLE_HEAD = [
+  "S no",
+  "Type",
+  "User Name",
+  "Club name",
+  "Amount",
+  "Type",
+  "Date",
+  "Status",
+  "Action",
+];
+
+export const TRANSECTION_TABLE_ROW = [
+  {
+    type: "Booking",
+    userName: "Aqib Javid",
+    clubName: "Fit Club",
+    amount: "50$",
+    paymentType: "Payment",
+    date: "2024-07-18",
+    status: "Complete",
+  },
+  {
+    type: "Booking",
+    userName: "Aqib Javid",
+    clubName: "Fit Club",
+    amount: "50$",
+    paymentType: "Payment",
+    date: "2024-07-18",
+    status: "Complete",
+  },
+  {
+    type: "Booking",
+    userName: "Aqib Javid",
+    clubName: "Fit Club",
+    amount: "50$",
+    paymentType: "Payment",
+    date: "2024-07-18",
+    status: "Complete",
+  },
+];
+
 // ---------Discont Table Data --------//
 
 export const DISCOUNT_TABLE_HEAD = [
@@ -332,5 +499,420 @@ export const DISCOUNT_TABLE_ROW = [
     value: "20%",
     period: "2024-07-01 to 2024-07-31",
     status: "Active",
+  },
+];
+
+//-------------Financial Management----------//
+export const revenueReportCardData = [
+  {
+    user: "Total Revenue",
+    figure: "SAR 40,980",
+    up: true,
+    down: false,
+    link: routes.totalclubs,
+  },
+  {
+    user: "This Month Revenue",
+    figure: "SAR 2,520",
+    up: false,
+    down: true,
+    link: routes.addnewclub,
+  },
+  { user: "Total Clubs", figure: "1,346", up: true, down: false },
+];
+
+//===========FINANCIAL MANAGEMNT=============//
+export const FINANCIAL_TABLE_HEAD = [
+  "S no",
+  "Club name",
+  "Club owner",
+  "Transiction Type",
+  "Amount",
+  "Discription",
+];
+export const FINANCIAL_TABLE_ROW = [
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    transictionType: "Income",
+    amount: "SAR 200",
+    discription: "Membership Fee",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    transictionType: "Income",
+    amount: "SAR 200",
+    discription: "Membership Fee",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    transictionType: "Income",
+    amount: "SAR 200",
+    discription: "Membership Fee",
+  },
+];
+
+//===========FINANCIAL MANAGEMNT=============//
+export const DUE_TABLE_HEAD = [
+  "S no",
+  "Club name",
+  "Club owner",
+  "Club profit",
+  "Total income",
+  "Due payment",
+  "Status",
+  "Action",
+];
+export const DUE_TABLE_ROW = [
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { pending: "Pending" },
+    action: { confirmed: "Confirmed" },
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { confirmed: "Confirmed" },
+    action: { view: "View" },
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { pending: "Pending" },
+    action: { confirmed: "Confirmed" },
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { confirmed: "Confirmed" },
+    action: { view: "View" },
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { confirmed: "Confirmed" },
+    action: { view: "View" },
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    status: { pending: "Pending" },
+    action: { confirmed: "Confirmed" },
+  },
+];
+
+//===========FINANCIAL MANAGEMNT TREASURY=============//
+export const TREASURY_TABLE_HEAD = [
+  "S no",
+  "Club name",
+  "Club owner",
+  "Club profit %",
+  "Total income",
+  "Transaction due",
+  "Action",
+  "",
+];
+
+export const TREASURY_TABLE_ROW = [
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+  {
+    clubName: "Downtown Club",
+    clubOwner: "Aqib",
+    clubProfit: "3%",
+    totalIncome: "SAR 10,000",
+    transactionDue: "SAR 9,700",
+    action: "Download",
+  },
+];
+
+//===========SECURITY INCIDENTS TABLE=============//
+export const SECURITY_INCIDENTS_TABLE_HEAD = [
+  "S no",
+  "Description",
+  "Detected On",
+  "Status",
+  "Action",
+];
+
+export const SECURITY_INCIDENTS_TABLE_ROW = [
+  {
+    discription: "Large transaction anomaly detected",
+    detectedOn: "2024-07-18 10:00",
+    status: "Open",
+  },
+  {
+    discription: "Multiple failed login attempts",
+    detectedOn: "2024-07-18 10:00",
+    status: "Resolved",
+  },
+  {
+    discription: "Large transaction anomaly detected",
+    detectedOn: "2024-07-18 10:00",
+    status: "Open",
+  },
+  {
+    discription: "Multiple failed login attempts",
+    detectedOn: "2024-07-18 10:00",
+    status: "Resolved",
+  },
+  {
+    discription: "Large transaction anomaly detected",
+    detectedOn: "2024-07-18 10:00",
+    status: "Open",
+  },
+  {
+    discription: "Multiple failed login attempts",
+    detectedOn: "2024-07-18 10:00",
+    status: "Resolved",
+  },
+];
+
+//===========AUDIT LOGS TABLE=============//
+export const AUDIT_LOGS_TABLE_HEAD = [
+  "S no",
+  "Action",
+  "User",
+  "Timestamp",
+  "Details",
+  "Action",
+];
+
+export const AUDIT_LOGS_TABLE_ROW = [
+  {
+    action: "User Login",
+    user: "Admin",
+    timeStamp: "2024-07-18 10:00",
+    details: "Successful login",
+  },
+  {
+    action: "User Login",
+    user: "Admin",
+    timeStamp: "2024-07-18 10:00",
+    details: "Successful login",
+  },
+  {
+    action: "User Login",
+    user: "Admin",
+    timeStamp: "2024-07-18 10:00",
+    details: "Successful login",
+  },
+  {
+    action: "User Login",
+    user: "Admin",
+    timeStamp: "2024-07-18 10:00",
+    details: "Successful login",
+  },
+  {
+    action: "User Login",
+    user: "Admin",
+    timeStamp: "2024-07-18 10:00",
+    details: "Successful login",
+  },
+];
+//---------------ERROR LOGS TABLE-----------------//
+export const ERRORS_LOGS_TABLE_HEAD = [
+  "S no",
+  "Description",
+  "Occurred On",
+  "Status",
+  "Action",
+];
+
+export const ERROS_LOGS_TABLE_ROW = [
+  {
+    description: "Database connection failure",
+    occurredOn: "2024-07-18 10:00",
+    status: "Open",
+  },
+  {
+    description: "API request timeout",
+    occurredOn: "2024-07-18 10:00",
+    status: "Resolved",
+  },
+];
+
+//---------------MARKETING NOTIFICATION TABLE DATA---------------//
+export const MARKETING_TABLE_HEAD = [
+  "Reference ID",
+  "Date & Time",
+  "Activity type",
+  "Description",
+];
+export const MARKETING_TABLE_ROW = [
+  {
+    referenceId: "A123",
+    date: "23 Jan, 2024 | 12:30 pm",
+    activityType: "New court added",
+    description:
+      "New club joined ACE! Use promo code WELCOME10 for 10% off ...",
+  },
+  {
+    referenceId: "A123",
+    date: "23 Jan, 2024 | 12:30 pm",
+    activityType: "New court added",
+    description:
+      "New club joined ACE! Use promo code WELCOME10 for 10% off ...",
+  },
+  {
+    referenceId: "A123",
+    date: "23 Jan, 2024 | 12:30 pm",
+    activityType: "New court added",
+    description:
+      "New club joined ACE! Use promo code WELCOME10 for 10% off ...",
+  },
+  {
+    referenceId: "A123",
+    date: "23 Jan, 2024 | 12:30 pm",
+    activityType: "New court added",
+    description:
+      "New club joined ACE! Use promo code WELCOME10 for 10% off ...",
+  },
+  {
+    referenceId: "A123",
+    date: "23 Jan, 2024 | 12:30 pm",
+    activityType: "New court added",
+    description:
+      "New club joined ACE! Use promo code WELCOME10 for 10% off ...",
+  },
+];
+
+//---------------SUPPORT AND FEEDBACK TABLE DATA-----------//
+
+export const FEEDBACK_TABLE_HEAD = [
+  "S no",
+  "Type",
+  "Subject",
+  "Description",
+  "Status",
+  "Action",
+];
+export const FEEDBACK_TABLE_ROW = [
+  {
+    type: "Suggestion",
+    subject: "Need suggestion",
+    description: "I have faced some issue like..",
+    status: "Open",
+  },
+  {
+    type: "Suggestion",
+    subject: "Need suggestion",
+    description: "I have faced some issue like..",
+    status: "Open",
+  },
+  {
+    type: "Suggestion",
+    subject: "Need suggestion",
+    description: "I have faced some issue like..",
+    status: "Open",
+  },
+  {
+    type: "Suggestion",
+    subject: "Need suggestion",
+    description: "I have faced some issue like..",
+    status: "Open",
+  },
+  {
+    type: "Suggestion",
+    subject: "Need suggestion",
+    description: "I have faced some issue like..",
+    status: "Open",
+  },
+];
+
+//-----------CONFIGURATION TABLE DATA ----------//
+export const CONFIGURATION_TABLE_HEAD = ["S no", "Title", "Icon", "Action"];
+export const CONFIGURATION_TABLE_ROW = [
+  { title: "Pariking", icon: "/icons/Parking.png" },
+  { title: "Water bottle", icon: "/icons/bottle.png" },
+  { title: "Security", icon: "/icons/securityCamera.png" },
+];
+
+//---------CLUB CONFIGURATION TABLE DATA--------//
+export const CLUB_CONFIGURATION_TABLE_HEAD = [
+  "S no",
+  "Club name",
+  "Profit%",
+  "Start contract",
+  "End contract",
+  "Action",
+];
+export const CLUB_CONFIGURATION_TABLE_ROW = [
+  {
+    clubName: "Downtown Club",
+    profit: "10%",
+    startContract: "2024-07-01",
+    endContract: "2024-07-31",
+  },
+  {
+    clubName: "Downtown Club",
+    profit: "10%",
+    startContract: "2024-07-01",
+    endContract: "2024-07-31",
+  },
+  {
+    clubName: "Downtown Club",
+    profit: "10%",
+    startContract: "2024-07-01",
+    endContract: "2024-07-31",
   },
 ];

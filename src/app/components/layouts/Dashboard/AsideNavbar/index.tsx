@@ -4,6 +4,7 @@ import { AsideNavbarData } from "@/app/utils/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { SetStateAction } from "react";
+import { DropDownMenu } from "./DropDownMenu";
 
 interface IIsopen {
   isOpen: boolean;
@@ -28,7 +29,10 @@ export const AsideNavbar = ({
         {AsideNavbarData.map((nav, index) => {
           const active = pathname.includes(nav.link);
 
-          return (
+          return typeof nav?.dropdown !== "undefined" &&
+            nav?.dropdown.length > 0 ? (
+            <DropDownMenu item={nav} />
+          ) : (
             <div
               key={index}
               className={`${
