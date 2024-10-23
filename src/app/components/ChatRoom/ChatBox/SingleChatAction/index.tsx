@@ -1,12 +1,38 @@
-import { MImage, Typography } from "@/app/components/common";
+import { ActionsDropdown, MImage, Typography } from "@/app/components/common";
 import React from "react";
 import { mImage } from "../../../../../../public/images";
 import { icons } from "../../../../../../public/icons";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiFlag } from "react-icons/fi";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { IoArrowBackSharp } from "react-icons/io5";
 
-export const SingleChatAction = (): React.ReactElement => {
+export const SingleChatAction = ({
+  hideChat,
+}: {
+  hideChat: () => void;
+}): React.ReactElement => {
+  const actions = [
+    {
+      icon: <FiFlag />,
+      title: "Flag",
+    },
+    {
+      icon: <MdOutlineRemoveRedEye />,
+      title: "Warning",
+    },
+    {
+      icon: <AiOutlineDelete />,
+      title: "Block",
+    },
+  ];
   return (
-    <div className="col-span-1 flex items-center justify-between my-2 bg-bgBox border-[1px] border-boxOutline rounded-xl p-2 h-[66px]">
+    <div className="col-span-1 flex items-center justify-between mb-3 bg-gradient-to-b from-newLinear/30 to-bgBox rounded-xl p-2 h-[66px]">
+      <button type="button" className="md:hidden" onClick={hideChat}>
+        <IoArrowBackSharp className="text-xl text-white" />
+      </button>
+
       <div className="flex items-center gap-x-2">
         <MImage
           src={mImage.avatar1}
@@ -40,9 +66,7 @@ export const SingleChatAction = (): React.ReactElement => {
           Matto keller
         </Typography>
       </div>
-      <div className="text-SecondaryColor text-xl">
-        <BsThreeDotsVertical />
-      </div>
+      <ActionsDropdown icon={<BsThreeDotsVertical />} actions={actions} />
     </div>
   );
 };

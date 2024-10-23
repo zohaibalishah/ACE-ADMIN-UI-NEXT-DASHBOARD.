@@ -1,19 +1,14 @@
 import { Typography } from "@/app/components/common";
 import React from "react";
-import { BsThreeDots } from "react-icons/bs";
 import { UserTableActionMenu } from "../../UserTableActionMenu";
-
-type Ikey = {
+interface IData {
   index: number;
-};
-
-interface IData extends Ikey {
   data: {
     profile: string;
     name: string;
     email: string;
-    phoneNumber: string;
-    walletBalance: string;
+    phoneNumber: number;
+    walletBalance: number;
     gender: string;
     location: string;
   };

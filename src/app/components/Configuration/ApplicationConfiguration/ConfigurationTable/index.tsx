@@ -1,48 +1,56 @@
-import { Typography } from "@/app/components/common";
+import { IAction } from "@/app/base/types";
+import {
+  ActionsDropdown,
+  MImage,
+  TableWrapper,
+  Typography,
+} from "@/app/components/common";
 import {
   CONFIGURATION_TABLE_HEAD,
   CONFIGURATION_TABLE_ROW,
 } from "@/app/utils/data";
-import React from "react";
-import { ConfigurationTableRow } from "./ConfigurationTableRow";
+import React, { useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BiEditAlt } from "react-icons/bi";
 
 export const ConfigurationTable = (): React.ReactElement => {
+  const actions: IAction[] = [
+    {
+      icon: <BiEditAlt />,
+      title: "Edit",
+    },
+    {
+      icon: <AiOutlineDelete />,
+      title: "Delete",
+    },
+  ];
   return (
-    <div className="w-full overflow-hidden overflow-x-scroll">
-      <table className="min-w-[400px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {CONFIGURATION_TABLE_HEAD.map((data, index) => (
-              <th
-                key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                } ${index === 1 ? "pl-2" : ""}
-                  ${
-                    index === CONFIGURATION_TABLE_HEAD.length - 1
-                      ? "pl-3 rounded-tr-2xl"
-                      : ""
-                  } py-3`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {data}
+    <>
+      <TableWrapper TableHeadData={CONFIGURATION_TABLE_HEAD}>
+        {CONFIGURATION_TABLE_ROW.map((data, index) => {
+          return (
+            <tr key={index} className="border-2 border-boxOutline">
+              <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+                <Typography className="text-SecondaryColor">
+                  {index + 1}
                 </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
+              </td>
+              <td>
+                <Typography className="text-SecondaryColor pl-4">
+                  {data.title}
+                </Typography>
+              </td>
+              <td>
+                <MImage src={data.icon} w={24} h={24} alt="icon" />
+              </td>
 
-        <tbody>
-          {CONFIGURATION_TABLE_ROW.map((data, index) => {
-            return (
-              <ConfigurationTableRow data={data} index={index} key={index} />
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+              <td className="h-full border-boxOutline pl-4 text-white">
+                <ActionsDropdown actions={actions} />
+              </td>
+            </tr>
+          );
+        })}
+      </TableWrapper>
+    </>
   );
 };

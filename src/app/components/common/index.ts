@@ -11,3 +11,6 @@ export * from "./DatePicker";
 export * from "./DatePickerSecondary";
 export * from "./Modal";
 export * from "./TablePagination";
+export * from "./TableWrapper";
+export * from "./ActionsDropdown";
+export * from "./SearchInput";

@@ -1,8 +1,17 @@
-import React from "react";
-import { Typography } from "../../common";
-import { UserTableRow } from "./UserTableRow";
+"use client";
 
-const USER_TABLE_HEAD = [
+import { IAction } from "@/app/base/types";
+import React, { useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { LuEye } from "react-icons/lu";
+import { BiEditAlt } from "react-icons/bi";
+import { UserSearchBar } from "../UserSearchBar";
+import { ActionsDropdown, TableWrapper, Typography } from "../../common";
+import { EditUser } from "../EditUser";
+import { routes } from "@/app/utils/const";
+import { useRouter } from "next/navigation";
+
+const tableHead = [
   "S no",
   "Name",
   "Email",
@@ -13,69 +22,74 @@ const USER_TABLE_HEAD = [
   "Action",
 ];
 
-const USER_TABLE_ROW = [
-  {
-    profile: "GU",
-    name: "Gul khan",
-    email: "gulkhan@gmail.com",
-    phoneNumber: +3382933298,
-    walletBalance: 344,
-    gender: "Male",
-    location: "Riyadh KSA",
-  },
-  {
-    profile: "GU",
-    name: "Gul khan",
-    email: "gulkhan@gmail.com",
-    phoneNumber: +3382933298,
-    walletBalance: 344,
-    gender: "Male",
-    location: "Riyadh KSA",
-  },
-  {
-    profile: "GU",
-    name: "Gul khan",
-    email: "gulkhan@gmail.com",
-    phoneNumber: +3382933298,
-    walletBalance: 344,
-    gender: "Male",
-    location: "Riyadh KSA",
-  },
-];
-
-export const UsersTable = (): React.ReactElement => {
+export const UsersTable = () => {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const actions: IAction[] = [
+    {
+      icon: <LuEye />,
+      title: "View",
+      onClick: () => router.push(routes.userdetails),
+    },
+    {
+      icon: <BiEditAlt />,
+      title: "Edit",
+      onClick: () => setIsOpen(true),
+    },
+    {
+      icon: <AiOutlineDelete />,
+      title: "Suspend",
+    },
+  ];
   return (
     <>
-      <div className="w-full overflow-hidden overflow-x-scroll py-6">
-        <table className="table-auto w-full min-w-[800px] text-left">
-          <thead>
-            <tr>
-              {USER_TABLE_HEAD.map((data, index) => (
-                <th
-                  key={index}
-                  className={`bg-boxOutline h-[46px] ${
-                    index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                  } 
-                     ${index === 1 ? "pl-2 " : ""}  ${
-                    index === USER_TABLE_HEAD.length - 1
-                      ? "pl-2 rounded-tr-2xl"
-                      : ""
-                  }`}
-                >
-                  <Typography className="text-SecondaryColor font-normal">
-                    {data}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {USER_TABLE_ROW.map((data, index) => (
-              <UserTableRow data={data} index={index} key={index} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <UserSearchBar title="Total User's" onAddUser={() => setIsOpen(true)} />
+      <TableWrapper TableHeadData={tableHead}>
+        {Array.from({ length: 7 }).map((td, index) => (
+          <tr className="border-b border-boxOutline h-[60px]" key={index}>
+            <td className="pl-2 border-r-2 border-boxOutline">
+              <Typography className="text-SecondaryColor">
+                {index + 1}
+              </Typography>
+            </td>
+            <td className="pl-4 border-boxOutline">
+              <div className="flex gap-3 items-center">
+                <span className="w-9 h-9 rounded-full border border-white text-white inline-flex justify-center items-center">
+                  AJ
+                </span>
+                <Typography className="text-SecondaryColor">
+                  Aqib Javid
+                </Typography>
+              </div>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">
+                aqib.official@gmail.com
+              </Typography>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">
+                +966148754306
+              </Typography>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">SAR 100</Typography>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">Male</Typography>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">
+                Jeddah, KSA
+              </Typography>
+            </td>
+            <td className="border-boxOutline pl-3">
+              <ActionsDropdown actions={actions} />
+            </td>
+          </tr>
+        ))}
+      </TableWrapper>
+      <EditUser isOpen={isOpen} setIsOpen={setIsOpen} isEdit={false} />
     </>
   );
 };

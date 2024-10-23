@@ -59,15 +59,5 @@ export const DashboardCard = ({ card }: ICard): React.ReactElement => {
     </div>
   );
 
-  return (
-    <div>
-      {card.link ? (
-        <Link href={card.link}>
-          <CardContent />
-        </Link>
-      ) : (
-        <CardContent />
-      )}
-    </div>
-  );
+  return <CardContent />;
 };

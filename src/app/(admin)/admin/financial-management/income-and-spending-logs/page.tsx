@@ -8,11 +8,9 @@ import React from "react";
 const IncomeAndSpendingLogs = () => {
   return (
     <>
-      <div>
-        <TitleBar />
-        <IncomeSpendingTable />
-        <TablePagination />
-      </div>
+      <TitleBar />
+      <IncomeSpendingTable />
+      {/* <TablePagination /> */}
     </>
   );
 };

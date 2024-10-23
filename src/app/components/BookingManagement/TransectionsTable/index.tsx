@@ -1,50 +1,73 @@
-import { BsThreeDots } from "react-icons/bs";
-import { Typography } from "../../common";
+import { clubManagementIcons } from "../../../../../public/icons/clubManagementIcons";
+import { MImage, TableWrapper, Typography } from "../../common";
 import {
-  MATCHES_TABLE_HEAD,
-  MATCHES_TABLE_ROW,
   TRANSECTION_TABLE_ROW,
   TRANSECTIONS_TABLE_HEAD,
 } from "@/app/utils/data";
-import { TransectionsTableRow } from "./TransectionsTableRow/index";
 
 export const TransectionsTable = () => {
   return (
-    <div className="flex-1 overflow-hidden overflow-x-scroll">
-      <table className="min-w-[700px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {TRANSECTIONS_TABLE_HEAD.map((head, index) => (
-              <th
-                key={head}
-                className={`py-3 bg-boxOutline ${index === 1 ? "pl-4 " : ""} ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                }
-                ${
-                  index === TRANSECTIONS_TABLE_HEAD.length - 1
-                    ? "rounded-tr-2xl"
-                    : ""
-                }`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {TRANSECTION_TABLE_ROW.map((data, index) => {
-            return (
-              <TransectionsTableRow data={data} key={index} index={index} />
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <TableWrapper TableHeadData={TRANSECTIONS_TABLE_HEAD}>
+      {TRANSECTION_TABLE_ROW.map((data, index) => (
+        <tr key={index} className="border-2 border-boxOutline">
+          <td className="h-[40px] sm:h-[60px] border-r-[1px] border-boxOutline pl-3 ">
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {index + 1}
+            </Typography>
+          </td>
+          <td>
+            <Typography
+              variant="bodyRegular"
+              className="text-SecondaryColor pl-3"
+            >
+              {data.type}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.userName}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.clubName}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.amount}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.date}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.status}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.paymentType}
+            </Typography>
+          </td>
+          <td className="w-[100px] border-l-[1px] border-boxOutline pl-3">
+            <div className=" flex items-center gap-x-2">
+              <MImage
+                src={clubManagementIcons.iconPreview}
+                w={24}
+                h={24}
+                alt="preview"
+              />
+              <Typography variant="bodyMedium" className="text-SecondaryColor">
+                View
+              </Typography>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </TableWrapper>
   );
 };

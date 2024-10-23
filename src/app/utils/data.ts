@@ -23,6 +23,23 @@ export const AsideNavbarData: IMenuItem[] = [
     icon: IconsNav.paper,
     title: "Club Management",
     link: routes.clubmanagement,
+    dropdown: [
+      {
+        icon: IconsNav.calendar,
+        title: "Owner’s Management",
+        link: routes.clubmanagement,
+      },
+      {
+        icon: IconsNav.paper,
+        title: "Clubs Management",
+        link: routes.totalclubs,
+      },
+      {
+        icon: IconsNav.chat,
+        title: "Club Wallet",
+        link: "#",
+      },
+    ],
   },
   {
     icon: IconsNav.user2,
@@ -47,7 +64,7 @@ export const AsideNavbarData: IMenuItem[] = [
       },
       {
         icon: IconsNav.chat,
-        title: "Transections",
+        title: "Transactions",
         link: routes.transections,
       },
     ],
@@ -60,19 +77,19 @@ export const AsideNavbarData: IMenuItem[] = [
     dropdown: [
       {
         icon: IconsNav.calendar,
-        title: "Revenu Report",
+        title: "Revenue Report",
         link: routes.financialRevenuReport,
       },
-      {
-        icon: IconsNav.paper,
-        title: "Incom and Spending logs",
-        link: routes.incomeAndSpendingLogs,
-      },
-      {
-        icon: IconsNav.chat,
-        title: "Treasury Management",
-        link: routes.TreasuryManagement,
-      },
+      // {
+      //   icon: IconsNav.paper,
+      //   title: "Income & Spending logs",
+      //   link: routes.incomeAndSpendingLogs,
+      // },
+      // {
+      //   icon: IconsNav.chat,
+      //   title: "Treasury Management",
+      //   link: routes.TreasuryManagement,
+      // },
       { icon: IconsNav.chat, title: "Due Payment", link: routes.DuePayment },
     ],
   },
@@ -152,7 +169,7 @@ export const ClubManagementCardData = [
     up: false,
     down: true,
     select: true,
-    link: routes.addnewclub,
+    link: "#",
   },
   { user: "Total Court", figure: "10,863", up: true, down: false },
 ];
@@ -242,7 +259,6 @@ export const userManagementCardData = [
     figure: "101,980",
     up: true,
     down: false,
-    link: routes.usermanagement,
   },
   {
     user: "New Users",
@@ -250,7 +266,6 @@ export const userManagementCardData = [
     up: false,
     down: true,
     select: true,
-    link: routes.addnewuser,
   },
 ];
 
@@ -449,21 +464,21 @@ export const MATCHES_TABLE_ROW = [
     name: "John vs Jane",
     clubName: "Sport Life",
     matcheDate: "2024-07-18 10:00",
-    status: "Confirmed",
+    status: "1/4 Confirmed",
     location: "Jeddah, KSA",
   },
   {
     name: "John vs Jane",
     clubName: "Sport Life",
     matcheDate: "2024-07-18 10:00",
-    status: "Confirmed",
+    status: "2/2 Confirmed",
     location: "Jeddah, KSA",
   },
   {
     name: "John vs Jane",
     clubName: "Sport Life",
     matcheDate: "2024-07-18 10:00",
-    status: "Confirmed",
+    status: "3/4 Confirmed",
     location: "Jeddah, KSA",
   },
 ];
@@ -561,7 +576,7 @@ export const revenueReportCardData = [
     figure: "SAR 2,520",
     up: false,
     down: true,
-    link: routes.addnewclub,
+    link: "#",
   },
   { user: "Total Clubs", figure: "1,346", up: true, down: false },
 ];

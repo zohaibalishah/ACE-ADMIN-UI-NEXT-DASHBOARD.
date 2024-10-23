@@ -1,47 +1,57 @@
-import { Typography } from "@/app/components/common";
 import {
-  AUDIT_LOGS_TABLE_HEAD,
-  AUDIT_LOGS_TABLE_ROW,
-  SECURITY_INCIDENTS_TABLE_ROW,
-} from "@/app/utils/data";
+  ActionsDropdown,
+  TableWrapper,
+  Typography,
+} from "@/app/components/common";
+import { AUDIT_LOGS_TABLE_HEAD, AUDIT_LOGS_TABLE_ROW } from "@/app/utils/data";
 import React from "react";
-import { LogsTableRow } from "./LogsTableRow";
+import { LuEye } from "react-icons/lu";
+import { IAction } from "@/app/base/types";
 
 export const AudtiLogsTable = (): React.ReactElement => {
   return (
-    <div className="w-full overflow-hidden overflow-x-scroll">
-      <table className="min-w-[700px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {AUDIT_LOGS_TABLE_HEAD.map((data, index) => (
-              <th
-                key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                } ${index === 1 ? "pl-2" : ""}
-                  ${
-                    index === AUDIT_LOGS_TABLE_HEAD.length - 1
-                      ? "pl-3 rounded-tr-2xl"
-                      : ""
-                  } py-3`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {data}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
+    <TableWrapper TableHeadData={AUDIT_LOGS_TABLE_HEAD}>
+      {AUDIT_LOGS_TABLE_ROW.map((data, index) => {
+        const actions: IAction[] = [
+          {
+            icon: <LuEye />,
+            title: "View",
+          },
+        ];
+        return (
+          <tr className="border-2 border-boxOutline" key={index}>
+            <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+              <Typography className="text-SecondaryColor">
+                {index + 1}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-4">
+                {data.action}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.user}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.timeStamp}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.details}
+              </Typography>
+            </td>
 
-        <tbody>
-          {AUDIT_LOGS_TABLE_ROW.map((data, index) => {
-            return <LogsTableRow data={data} index={index} key={index} />;
-          })}
-        </tbody>
-      </table>
-    </div>
+            <td className="h-full border-l-2 border-boxOutline pl-4">
+              <ActionsDropdown actions={actions} />
+            </td>
+          </tr>
+        );
+      })}
+    </TableWrapper>
   );
 };

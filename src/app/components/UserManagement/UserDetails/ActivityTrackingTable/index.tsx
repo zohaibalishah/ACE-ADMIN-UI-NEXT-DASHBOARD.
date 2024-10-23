@@ -11,7 +11,7 @@ export const AcitivityTrackingTable = (): React.ReactElement => {
     <>
       <div>
         <Typography variant="h5Bold" className="text-SecondaryColor">
-          Payment Details
+          Activity tracking
         </Typography>
         <div className="py-3 w-full overflow-hidden overflow-x-scroll">
           <table className="table-auto w-full text-left min-w-[600px]">

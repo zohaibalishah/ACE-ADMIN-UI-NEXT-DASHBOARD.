@@ -1,43 +1,46 @@
-import { Typography } from "@/app/components/common";
+import { TableWrapper, Typography } from "@/app/components/common";
 import { FINANCIAL_TABLE_HEAD, FINANCIAL_TABLE_ROW } from "@/app/utils/data";
 import React from "react";
-import { IncomeTableRow } from "./IncomeTableRow";
 
 export const IncomeSpendingTable = (): React.ReactElement => {
   return (
-    <div className="w-full overflow-hidden overflow-x-scroll py-6">
-      <table className="min-w-[700px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {FINANCIAL_TABLE_HEAD.map((data, index) => (
-              <th
-                key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                } ${index === 1 ? "pl-2" : ""}
-                ${
-                  index === FINANCIAL_TABLE_HEAD.length - 1
-                    ? "pl-3 rounded-tr-2xl"
-                    : ""
-                } py-3`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {data}
-                </Typography>
-              </th>
-            ))}
+    <TableWrapper TableHeadData={FINANCIAL_TABLE_HEAD}>
+      {FINANCIAL_TABLE_ROW.map((data, index) => {
+        return (
+          <tr key={data.clubName} className="border-2 border-boxOutline">
+            <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+              <Typography className="text-SecondaryColor">
+                {index + 1}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-4">
+                {data.clubName}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-2">
+                {data.clubOwner}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.transictionType}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.amount}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-3">
+                {data.discription}
+              </Typography>
+            </td>
           </tr>
-        </thead>
-
-        <tbody>
-          {FINANCIAL_TABLE_ROW.map((data, index) => {
-            return <IncomeTableRow data={data} index={index} key={index} />;
-          })}
-        </tbody>
-      </table>
-    </div>
+        );
+      })}
+    </TableWrapper>
   );
 };

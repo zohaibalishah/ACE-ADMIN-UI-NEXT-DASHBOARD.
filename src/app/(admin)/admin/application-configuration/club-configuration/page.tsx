@@ -8,11 +8,8 @@ import React from "react";
 const ClubConfigurationHome = () => {
   return (
     <>
-      <div>
-        <ClubConfigurationSearchbar />
-        <ClubConfigurationTable />
-        <TablePagination />
-      </div>
+      <ClubConfigurationSearchbar />
+      <ClubConfigurationTable />
     </>
   );
 };

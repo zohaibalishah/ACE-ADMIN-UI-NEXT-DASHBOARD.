@@ -17,7 +17,7 @@ export const DropEditMenu = () => {
           <MImage src={clubManagementIcons.iconEdit} w={21} h={21} alt="edit" />
           <Typography variant="bodyMedium">Edit</Typography>
         </button>
-        {isOpen ? <EditUserModal /> : ""}
+        {isOpen ? <EditUserModal isOpen={isOpen} setIsOpen={setIsOpen} /> : ""}
         <div className="flex items-center justify-center gap-x-3">
           <MImage
             src={clubManagementIcons.iconDelete}

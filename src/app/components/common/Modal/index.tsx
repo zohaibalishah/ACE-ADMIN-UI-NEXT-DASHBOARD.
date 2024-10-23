@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, DialogPanel } from "@headlessui/react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import React from "react";
 
 interface Props {
@@ -16,23 +16,23 @@ export const Modal = ({
   setIsOpen,
   className,
 }: Props): React.ReactElement => (
-  <Dialog
-    open={isOpen}
-    as="div"
-    className="relative z-[99] focus:outline-none"
-    onClose={() => {
-      setIsOpen(false);
-    }}
-  >
-    <div className="fixed bg-bgShadow/60 inset-0 z-[99] w-screen overflow-y-auto">
-      <div className="flex min-h-full items-center justify-center p-2.5 sm:p-4">
-        <DialogPanel
-          transition
-          className={`${className} w-[598px] h-[594px] transform bg-bgShadow transition-all shadow-xl duration-500 data-[closed]:opacity-0 data-[closed]:transform-[scale(95%)] ease-in`}
-        >
-          {children}
-        </DialogPanel>
+  <>
+    <Dialog open={isOpen} onClose={setIsOpen} className="relative z-50">
+      <DialogBackdrop
+        transition
+        className="fixed inset-0 bg-bgShadow bg-opacity-60 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+      />
+
+      <div className="fixed top-10 inset-0 z-50 w-screen overflow-y-auto">
+        <div className="flex min-h-full justify-center p-4 text-center sm:items-center ">
+          <DialogPanel
+            transition
+            className={`${className} transform bg-bgShadow transition-all shadow-xl duration-500 data-[closed]:opacity-0 data-[closed]:transform-[scale(95%)] ease-in`}
+          >
+            {children}
+          </DialogPanel>
+        </div>
       </div>
-    </div>
-  </Dialog>
+    </Dialog>
+  </>
 );

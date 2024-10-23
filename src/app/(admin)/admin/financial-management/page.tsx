@@ -7,10 +7,8 @@ import React from "react";
 const FinancialRevenueReport = () => {
   return (
     <>
-      <div>
-        <RevenueReportStatics />
-        <RevenueRepotsChart />
-      </div>
+      <RevenueReportStatics />
+      <RevenueRepotsChart />
     </>
   );
 };

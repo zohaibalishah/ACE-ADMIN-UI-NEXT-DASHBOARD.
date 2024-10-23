@@ -7,6 +7,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   className?: string;
   icon?: React.ReactNode;
+  inputClass?: string;
 }
 
 export const TextField = ({
@@ -15,18 +16,19 @@ export const TextField = ({
   placeholder,
   className,
   icon,
+  inputClass,
   ...rest
 }: Props): React.ReactElement => (
   <div className={`${className}`}>
     {label !== undefined && (
       <Typography className="text-body block mb-1.5">{label}</Typography>
     )}
-    <div className="relative border-2 border-boxOutline bg-opacity-50 my-1 md:my-2 flex justify-between items-center rounded-full w-full ">
+    <div className="relative border-2 border-boxOutline bg-opacity-50 flex justify-between items-center rounded-full w-full">
       <Typography variant="bodyRegular" className="w-full">
         <input
           type={type ?? "text"}
           placeholder={placeholder}
-          className={` w-full placeholder:text-tertiary text-tertiary h-[46px] xl:h-[56px] px-5  rounded-full outline-none bg-bgBox bg-opacity-80`}
+          className={`${inputClass} w-full placeholder:text-tertiary text-white h-[46px] xl:h-[56px] px-5 rounded-full outline-none border-2 border-transparent focus:border-PrimaryColor bg-bgBox bg-opacity-80`}
           {...rest}
         />
       </Typography>

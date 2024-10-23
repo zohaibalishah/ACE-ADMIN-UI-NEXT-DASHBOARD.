@@ -4,20 +4,19 @@ import {
   BookingHistoryTAble,
   PaymentDetailsTable,
   ProfileSection,
+  TotalTimeSpentChart,
 } from "@/app/components/UserManagement/UserDetails";
-import { ChartArea } from "lucide-react";
 import React from "react";
 
 const UserDetailsPage = () => {
   return (
     <>
-      <section>
-        <ProfileSection />
-        <PaymentDetailsTable />
-        <BookingHistoryTAble />
-        <AcitivityTrackingTable />
-        <AppUsesChart />
-      </section>
+      <ProfileSection />
+      <PaymentDetailsTable />
+      <BookingHistoryTAble />
+      <AcitivityTrackingTable />
+      <AppUsesChart />
+      <TotalTimeSpentChart />
     </>
   );
 };

@@ -9,11 +9,9 @@ import React from "react";
 const ApplicationConfigurationHome = () => {
   return (
     <>
-      <div>
-        <ApplicationConfigurationTitle />
-        <SelectSearchComponent />
-        <ConfigurationTable />
-      </div>
+      <ApplicationConfigurationTitle />
+      <SelectSearchComponent />
+      <ConfigurationTable />
     </>
   );
 };

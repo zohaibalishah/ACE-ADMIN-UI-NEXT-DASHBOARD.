@@ -4,7 +4,6 @@ import { clubManagementIcons } from "../../../../../../public/icons/clubManageme
 
 import Select from "react-select";
 import { colors } from "@/app/styles/colors";
-import { DropdownMenuItemIndicator } from "@radix-ui/react-dropdown-menu";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -16,29 +15,29 @@ const options = [
 const customStyles = {
   control: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: colors.bgBox, // Set background color to black
+    backgroundColor: colors.bgBox,
     color: "white",
     border: "none",
-    boxShadow: state.isFocused ? "none" : provided.boxShadow, // Remove focus outline
+    boxShadow: state.isFocused ? "none" : provided.boxShadow,
   }),
   singleValue: (provided: any) => ({
     ...provided,
-    color: "white", // Set text color to white for readability
+    color: "white",
   }),
   menu: (provided: any) => ({
     ...provided,
-    backgroundColor: "black", // Set dropdown menu background to black
+    backgroundColor: "black",
   }),
   option: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: state.isSelected ? "gray" : "black", // Set selected option background color
-    color: "white", // Set option text color to white
+    backgroundColor: state.isSelected ? "gray" : "black",
+    color: "white",
     "&:hover": {
-      backgroundColor: "gray", // Set hover color for options
+      backgroundColor: "gray",
     },
   }),
   indicatorSeparator: () => ({
-    display: "none", // Hide the separator between dropdown indicator and clear button
+    display: "none",
   }),
   DropdownMenuItemIndicator: () => ({
     color: "white",
@@ -47,15 +46,20 @@ const customStyles = {
 
 export const SelectSearchComponent = () => {
   return (
-    <div className="flex flex-col sm:flex-row items-center gap-y-4 sm:gap-y-0 gap-x-6 my-4 sm:my-6">
-      <div className="flex items-center border-2 border-boxOutline w-full bg-bgBox rounded-xl px-3">
+    <div className="flex flex-col sm:flex-row items-center gap-y-4 sm:gap-y-0 gap-x-6 mt-4 sm:mt-6">
+      <div className="flex items-center border-2 h-[49px] border-boxOutline w-full bg-bgBox rounded-xl px-3">
         <MImage
           src={clubManagementIcons.searchIcon}
           w={22}
           h={22}
           alt="search"
         />
-        <Select options={options} styles={customStyles} className="w-full" />
+        <Select
+          // options={options}
+          styles={customStyles}
+          className="w-full"
+          placeholder="Search club"
+        />
       </div>
       <PrimaryButton
         title="Search"

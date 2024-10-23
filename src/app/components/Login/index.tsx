@@ -3,7 +3,7 @@ import React from "react";
 import { MImage, PrimaryButton, Typography } from "../common";
 import { mImage } from "../../../../public/images";
 import { icons } from "../../../../public/icons/index";
-import { TextField } from "../form";
+import { PasswordField, TextField } from "../form";
 import { FiEye } from "react-icons/fi";
 import Link from "next/link";
 import { routes } from "@/app/utils/const";
@@ -47,7 +47,7 @@ export const LoginPage = (): React.ReactElement => {
                   className="!w-full lg:!w-[457px]"
                 />
                 <div>
-                  <TextField placeholder="Password" icon={<FiEye />} />
+                  <PasswordField placeholder="Password" />
                   <Link href={routes.changepassword}>
                     <Typography className="pt-1">Forget Password?</Typography>
                   </Link>

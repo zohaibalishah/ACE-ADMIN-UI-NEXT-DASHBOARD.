@@ -1,47 +1,81 @@
-import { Typography } from "@/app/components/common";
-import {
-  DUE_TABLE_HEAD,
-  DUE_TABLE_ROW,
-  TREASURY_TABLE_HEAD,
-  TREASURY_TABLE_ROW,
-} from "@/app/utils/data";
+import { TableWrapper, Typography } from "@/app/components/common";
+import { DUE_TABLE_HEAD, DUE_TABLE_ROW } from "@/app/utils/data";
 import React from "react";
-import { DueTableRow } from "./TableRow";
+import { ConfirmPayment } from "../ConfirmPayment";
 export const DuePaymentTable = (): React.ReactElement => {
   return (
-    <div className="w-full overflow-hidden overflow-x-scroll py-6">
-      <table className="min-w-[800px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {DUE_TABLE_HEAD.map((data, index) => (
-              <th
-                key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                } ${index === 1 ? "pl-2" : ""}
-                ${
-                  index === TREASURY_TABLE_HEAD.length - 1
-                    ? "pl-3 rounded-tr-2xl"
-                    : ""
-                } py-3`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {data}
-                </Typography>
-              </th>
-            ))}
+    <TableWrapper TableHeadData={DUE_TABLE_HEAD}>
+      {DUE_TABLE_ROW.map((data, index) => {
+        return (
+          <tr key={data.clubName} className="border-2 border-boxOutline">
+            <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+              <Typography className="text-SecondaryColor">
+                {index + 1}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-4">
+                {data.clubName}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-2">
+                {data.clubOwner}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor pl-2">
+                {data.clubProfit}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.totalIncome}
+              </Typography>
+            </td>
+            <td>
+              <Typography className="text-SecondaryColor">
+                {data.transactionDue}
+              </Typography>
+            </td>
+            <td>
+              {data?.status?.confirmed ? (
+                <div className="flex items-center justify-center gap-x-2 w-[108px] h-[36px] rounded-2xl bg-PrimaryColor">
+                  <Typography
+                    variant="bodyMedium"
+                    className="text-SecondaryColor"
+                  >
+                    {data?.status?.confirmed}
+                  </Typography>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center gap-x-2 w-[108px] h-[36px] rounded-2xl bg-boxOutline">
+                  <Typography
+                    variant="bodyMedium"
+                    className="text-SecondaryColor"
+                  >
+                    {data?.status?.pending || "Pending"}
+                  </Typography>
+                </div>
+              )}
+            </td>
+            <td className="border-l-2 border-boxOutline">
+              {data?.action?.confirmed ? (
+                <ConfirmPayment />
+              ) : (
+                <div className="flex items-center justify-center">
+                  <Typography
+                    variant="bodyMedium"
+                    className="text-SecondaryColor underline underline-offset-2 cursor-pointer"
+                  >
+                    {data?.action?.view || "View"}
+                  </Typography>
+                </div>
+              )}
+            </td>
           </tr>
-        </thead>
-
-        <tbody>
-          {DUE_TABLE_ROW.map((data, index) => {
-            return <DueTableRow data={data} index={index} key={index} />;
-          })}
-        </tbody>
-      </table>
-    </div>
+        );
+      })}
+    </TableWrapper>
   );
 };

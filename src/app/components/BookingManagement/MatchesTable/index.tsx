@@ -1,48 +1,69 @@
-import { BsThreeDots } from "react-icons/bs";
-import { Typography } from "../../common";
-import {
-  MATCHES_TABLE_HEAD,
-  MATCHES_TABLE_ROW,
-  TABLE_HEAD,
-  TABLE_ROWS,
-} from "@/app/utils/data";
-import { MatchesTableRow } from "./MatchesTableRow";
+import { ActionsDropdown, TableWrapper, Typography } from "../../common";
+import { MATCHES_TABLE_HEAD, MATCHES_TABLE_ROW } from "@/app/utils/data";
+import { IAction } from "@/app/base/types";
+import { LuEye } from "react-icons/lu";
+import { BiEditAlt } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export const MatchesTable = () => {
+  const actions: IAction[] = [
+    {
+      icon: <LuEye />,
+      title: "View",
+    },
+    {
+      icon: <BiEditAlt />,
+      title: "Edit",
+    },
+    {
+      icon: <AiOutlineDelete />,
+      title: "Cancel",
+    },
+  ];
   return (
-    <div className="flex-1 overflow-hidden overflow-x-scroll">
-      <table className="min-w-[700px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {MATCHES_TABLE_HEAD.map((head, index) => (
-              <th
-                key={head}
-                className={`py-3 bg-boxOutline ${index === 1 ? "pl-4 " : ""} ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                }
-                ${
-                  index === MATCHES_TABLE_HEAD.length - 1
-                    ? "rounded-tr-2xl"
-                    : ""
-                }`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {MATCHES_TABLE_ROW.map((data, index) => {
-            return <MatchesTableRow data={data} key={index} index={index} />;
-          })}
-        </tbody>
-      </table>
-    </div>
+    <TableWrapper TableHeadData={MATCHES_TABLE_HEAD}>
+      {MATCHES_TABLE_ROW.map((data, index) => (
+        <tr key={data.name} className="border-2 border-boxOutline">
+          <td className="h-[40px] sm:h-[60px] border-r-[1px] border-boxOutline pl-3 ">
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {index + 1}
+            </Typography>
+          </td>
+          <td>
+            <Typography
+              variant="bodyRegular"
+              className="text-SecondaryColor pl-3"
+            >
+              {data.name}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.clubName}
+            </Typography>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.matcheDate}
+            </Typography>
+          </td>
+          <td>
+            <div className="px-5 py-1 rounded-xl bg-PrimaryColor inline-flex justify-center items-center">
+              <Typography variant="bodyMedium" className="text-SecondaryColor">
+                {data.status}
+              </Typography>
+            </div>
+          </td>
+          <td>
+            <Typography variant="bodyRegular" className="text-SecondaryColor">
+              {data.location}
+            </Typography>
+          </td>
+          <td className="border-boxOutline pl-3 relative">
+            <ActionsDropdown actions={actions} />
+          </td>
+        </tr>
+      ))}
+    </TableWrapper>
   );
 };

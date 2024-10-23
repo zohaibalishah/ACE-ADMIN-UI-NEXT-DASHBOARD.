@@ -1,11 +1,15 @@
 import React from "react";
-import { DatePicker, DatePickerSecondary, Typography } from "../../common";
+import { DatePickerSecondary, Typography } from "../../common";
 
-export const GenerateReport = (): React.ReactElement => {
+export const GenerateReport = ({
+  title,
+}: {
+  title: string;
+}): React.ReactElement => {
   return (
-    <div className="flex justify-between items-center flex-wrap gap-y-3 sm:gap-y-0 py-3 md:py-6 ">
+    <div className="flex justify-between items-center flex-wrap gap-y-3 sm:gap-y-0 pt-3 md:pt-6 ">
       <Typography variant="h5Bold" className="text-SecondaryColor">
-        Booking management
+        {title}
       </Typography>
       <div className="flex items-center gap-x-2 sm:gap-x-4 w-full sm:w-auto">
         <button className="w-full h-[42px] sm:w-[166px] sm:h-[49px] p-2 border-2 border-boxOutline rounded-lg ">

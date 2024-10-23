@@ -1,4 +1,3 @@
-import { TablePagination } from "@/app/components/common";
 import {
   SecurityIncidentBar,
   SecurityIncidentsTable,
@@ -9,12 +8,8 @@ import React from "react";
 const SecurityIncidentsHome = () => {
   return (
     <>
-      <div>
-        <SecurityStatics />
-        <SecurityIncidentBar label="Security Incidents" />
-        <SecurityIncidentsTable />
-        <TablePagination />
-      </div>
+      <SecurityIncidentBar label="Security Incidents" />
+      <SecurityIncidentsTable />
     </>
   );
 };

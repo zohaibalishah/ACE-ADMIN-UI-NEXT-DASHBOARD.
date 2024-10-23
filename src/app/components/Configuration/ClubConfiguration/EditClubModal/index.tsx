@@ -2,11 +2,13 @@ import React, { SetStateAction } from "react";
 import { Modal } from "../../../common/Modal/index";
 import { Typography } from "../../../common/Typography/index";
 import { TextField } from "../../../form/TextField/index";
-import {
-  DatePicker,
-  DatePickerSecondary,
-  PrimaryButton,
-} from "../../../common";
+import { DatePicker, PrimaryButton } from "../../../common";
+import { SelectField } from "@/app/components/form";
+
+const intervals = [
+  { label: "Weekly", value: "Weekly" },
+  { label: "Monthly", value: "Monthly" },
+];
 
 interface IProps {
   isOpen: boolean;
@@ -31,6 +33,10 @@ export const EditClubModal = ({
           <DatePicker placeholder="Start contract date" />
           <DatePicker placeholder="End contract date" />
         </div>
+        <SelectField
+          placeholder="Interval of payment (i.e Weekly or monthly)"
+          options={intervals}
+        />
         <TextField placeholder="Profit percentage" />
         <PrimaryButton
           title="Update"

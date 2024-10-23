@@ -1,16 +1,14 @@
-import { TablePagination } from "@/app/components/common";
-import { DuePaymentHeader } from "@/app/components/FinancialManagement/DuePayement/DuePaymentHeader";
-import { DuePaymentTable } from "@/app/components/FinancialManagement/DuePayement/DuePaymentTable";
+import {
+  DuePaymentHeader,
+  DuePaymentTable,
+} from "@/app/components/FinancialManagement/DuePayement";
 import React from "react";
 
 const DuePaymentHome = () => {
   return (
     <>
-      <div>
-        <DuePaymentHeader />
-        <DuePaymentTable />
-        <TablePagination />
-      </div>
+      <DuePaymentHeader />
+      <DuePaymentTable />
     </>
   );
 };

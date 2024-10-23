@@ -31,11 +31,17 @@ export const UpdateModal = ({ isOpen, setIsOpen }: Props) => {
     >
       <div className="bg-bgShadow flex flex-col gap-y-4">
         <Typography variant="h5Bold" className="text-SecondaryColor">
-          Update discount
+          Create discount
         </Typography>
         <TextField placeholder="SUMMER20" className="!md:w-[534px] !h-[58px]" />
         <div className="mt-4">
-          <SelectField />
+          <SelectField
+            placeholder="Select type"
+            options={[
+              { label: "SAR", value: "sar" },
+              { label: "Percentage", value: "Percentage" },
+            ]}
+          />
         </div>
         <TextField placeholder="SAR 10" className="!md:w-[534px] !h-[58px]" />
         <div className="flex gap-x-3 py-4">
@@ -43,7 +49,7 @@ export const UpdateModal = ({ isOpen, setIsOpen }: Props) => {
           <DatePicker placeholder="End date" />
         </div>
         <div>
-          <Typography className="text-SecondaryColor">
+          <Typography className="text-SecondaryColor text-left">
             Discount code use
           </Typography>
           <div className="py-4 flex gap-x-4 ">
@@ -70,7 +76,7 @@ export const UpdateModal = ({ isOpen, setIsOpen }: Props) => {
         </div>
         <div>
           <PrimaryButton
-            title="Update"
+            title="Create"
             className="md:!w-[243px]"
             onClick={() => setIsOpen(false)}
           />

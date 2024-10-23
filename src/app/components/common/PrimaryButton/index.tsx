@@ -15,14 +15,19 @@ export const PrimaryButton = ({
   icon,
   loading = false,
   ...rest
-}: Props): React.ReactElement => (
-  <button
-    className={`${className} bg-PrimaryColor w-full h-[46px]  xl:h-[52px] flex items-center justify-center gap-x-3 rounded-full text-white`}
-    {...rest}
-  >
-    <Typography variant="bodyMedium" className="flex items-center gap-x-2">
-      <span> {typeof icon !== "undefined" && icon}</span>
-      {!loading ? title : "loading..."}
-    </Typography>
-  </button>
-);
+}: Props): React.ReactElement => {
+  const isIcon = typeof icon !== "undefined";
+  return (
+    <button
+      className={`${className} bg-PrimaryColor w-full h-[46px] xl:h-[52px] flex items-center justify-center  rounded-full text-white ${
+        isIcon && "gap-x-3"
+      }`}
+      {...rest}
+    >
+      <Typography variant="bodyMedium" className="flex items-center">
+        {isIcon && <span className="mr-2"> {icon}</span>}
+        {!loading ? title : "loading..."}
+      </Typography>
+    </button>
+  );
+};

@@ -4,8 +4,7 @@ import "@/app/styles/styles.css";
 import "@/app/styles/globals.css";
 import { AsideNavbar } from "@/app/components/layouts/Dashboard/AsideNavbar";
 import NextTopLoader from "nextjs-toploader";
-import React, { SetStateAction, useState } from "react";
-import { BlobOptions } from "buffer";
+import React, { useState } from "react";
 
 export default function RootLayout({
   children,
@@ -24,7 +23,7 @@ export default function RootLayout({
             <div className="w-[300px]">
               <AsideNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
-            <div className="flex-1 p-5 bg-gradient-to-t from-black via-bgDark to-bgShadow/80 min-h-[85vh]">
+            <div className="flex-1 p-5 sm:pr-9 bg-gradient-to-t from-black via-bgDark to-bgShadow/80 min-h-[85vh]">
               {children}
             </div>
           </div>

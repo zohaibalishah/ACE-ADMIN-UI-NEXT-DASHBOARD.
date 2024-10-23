@@ -3,9 +3,16 @@ import React from "react";
 import { mImage } from "../../../../../../public/images";
 import { icons } from "../../../../../../public/icons";
 
-export const SingleChat = (): React.ReactElement => {
+export const SingleChat = ({
+  openChat,
+}: {
+  openChat: () => void;
+}): React.ReactElement => {
   return (
-    <div className="flex items-center justify-between my-2 bg-bgBox border-[1px] border-boxOutline rounded-xl  p-2 h-[46px] sm:h-[66px]">
+    <div
+      className="flex items-center justify-between bg-bgBox border-[1px] border-boxOutline rounded-xl  p-2 h-[46px] sm:h-[66px] cursor-pointer"
+      onClick={openChat}
+    >
       <div className="flex items-center gap-x-2">
         <MImage
           src={mImage.avatar1}

@@ -5,11 +5,15 @@ import { mImage } from "../../../../../public/images";
 import { chatRoomData } from "@/app/utils/data";
 import { icons } from "../../../../../public/icons";
 
-export const ChatBox = (): React.ReactElement => {
+export const ChatBox = ({
+  hideChat,
+}: {
+  hideChat: () => void;
+}): React.ReactElement => {
   return (
-    <div className="pt-4 sm:pt-6">
-      <SingleChatAction />
-      <div className="bg-bgShadow rounded-xl lg:p-3 mt-3">
+    <div>
+      <SingleChatAction hideChat={hideChat} />
+      <div className="bg-bgShadow rounded-xl lg:p-3 mt-3 h-[90vh] md:h-[65vh] overflow-y-auto">
         <div className="flex justify-center py-3">
           <div className="w-[70px] h-[36px] bg-bgBox rounded-xl flex items-center justify-center">
             <Typography className="text-SecondaryColor">Today</Typography>
