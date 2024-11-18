@@ -24,8 +24,8 @@ export const TableWrapper = ({
                 TableHeadData.map((th, index) => (
                   <th
                     key={index}
-                    className={`h-[50px] bg-boxOutline ${
-                      index === 0 ? " w-[60px] rounded-tl-xl pl-2" : ""
+                    className={`h-[50px] bg-boxOutline px-3 text-nowrap ${
+                      index === 0 ? " w-[60px] rounded-tl-xl" : ""
                     } 
                   ${index === 1 ? " pl-4" : ""} ${
                       index === TableHeadData.length - 1

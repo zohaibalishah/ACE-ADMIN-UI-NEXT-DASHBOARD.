@@ -8,37 +8,37 @@ export const DuePaymentTable = (): React.ReactElement => {
       {DUE_TABLE_ROW.map((data, index) => {
         return (
           <tr key={data.clubName} className="border-2 border-boxOutline">
-            <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <td className="pl-2 border-r-2 border-boxOutline h-[60px] px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
                 {index + 1}
               </Typography>
             </td>
-            <td>
-              <Typography className="text-SecondaryColor pl-4">
+            <td className="px-3 text-nowrap">
+              <Typography className="text-SecondaryColor">
                 {data.clubName}
               </Typography>
             </td>
-            <td>
-              <Typography className="text-SecondaryColor pl-2">
+            <td className="px-3 text-nowrap">
+              <Typography className="text-SecondaryColor">
                 {data.clubOwner}
               </Typography>
             </td>
-            <td>
-              <Typography className="text-SecondaryColor pl-2">
+            <td className="px-3 text-nowrap">
+              <Typography className="text-SecondaryColor">
                 {data.clubProfit}
               </Typography>
             </td>
-            <td>
+            <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
                 {data.totalIncome}
               </Typography>
             </td>
-            <td>
+            <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
                 {data.transactionDue}
               </Typography>
             </td>
-            <td>
+            <td className="px-3 text-nowrap">
               {data?.status?.confirmed ? (
                 <div className="flex items-center justify-center gap-x-2 w-[108px] h-[36px] rounded-2xl bg-PrimaryColor">
                   <Typography
@@ -59,7 +59,7 @@ export const DuePaymentTable = (): React.ReactElement => {
                 </div>
               )}
             </td>
-            <td className="border-l-2 border-boxOutline">
+            <td className="border-l-2 border-boxOutline px-3 text-nowrap">
               {data?.action?.confirmed ? (
                 <ConfirmPayment />
               ) : (

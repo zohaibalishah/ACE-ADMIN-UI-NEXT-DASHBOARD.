@@ -3,6 +3,8 @@ export const routes = {
   admin: "/admin/dashboard",
   clubmanagement: "/admin/club-management",
   totalclubs: "/admin/club-management/total-clubs",
+  clubRequest: "/admin/club-management/club-requests",
+  clubWallet: "/admin/club-management/club-wallet",
   usermanagement: "/admin/user-management",
   addnewuser: "/admin/user-management/add-newuser",
   userdetails: "/admin/user-management/user-details",

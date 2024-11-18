@@ -8,11 +8,9 @@ import React from "react";
 const MarketingNotificationHome = () => {
   return (
     <>
-      <div>
-        <NotificationTitleBar />
-        <MarketingTable />
-        <TablePagination />
-      </div>
+      <NotificationTitleBar />
+      <MarketingTable />
+      <TablePagination />
     </>
   );
 };

@@ -11,7 +11,7 @@ export const GenerateReport = ({
       <Typography variant="h5Bold" className="text-SecondaryColor">
         {title}
       </Typography>
-      <div className="flex items-center gap-x-2 sm:gap-x-4 w-full sm:w-auto">
+      <div className="flex flex-wrap gap-2 items-center gap-x-2 sm:gap-x-4 w-full sm:w-auto">
         <button className="w-full h-[42px] sm:w-[166px] sm:h-[49px] p-2 border-2 border-boxOutline rounded-lg ">
           <Typography variant="bodyMedium" className="text-SecondaryColor">
             Generate report

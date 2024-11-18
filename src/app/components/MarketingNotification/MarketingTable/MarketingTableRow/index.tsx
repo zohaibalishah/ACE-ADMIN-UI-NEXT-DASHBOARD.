@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Typography } from "@/app/components/common";
 
 interface IData {
-  index: number;
   data: {
     referenceId: string;
     date: string;
@@ -12,29 +11,26 @@ interface IData {
   };
 }
 
-export const MarketingTableRow = ({
-  data,
-  index,
-}: IData): React.ReactElement => {
+export const MarketingTableRow = ({ data }: IData): React.ReactElement => {
   return (
     <tr
       key={data.referenceId}
       className="border-b-2 border-boxOutline h-[60px]"
     >
-      <td>
-        <Typography className="text-SecondaryColor pl-2">
+      <td className="px-3 text-nowrap">
+        <Typography className="text-SecondaryColor">
           {data.referenceId}
         </Typography>
       </td>
-      <td>
+      <td className="px-3 text-nowrap">
         <Typography className="text-SecondaryColor">{data.date}</Typography>
       </td>
-      <td>
+      <td className="px-3 text-nowrap">
         <Typography className="text-SecondaryColor">
           {data.activityType}
         </Typography>
       </td>
-      <td>
+      <td className="px-3 text-nowrap">
         <Typography className="text-SecondaryColor">
           {data.description}
         </Typography>

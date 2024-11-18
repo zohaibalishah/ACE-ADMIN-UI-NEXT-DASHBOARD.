@@ -1,7 +1,13 @@
 "use client";
 
 import { IAction } from "@/app/base/types";
-import { ClubFilters, CreateClubModal } from "@/app/components/ClubManagement";
+import {
+  ClubDetails,
+  ClubFilters,
+  CreateClubModal,
+  ReservationDetails,
+  UpdateContract,
+} from "@/app/components/ClubManagement";
 import {
   ActionsDropdown,
   TableWrapper,
@@ -11,6 +17,9 @@ import {
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
+import { FiEye } from "react-icons/fi";
+import { LuCalendarDays } from "react-icons/lu";
+import { MdOutlineLibraryBooks } from "react-icons/md";
 
 const clubsOwnersHead = [
   "S No",
@@ -25,7 +34,26 @@ const clubsOwnersHead = [
 
 const TotalClubsHome = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isView, setIsView] = useState<boolean>(false);
+  const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
+  const [isOpenRes, setIsOpenRes] = useState<boolean>(false);
+
   const actions: IAction[] = [
+    {
+      icon: <FiEye />,
+      title: "View",
+      onClick: () => setIsView(true),
+    },
+    {
+      icon: <MdOutlineLibraryBooks />,
+      title: "Contract",
+      onClick: () => setIsContractOpen(true),
+    },
+    {
+      icon: <LuCalendarDays />,
+      title: "Reservation",
+      onClick: () => setIsOpenRes(true),
+    },
     {
       icon: <BiEditAlt />,
       title: "Edit",
@@ -78,6 +106,9 @@ const TotalClubsHome = () => {
         ))}
       </TableWrapper>
       <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ClubDetails isOpen={isView} setIsOpen={setIsView} />
+      <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} />
+      <ReservationDetails isOpen={isOpenRes} setIsOpen={setIsOpenRes} />
     </>
   );
 };

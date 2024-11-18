@@ -41,26 +41,19 @@ export const AddFacilityModal = ({
             handleChange={handleChange}
             name="file"
             types={fileTypes}
-            // eslint-disable-next-line react/no-children-prop
-            children={
-              <div className="w-full sm:w-[534px] h-[78px] rounded-xl flex items-center justify-center cursor-pointer bg-bgBox border-2 border-dashed border-SecondaryColor/20 border-b-0 ">
-                <div className="flex items-center justify-center gap-x-4">
-                  <MImage
-                    src={"/icons/upload.png"}
-                    w={24}
-                    h={24}
-                    alt="upload"
-                  />
-                  <Typography
-                    variant="bodyMedium"
-                    className="text-SecondaryColor"
-                  >
-                    Upload icon
-                  </Typography>
-                </div>
+          >
+            <div className="w-full max-w-[534px] h-[78px] rounded-xl flex items-center justify-center cursor-pointer bg-bgBox border-2 border-dashed border-SecondaryColor/20 border-b-0 ">
+              <div className="flex items-center justify-center gap-x-4">
+                <MImage src={"/icons/upload.png"} w={24} h={24} alt="upload" />
+                <Typography
+                  variant="bodyMedium"
+                  className="text-SecondaryColor"
+                >
+                  Upload icon
+                </Typography>
               </div>
-            }
-          />
+            </div>
+          </FileUploader>
         </div>
         <div className="w-full mt-4">
           <PrimaryButton

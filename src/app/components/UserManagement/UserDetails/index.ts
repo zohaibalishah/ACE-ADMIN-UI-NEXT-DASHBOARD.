@@ -6,3 +6,4 @@ export * from "./EditUserModal";
 export * from "./BookingHistoryTable";
 export * from "./UserDetailsCharts/AppUsesChart";
 export * from "./UserDetailsCharts/TotalTimeSpentChart";
+export * from "./MatchesJoined";

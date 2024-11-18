@@ -22,17 +22,17 @@ export const CreateOwnerModal = ({ isOpen, setIsOpen }: Props) => {
         <div className="flex min-h-full justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-xl bg-bgShadow border-2 border-SecondaryColor/80 shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in w-full sm:w-[598px]  data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform overflow-hidden rounded-xl bg-bgShadow border-2 border-SecondaryColor/80 shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in w-full max-w-[598px] data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
-            <div className="flex items-center justify-center py-8">
-              <form className="flex flex-col  gap-3.5 sm:gap-6">
+            <div className="flex items-center justify-center p-4 sm:p-8">
+              <form className="flex flex-col gap-3.5 sm:gap-6 w-full">
                 <Typography
                   variant="h5Bold"
                   className="text-start text-white mb-3"
                 >
                   Add new Club Owner
                 </Typography>
-                <TextField placeholder="Club name" className="!w-[534px]" />
+                <TextField placeholder="Club name" />
                 <TextField placeholder="Email" />
                 <TextField placeholder="Phone number" />
                 <TextField placeholder="Password" />
@@ -40,7 +40,7 @@ export const CreateOwnerModal = ({ isOpen, setIsOpen }: Props) => {
                 <div className="flex justify-start">
                   <PrimaryButton
                     title="Create"
-                    className="!w-[243px] !h-[48px] mt-5"
+                    className="sm:w-[243px] !h-[48px] mt-5"
                   />
                 </div>
               </form>

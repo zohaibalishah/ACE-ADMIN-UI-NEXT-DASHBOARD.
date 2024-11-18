@@ -2,6 +2,7 @@ import {
   AcitivityTrackingTable,
   AppUsesChart,
   BookingHistoryTAble,
+  MatchesJoined,
   PaymentDetailsTable,
   ProfileSection,
   TotalTimeSpentChart,
@@ -14,6 +15,7 @@ const UserDetailsPage = () => {
       <ProfileSection />
       <PaymentDetailsTable />
       <BookingHistoryTAble />
+      <MatchesJoined />
       <AcitivityTrackingTable />
       <AppUsesChart />
       <TotalTimeSpentChart />

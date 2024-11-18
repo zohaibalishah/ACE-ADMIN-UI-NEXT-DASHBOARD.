@@ -99,7 +99,7 @@ export const ConfirmPayment = () => {
             >
               Upload transaction receipt
             </Typography>
-            <label className="my-8 w-[564px] h-[174px] border border-dashed border-newLinear rounded-xl flex flex-col gap-3 items-center justify-center">
+            <label className="my-8 w-full max-w-[564px] h-[174px] border border-dashed border-newLinear rounded-xl flex flex-col gap-3 items-center justify-center">
               <RiUploadCloud2Line className="text-SecondaryColor text-2xl" />
               <Typography variant="bodyMedium" className="text-SecondaryColor">
                 Upload branch image

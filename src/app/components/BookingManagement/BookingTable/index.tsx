@@ -25,14 +25,14 @@ export const BookingTable = () => {
     <>
       <TableWrapper TableHeadData={TABLE_HEAD}>
         {TABLE_ROWS.map((data, index) => (
-          <tr key={data.name} className="border-2 border-boxOutline">
+          <tr key={index} className="border-2 border-boxOutline text-nowrap">
             <td className="h-[40px] sm:h-[60px] border-r-[1px] border-boxOutline pl-3 ">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {data.sno}
               </Typography>
             </td>
-            <td>
-              <div className="flex items-center gap-x-3 pl-4">
+            <td className="px-3 text-nowrap">
+              <div className="flex items-center gap-x-3">
                 <div className="w-[28px] h-[28.8px] sm:w-[36px] sm:h-[36.8px] rounded-full border-2 border-SecondaryColor flex items-center justify-center text-secondary font-normal text-sm">
                   {data.img}
                 </div>
@@ -44,22 +44,32 @@ export const BookingTable = () => {
                 </Typography>
               </div>
             </td>
-            <td>
+            <td className="px-3 text-nowrap">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {data.clubName}
               </Typography>
             </td>
-            <td>
+            <td className="px-3 text-nowrap">
+              <Typography variant="bodyRegular" className="text-SecondaryColor">
+                {"Padel"}
+              </Typography>
+            </td>
+            <td className="px-3 text-nowrap">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {data.bookingDate}
               </Typography>
             </td>
-            <td>
-              <Typography variant="bodyRegular" className="text-SecondaryColor">
-                {data.status}
-              </Typography>
+            <td className="px-3 text-nowrap">
+              <div className="px-5 py-1 rounded-xl bg-PrimaryColor inline-flex justify-center items-center">
+                <Typography
+                  variant="bodyMedium"
+                  className="text-SecondaryColor"
+                >
+                  1/4 Confirmed
+                </Typography>
+              </div>
             </td>
-            <td>
+            <td className="px-3 text-nowrap ">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {data.location}
               </Typography>

@@ -65,7 +65,7 @@ export const ClubConfigurationSearchbar = () => {
         <Select
           options={options}
           styles={customStyles}
-          className="w-[284px] border-2 border-boxOutline rounded-xl p-1"
+          className="w-full sm:w-[284px] border-2 border-boxOutline rounded-xl p-1"
         />
         <PrimaryButton
           title="Search"

@@ -1,7 +1,11 @@
 "use client";
 
 import { IAction } from "@/app/base/types";
-import { ClubFilters, CreateOwnerModal } from "@/app/components/ClubManagement";
+import {
+  ClubFilters,
+  CreateOwnerModal,
+  OwnerClubs,
+} from "@/app/components/ClubManagement";
 import {
   ActionsDropdown,
   TableWrapper,
@@ -10,18 +14,23 @@ import {
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
+import { MdOutlineLibraryBooks } from "react-icons/md";
 
 const clubsOwnersHead = [
   "S No",
   "Name",
   "Email",
   "Phone number",
-  "Total courts",
+  "Contract duration",
+  "Contract date",
+  "Total clubs",
   "Action",
 ];
 
 function ClubManagement() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isClubOpen, setIsClubOpen] = useState<boolean>(false);
+
   const actions: IAction[] = [
     {
       icon: <BiEditAlt />,
@@ -31,6 +40,11 @@ function ClubManagement() {
     {
       icon: <AiOutlineDelete />,
       title: "Delete",
+    },
+    {
+      icon: <MdOutlineLibraryBooks />,
+      title: "Club",
+      onClick: () => setIsClubOpen(true),
     },
   ];
 
@@ -66,6 +80,14 @@ function ClubManagement() {
               </Typography>
             </td>
             <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">One year</Typography>
+            </td>
+            <td className="border-boxOutline">
+              <Typography className="text-SecondaryColor">
+                2024-07-31
+              </Typography>
+            </td>
+            <td className="border-boxOutline">
               <Typography className="text-SecondaryColor">4</Typography>
             </td>
             <td className="border-boxOutline pl-3">
@@ -75,6 +97,7 @@ function ClubManagement() {
         ))}
       </TableWrapper>
       <CreateOwnerModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <OwnerClubs isOpen={isClubOpen} setIsOpen={setIsClubOpen} />
     </>
   );
 }

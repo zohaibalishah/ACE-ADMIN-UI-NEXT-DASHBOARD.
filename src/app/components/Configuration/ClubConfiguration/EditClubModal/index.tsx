@@ -22,14 +22,14 @@ export const EditClubModal = ({
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      className="w-full sm:w-[498px] sm:h-[409px] p-4 border-2 border-SecondaryColor/50 rounded-xl flex flex-col justify-center"
+      className="w-full sm:w-[498px] p-4 px-4 sm:py-7 border-2 border-SecondaryColor/50 rounded-xl flex flex-col justify-center"
     >
       <div className="flex flex-col gap-y-4">
         <Typography variant="h5Bold" className="text-SecondaryColor">
           Edit club
         </Typography>
         <TextField placeholder="Club name" />
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-col sm:flex-row">
           <DatePicker placeholder="Start contract date" />
           <DatePicker placeholder="End contract date" />
         </div>

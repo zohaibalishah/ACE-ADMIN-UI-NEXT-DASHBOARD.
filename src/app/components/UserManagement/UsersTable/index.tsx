@@ -25,6 +25,7 @@ const tableHead = [
 export const UsersTable = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const actions: IAction[] = [
     {
       icon: <LuEye />,
@@ -34,7 +35,10 @@ export const UsersTable = () => {
     {
       icon: <BiEditAlt />,
       title: "Edit",
-      onClick: () => setIsOpen(true),
+      onClick: () => {
+        setIsOpen(true);
+        setIsEdit(true);
+      },
     },
     {
       icon: <AiOutlineDelete />,
@@ -43,7 +47,13 @@ export const UsersTable = () => {
   ];
   return (
     <>
-      <UserSearchBar title="Total User's" onAddUser={() => setIsOpen(true)} />
+      <UserSearchBar
+        title="Total User's"
+        onAddUser={() => {
+          setIsEdit(false);
+          setIsOpen(true);
+        }}
+      />
       <TableWrapper TableHeadData={tableHead}>
         {Array.from({ length: 7 }).map((td, index) => (
           <tr className="border-b border-boxOutline h-[60px]" key={index}>
@@ -89,7 +99,7 @@ export const UsersTable = () => {
           </tr>
         ))}
       </TableWrapper>
-      <EditUser isOpen={isOpen} setIsOpen={setIsOpen} isEdit={false} />
+      <EditUser isOpen={isOpen} setIsOpen={setIsOpen} isEdit={isEdit} />
     </>
   );
 };

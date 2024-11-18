@@ -1,8 +1,8 @@
 import { routes } from "@/app/utils/const";
 import { IconsNav } from "../../../public/icons/asideNavIcons";
 import { StaticImageData } from "next/image";
-import { icons } from "lucide-react";
 import { mImage } from "../../../public/images";
+import { icons } from "../../../public/icons";
 
 export interface IDropdownItem {
   icon: string | StaticImageData;
@@ -35,9 +35,14 @@ export const AsideNavbarData: IMenuItem[] = [
         link: routes.totalclubs,
       },
       {
+        icon: icons.clubRequest,
+        title: "Club Request",
+        link: routes.clubRequest,
+      },
+      {
         icon: IconsNav.chat,
         title: "Club Wallet",
-        link: "#",
+        link: routes.clubWallet,
       },
     ],
   },
@@ -413,6 +418,7 @@ export const TABLE_HEAD = [
   "S no",
   "Name",
   "Club name",
+  "Sport type",
   "Booking date",
   "Status",
   "Location",

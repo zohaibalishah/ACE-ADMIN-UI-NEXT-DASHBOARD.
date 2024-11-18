@@ -17,7 +17,7 @@ export const ApplicationConfigurationTitle = (): React.ReactElement => {
         className="sm:!w-[128px] !h-[42px]"
         onClick={() => setIsOpen(true)}
       />
-      {isOpen && <AddFacilityModal isOpen={isOpen} setIsOpen={setIsOpen} />}
+      <AddFacilityModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

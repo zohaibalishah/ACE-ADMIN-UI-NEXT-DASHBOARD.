@@ -18,12 +18,12 @@ export const MarketingTable = (): React.ReactElement => {
             {MARKETING_TABLE_HEAD.map((data, index) => (
               <th
                 key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? "pl-2 rounded-tl-2xl" : ""
-                } ${index === 1 ? "pl-2" : ""}
+                className={`px-3 text-nowrap bg-boxOutline ${
+                  index === 0 ? "rounded-tl-2xl" : ""
+                }
                 ${
                   index === MARKETING_TABLE_HEAD.length - 1
-                    ? "pl-3 rounded-tr-2xl"
+                    ? "rounded-tr-2xl"
                     : ""
                 } py-3`}
               >
@@ -40,7 +40,7 @@ export const MarketingTable = (): React.ReactElement => {
 
         <tbody>
           {MARKETING_TABLE_ROW.map((data, index) => {
-            return <MarketingTableRow data={data} index={index} key={index} />;
+            return <MarketingTableRow data={data} key={index} />;
           })}
         </tbody>
       </table>

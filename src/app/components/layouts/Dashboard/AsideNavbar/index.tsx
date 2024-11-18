@@ -32,13 +32,16 @@ export const AsideNavbar = ({
 
           return typeof nav?.dropdown !== "undefined" &&
             nav?.dropdown.length > 0 ? (
-            <DropDownMenu item={nav} key={index} />
+            <DropDownMenu item={nav} key={index} setIsOpen={setIsOpen} />
           ) : (
             <div
               key={index}
               className={`${
                 active ? "bg-PrimaryColor text-SecondaryColor" : ""
               }  hover:bg-PrimaryColor/40 rounded-xl px-4 flex items-center h-[48px] transition-all duration-300`}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               <Link
                 href={nav.link}

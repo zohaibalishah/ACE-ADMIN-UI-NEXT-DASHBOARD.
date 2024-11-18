@@ -16,13 +16,9 @@ export const DuePaymentHeader = (): React.ReactElement => {
           Due Payment to Club
         </Typography>
         <div className="flex items-center gap-x-3 flex-wrap">
-          <div className="flex gap-x-3 items-center rounded-lg w-full sm:w-auto">
+          <div className="flex gap-3 flex-col sm:flex-row items-center rounded-lg w-full sm:w-auto">
             <div className="treasurySelect">
-              <select
-                name=""
-                id=""
-                className=" w-[156px] p-3 bg-boxOutline text-SecondaryColor outline-none rounded-lg"
-              >
+              <select className="w-[156px] p-3 bg-boxOutline text-SecondaryColor outline-none rounded-lg">
                 <option value="">Club name (all)</option>
               </select>
             </div>

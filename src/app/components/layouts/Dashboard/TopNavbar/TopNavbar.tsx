@@ -5,6 +5,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { routes } from "@/app/utils/const";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { ProfileDropdown } from "../PorfileDropdown";
+import { ClubDropdown } from "../ClupDropdown";
 
 interface Props {
   setIsOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -30,17 +32,8 @@ export const TopNavbar = ({ setIsOpen }: Props): React.ReactElement => {
             <MImage src={icons.Notification} w={24} h={24} alt="notification" />
           </div>
           <div className="text-SecondaryColor flex items-center gap-x-3 sm:gap-x-6">
-            <div>
-              <DropDownProfile />
-            </div>
-            <div className="flex items-center gap-x-1 cursor-pointer">
-              <div>
-                <MImage src={icons.navProfile} w={50} h={50} alt="profile" />
-              </div>
-              <Typography>
-                <IoIosArrowDown />
-              </Typography>
-            </div>
+            <ClubDropdown />
+            <ProfileDropdown />
           </div>
         </div>
       </div>

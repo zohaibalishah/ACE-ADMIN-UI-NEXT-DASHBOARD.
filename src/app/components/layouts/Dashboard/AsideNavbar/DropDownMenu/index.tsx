@@ -7,15 +7,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { IoChevronDown } from "react-icons/io5";
+import React from "react";
 
-export const DropDownMenu = ({ item }: { item: IMenuItem }) => {
-  const [open, setOpen] = useState<boolean>(false);
+export const DropDownMenu = ({
+  item,
+  setIsOpen,
+}: {
+  item: IMenuItem;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const pathname = usePathname();
   const active = item?.dropdown?.some((i) => pathname?.includes(i?.link));
 
@@ -41,7 +44,12 @@ export const DropDownMenu = ({ item }: { item: IMenuItem }) => {
               {item.dropdown?.map((subItem, index) => {
                 const subActive = subItem.link === pathname;
                 return (
-                  <div key={index}>
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
                     <Link
                       href={subItem.link}
                       className={`flex gap-x-3 w-full rounded-xl h-[45px] px-2 items-center hover:bg-PrimaryColor/40 text-SecondaryColor ${
@@ -64,33 +72,6 @@ export const DropDownMenu = ({ item }: { item: IMenuItem }) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-
-      {/* <ul className="px-2 py-2">
-        {item.dropdown?.map((subItem, index) => {
-          const subActive = subItem.link === pathname;
-          return (
-            <MenuItem key={subItem.link || index}>
-              <Link
-                href={subItem.link}
-                className={` mb-4 px-2 flex gap-x-3 ${
-                  subActive
-                    ? "text-SecondaryColor bg-PrimaryColor p-2 rounded-xl"
-                    : ""
-                }`}
-              >
-                <MImage
-                  src={subItem.icon}
-                  w={18}
-                  h={20}
-                  alt="icon"
-                  className="object-scale-down"
-                />
-                <Typography>{subItem?.title}</Typography>
-              </Link>
-            </MenuItem>
-          );
-        })}
-      </ul> */}
     </>
   );
 };
