@@ -27,7 +27,7 @@ export const AsideNavbarData: IMenuItem[] = [
       {
         icon: IconsNav.calendar,
         title: "Owner’s Management",
-        link: routes.clubmanagement,
+        link: routes.ownersManagement,
       },
       {
         icon: IconsNav.paper,
@@ -557,7 +557,7 @@ export const DISCOUNT_TABLE_ROW = [
     type: "Fixed",
     value: "SAR 10",
     period: "2024-07-01 to 2024-07-31",
-    status: "Completed",
+    status: "Expired",
   },
   {
     title: "SPRING15",

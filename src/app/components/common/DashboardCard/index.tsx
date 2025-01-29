@@ -2,7 +2,6 @@ import React from "react";
 import { MImage, Monthly, Typography } from "../../common";
 import { dashboardIcons } from "../../../../../public/icons/dashboardIcons";
 import { GoArrowDown, GoArrowUp } from "react-icons/go";
-import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 
 interface ICard {
@@ -17,7 +16,7 @@ interface ICard {
 }
 
 export const DashboardCard = ({ card }: ICard): React.ReactElement => {
-  const CardContent = () => (
+  return (
     <div className="bg-bgBox p-4 rounded-xl border-[1px] border-newLinear/30">
       <div className="text-SecondaryColor flex items-start justify-between">
         <div>
@@ -58,6 +57,4 @@ export const DashboardCard = ({ card }: ICard): React.ReactElement => {
       </div>
     </div>
   );
-
-  return <CardContent />;
 };

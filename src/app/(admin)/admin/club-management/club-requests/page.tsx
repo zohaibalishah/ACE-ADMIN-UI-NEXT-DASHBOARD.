@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  ClubCardSection,
+  ClubFilters,
   ClubRequestHeader,
   ReservationDetails,
 } from "@/app/components/ClubManagement";
@@ -21,7 +23,9 @@ const ClubRequestsPage = () => {
 
   return (
     <>
-      <ClubRequestHeader />
+      <ClubCardSection />
+      {/* <ClubRequestHeader /> */}
+      <ClubFilters title="Club Request" showButton={false} />
       <TableWrapper TableHeadData={clubsOwnersHead}>
         {Array.from({ length: 7 }).map((td, index) => (
           <tr className="border-b border-boxOutline h-[60px]" key={index}>

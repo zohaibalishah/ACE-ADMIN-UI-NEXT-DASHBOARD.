@@ -1,7 +1,8 @@
 export const routes = {
   changepassword: "/change-password",
   admin: "/admin/dashboard",
-  clubmanagement: "/admin/club-management",
+  clubmanagement: "/admin/club-management/owners",
+  ownersManagement: "/admin/club-management/owners",
   totalclubs: "/admin/club-management/total-clubs",
   clubRequest: "/admin/club-management/club-requests",
   clubWallet: "/admin/club-management/club-wallet",

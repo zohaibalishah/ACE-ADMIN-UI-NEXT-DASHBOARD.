@@ -2,11 +2,15 @@
 
 import React, { useState } from "react";
 import {
+  ClubCardSection,
+  ClubFilters,
   ClubRequestHeader,
   ClubWalletHistory,
 } from "@/app/components/ClubManagement";
 import { TableWrapper, Typography } from "@/app/components/common";
 import { IoAlertCircleOutline } from "react-icons/io5";
+import Link from "next/link";
+import { routes } from "@/app/utils/const";
 
 const clubsOwnersHead = [
   "S No",
@@ -22,7 +26,8 @@ const ClubWalletPage = () => {
 
   return (
     <>
-      <ClubRequestHeader title="Club Wallet" />
+      <ClubCardSection />
+      <ClubFilters title="Club Wallet" showButton={false} />
       <TableWrapper TableHeadData={clubsOwnersHead}>
         {Array.from({ length: 7 }).map((td, index) => (
           <tr className="border-b border-boxOutline h-[60px]" key={index}>
@@ -68,19 +73,16 @@ const ClubWalletPage = () => {
                     </Typography>
                   </div>
                 </div>
-                <button
-                  className="w-[90px] h-[34px] rounded-xl bg-boxOutline inline-flex justify-center items-center"
-                  onClick={() => {
-                    setIsView(true);
-                  }}
-                >
-                  <Typography
-                    variant="smallRegular"
-                    className="text-SecondaryColor"
-                  >
-                    History
-                  </Typography>
-                </button>
+                <Link href={`${routes.clubWallet}/33`}>
+                  <button className="w-[90px] h-[34px] rounded-xl bg-boxOutline inline-flex justify-center items-center">
+                    <Typography
+                      variant="smallRegular"
+                      className="text-SecondaryColor"
+                    >
+                      History
+                    </Typography>
+                  </button>
+                </Link>
               </div>
             </td>
           </tr>

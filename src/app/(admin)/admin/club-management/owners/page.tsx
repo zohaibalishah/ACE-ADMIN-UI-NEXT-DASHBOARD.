@@ -2,6 +2,7 @@
 
 import { IAction } from "@/app/base/types";
 import {
+  ClubCardSection,
   ClubFilters,
   CreateOwnerModal,
   OwnerClubs,
@@ -11,6 +12,8 @@ import {
   TableWrapper,
   Typography,
 } from "@/app/components/common";
+import { routes } from "@/app/utils/const";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
@@ -30,6 +33,7 @@ const clubsOwnersHead = [
 function ClubManagement() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isClubOpen, setIsClubOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   const actions: IAction[] = [
     {
@@ -44,13 +48,14 @@ function ClubManagement() {
     {
       icon: <MdOutlineLibraryBooks />,
       title: "Club",
-      onClick: () => setIsClubOpen(true),
+      onClick: () => router.push(`${routes.ownersManagement}/44`),
     },
   ];
 
   return (
     <>
-      <ClubFilters onAdd={() => setIsOpen(true)} />
+      <ClubCardSection />
+      <ClubFilters onAdd={() => setIsOpen(true)} title="Owner's Management" />
       <TableWrapper TableHeadData={clubsOwnersHead}>
         {Array.from({ length: 7 }).map((td, index) => (
           <tr className="border-b border-boxOutline h-[60px]" key={index}>

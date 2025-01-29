@@ -57,7 +57,7 @@ export const DiscountTable = ({
               <td>
                 <div
                   className={`px-5 h-[36px] rounded-xl inline-flex justify-center items-center ${
-                    index === 1 ? "bg-PrimaryColor" : "bg-boxOutline"
+                    index === 1 ? "bg-[#E4626F]" : "bg-boxOutline"
                   }`}
                 >
                   <Typography

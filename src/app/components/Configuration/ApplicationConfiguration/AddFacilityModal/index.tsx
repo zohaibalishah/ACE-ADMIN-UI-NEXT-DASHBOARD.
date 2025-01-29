@@ -42,7 +42,7 @@ export const AddFacilityModal = ({
             name="file"
             types={fileTypes}
           >
-            <div className="w-full max-w-[534px] h-[78px] rounded-xl flex items-center justify-center cursor-pointer bg-bgBox border-2 border-dashed border-SecondaryColor/20 border-b-0 ">
+            <div className="w-full h-[78px] rounded-xl flex items-center justify-center cursor-pointer bg-bgBox border-2 border-dashed border-SecondaryColor/20 border-b-0 ">
               <div className="flex items-center justify-center gap-x-4">
                 <MImage src={"/icons/upload.png"} w={24} h={24} alt="upload" />
                 <Typography
