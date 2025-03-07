@@ -15,11 +15,19 @@ import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IAction } from "@/app/base/types";
 import { EditClubModal } from "../EditClubModal";
+import { UpdateContract } from "@/app/components/ClubManagement";
+import { MdOutlineLibraryBooks } from "react-icons/md";
 
 export const ClubConfigurationTable = (): React.ReactElement => {
   const [show, setShow] = useState<boolean>(false);
+  const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
 
   const actions: IAction[] = [
+    {
+      icon: <MdOutlineLibraryBooks />,
+      title: "Contract",
+      onClick: () => setIsContractOpen(true),
+    },
     {
       icon: <BiEditAlt />,
       title: "Edit",
@@ -70,6 +78,7 @@ export const ClubConfigurationTable = (): React.ReactElement => {
         })}
       </TableWrapper>
       <EditClubModal isOpen={show} setIsOpen={setShow} />
+      <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} />
     </>
   );
 };

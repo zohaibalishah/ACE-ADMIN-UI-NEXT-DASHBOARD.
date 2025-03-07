@@ -441,7 +441,7 @@ export const TABLE_ROWS = [
     name: "Asim Shah",
     clubName: "Sport Life",
     bookingDate: "2024-07-18 10:00",
-    status: "Confirmed",
+    status: "Cancel",
     location: "Jeddah, KSA",
   },
   {
@@ -450,7 +450,7 @@ export const TABLE_ROWS = [
     name: "Nabi Ameen",
     clubName: "Sport Life",
     bookingDate: "2024-07-18 10:00",
-    status: "Confirmed",
+    status: "Refund",
     location: "Jeddah, KSA",
   },
 ];
@@ -470,7 +470,7 @@ export const MATCHES_TABLE_ROW = [
     name: "John vs Jane",
     clubName: "Sport Life",
     matcheDate: "2024-07-18 10:00",
-    status: "1/4 Confirmed",
+    status: " 1/4 Confirmed",
     location: "Jeddah, KSA",
   },
   {
