@@ -32,7 +32,7 @@ export const TopNavbar = ({ setIsOpen }: Props): React.ReactElement => {
             <MImage src={icons.Notification} w={24} h={24} alt="notification" />
           </div>
           <div className="text-SecondaryColor flex items-center gap-x-3 sm:gap-x-6">
-            <ClubDropdown />
+            {/* <ClubDropdown /> */}
             <ProfileDropdown />
           </div>
         </div>

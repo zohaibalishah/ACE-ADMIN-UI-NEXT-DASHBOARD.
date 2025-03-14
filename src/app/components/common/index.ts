@@ -14,3 +14,4 @@ export * from "./TablePagination";
 export * from "./TableWrapper";
 export * from "./ActionsDropdown";
 export * from "./SearchInput";
+export * from './toastify';

@@ -1,28 +1,19 @@
-"use client";
-import { DashboardCardSection } from "@/app/components/Dashboard";
-import {
-  CourtChart,
-  TotalBookingChart,
-  TotalRevenueChart,
-  TotalUsersChart,
-} from "@/app/components/Dashboard/Charts";
+import DashboardPage from './dashboardPage';
 
-import React from "react";
+import React, { ReactElement } from 'react';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 
-const HomePage = () => {
+export default async function Dashboard(): Promise<ReactElement> {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect('/');
+  }
+
   return (
     <>
-      <section className="w-full">
-        <DashboardCardSection />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-4 xl:gap-x-6 py-6">
-          <TotalBookingChart />
-          <CourtChart />
-        </div>
-        <TotalRevenueChart />
-        <TotalUsersChart />
-      </section>
+      <DashboardPage />
     </>
   );
-};
-
-export default HomePage;
+}

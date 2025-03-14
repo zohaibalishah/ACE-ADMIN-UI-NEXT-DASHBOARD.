@@ -1,5 +1,5 @@
 "use client";
-
+import api from '@/lib/api-client';
 import { IAction } from "@/app/base/types";
 import {
   ClubCardSection,
@@ -12,15 +12,26 @@ import {
 import {
   ActionsDropdown,
   TableWrapper,
-  ToggleButton,
   Typography,
 } from "@/app/components/common";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdOutlineLibraryBooks } from "react-icons/md";
+
+interface Club {
+  id: number;
+  name: string;
+  address: string;
+  owner?: {
+    name: string;
+  };
+  wallet: {
+    balance: number;
+  };
+}
 
 const clubsOwnersHead = [
   "S No",
@@ -29,7 +40,6 @@ const clubsOwnersHead = [
   "Address",
   "Owner name",
   "Wallet obligation",
-  "Status",
   "Action",
 ];
 
@@ -38,14 +48,51 @@ const TotalClubsHome = () => {
   const [isView, setIsView] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isOpenRes, setIsOpenRes] = useState<boolean>(false);
+  const [data, setData] = useState<Club[]>([]);
+  
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await api.delete(`clubs/delete/${id}`);
+      if (response.data.status === 1) {
+        console.log('Club deleted successfully:', response.data.status);
+        setData((prevData) => prevData.filter((club) => club.id !== id));
+      }
+    } catch (error) {
+      console.error('Error deleting club:', error);
+    }
+  };
 
-  const actions: IAction[] = [
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get('clubs/list');
+        if (response.data) {
+          setData(response.data.clubs);
+        }
+      } catch (error) {
+        console.error('Error fetching clubs:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  interface DashboardCount {
+    totalUsers?: number;
+    newUsers?: number;
+    totalClubOwners?: number;
+    totalBookings?: number;
+    totalRevenue?: number;
+    totalClubs?: number;
+    newClubs?: number;
+    totalCourts?: number;
+  }
+  
+  const actions = (id: number): IAction[] => [
     {
       icon: <FiEye />,
       title: "View",
       onClick: () => setIsView(true),
     },
-
     {
       icon: <LuCalendarDays />,
       title: "Reservation",
@@ -58,19 +105,30 @@ const TotalClubsHome = () => {
     {
       icon: <AiOutlineDelete />,
       title: "Delete",
+      onClick: () => handleDelete(id),
     },
   ];
+  const [dashboardCount, setDashboardCount] = useState<DashboardCount>({
+    totalUsers: 0,
+    newUsers: 0,
+    totalClubOwners: 0,
+    totalBookings: 0,
+    totalRevenue: 0,
+    totalClubs: 0,
+    newClubs: 0,
+    totalCourts: 0,
+  });
 
   return (
     <>
-      <ClubCardSection />
-      <ClubFilters
+      <ClubCardSection dashboardCount={dashboardCount} />
+      {/* <ClubFilters
         onAdd={() => setIsOpen(true)}
         title="Clubs Management"
         showButton={false}
-      />
+      /> */}
       <TableWrapper TableHeadData={clubsOwnersHead}>
-        {Array.from({ length: 7 }).map((td, index) => (
+        {data && data.map((club, index) => (
           <tr className="border-b border-boxOutline h-[60px]" key={index}>
             <td className="px-3 text-nowrap border-r-2 border-boxOutline">
               <Typography className="text-SecondaryColor">
@@ -78,31 +136,30 @@ const TotalClubsHome = () => {
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">101</Typography>
+              <Typography className="text-SecondaryColor">{club.id}</Typography>
             </td>
             <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
-                Downtown Club
+                {club.name}
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
-                Markazi Dist, Riyadh, KSA
+                {club.address}
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
-                Najee Abid
+                {club.owner?.name}
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">SAR 276</Typography>
-            </td>
-            <td>
-              <ToggleButton />
+              <Typography className="text-SecondaryColor">
+                {club.wallet.balance || 0}
+              </Typography>
             </td>
             <td className="px-3 text-nowrap">
-              <ActionsDropdown actions={actions} />
+              <ActionsDropdown actions={actions(club.id)} />
             </td>
           </tr>
         ))}

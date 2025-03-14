@@ -20,10 +20,17 @@ const clubsOwnersHead = [
 
 const ClubRequestsPage = () => {
   const [isView, setIsView] = useState<boolean>(false);
-
+  const [dashboardCount, setDashboardCount] = useState({
+    newUsers: 0,
+    totalBookings: 0,
+    totalClubOwners: 0,
+    totalClubs: 0,
+    totalRevenue: 0,
+    totalUsers: 0,
+  });
   return (
     <>
-      <ClubCardSection />
+      <ClubCardSection dashboardCount={dashboardCount}/>
       {/* <ClubRequestHeader /> */}
       <ClubFilters title="Club Request" showButton={false} />
       <TableWrapper TableHeadData={clubsOwnersHead}>

@@ -5,15 +5,21 @@ import {
   TableWrapper,
   Typography,
 } from "@/app/components/common";
-import {
-  CONFIGURATION_TABLE_HEAD,
-  CONFIGURATION_TABLE_ROW,
-} from "@/app/utils/data";
-import React, { useState } from "react";
+
+import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
 
-export const ConfigurationTable = (): React.ReactElement => {
+interface ConfigurationData {
+  id: number;
+  title: string;
+  image: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const ConfigurationTable = ({ data }: { data: ConfigurationData[] }): React.ReactElement => {
   const actions: IAction[] = [
     {
       icon: <BiEditAlt />,
@@ -26,10 +32,10 @@ export const ConfigurationTable = (): React.ReactElement => {
   ];
   return (
     <>
-      <TableWrapper TableHeadData={CONFIGURATION_TABLE_HEAD}>
-        {CONFIGURATION_TABLE_ROW.map((data, index) => {
+      <TableWrapper TableHeadData={['S no', 'Title', 'Icon','Status', 'Action']}>
+        {data && data.map((td, index) => {
           return (
-            <tr key={index} className="border-2 border-boxOutline">
+            <tr key={td.id} className="border-2 border-boxOutline">
               <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
                 <Typography className="text-SecondaryColor">
                   {index + 1}
@@ -37,13 +43,17 @@ export const ConfigurationTable = (): React.ReactElement => {
               </td>
               <td>
                 <Typography className="text-SecondaryColor pl-4">
-                  {data.title}
+                  {td.title}
                 </Typography>
               </td>
               <td>
-                <MImage src={data.icon} w={24} h={24} alt="icon" />
+                <MImage src={td.image || ''} w={24} h={24} alt="icon" />
               </td>
-
+              <td>
+                <Typography className="text-SecondaryColor pl-4">
+                  {td.status}
+                </Typography>
+              </td>
               <td className="h-full border-boxOutline pl-4 text-white">
                 <ActionsDropdown actions={actions} />
               </td>
