@@ -1,16 +1,27 @@
 "use client";
-
+import api from '@/lib/api-client';
 import React, { SetStateAction } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { TextField } from "../../form";
 import { PrimaryButton, Typography } from "../../common";
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}
+
 interface Props {
+  formData: FormData;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   isOpen: boolean;
   setIsOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export const CreateOwnerModal = ({ isOpen, setIsOpen }: Props) => {
+export const CreateOwnerModal: React.FC<Props> = ({ formData, handleChange, handleSubmit, isOpen, setIsOpen }) => {
   return (
     <Dialog open={isOpen} onClose={setIsOpen} className="relative z-50">
       <DialogBackdrop
@@ -25,22 +36,23 @@ export const CreateOwnerModal = ({ isOpen, setIsOpen }: Props) => {
             className="relative transform overflow-hidden rounded-xl bg-bgShadow border-2 border-SecondaryColor/80 shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in w-full max-w-[598px] data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <div className="flex items-center justify-center p-4 sm:p-8">
-              <form className="flex flex-col gap-3.5 sm:gap-6 w-full">
+              <form className="flex flex-col gap-3.5 sm:gap-6 w-full" onSubmit={handleSubmit}>
                 <Typography
                   variant="h5Bold"
                   className="text-start text-white mb-3"
                 >
                   Add new Club Owner
                 </Typography>
-                <TextField placeholder="Club name" />
-                <TextField placeholder="Email" />
-                <TextField placeholder="Phone number" />
-                <TextField placeholder="Password" />
-                <TextField placeholder="Conform Password" />
+                <TextField name="name" placeholder="Club owner name" value={formData.name} onChange={handleChange} />
+                <TextField name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+                <TextField name="phone" placeholder="Phone number" value={formData.phone} onChange={handleChange} />
+                <TextField name="password" placeholder="Password" type="password" value={formData.password} onChange={handleChange} />
+                <TextField name="confirmPassword" placeholder="Confirm Password" type="password" value={formData.confirmPassword} onChange={handleChange} />
                 <div className="flex justify-start">
                   <PrimaryButton
                     title="Create"
                     className="sm:w-[243px] !h-[48px] mt-5"
+                    type="submit"
                   />
                 </div>
               </form>

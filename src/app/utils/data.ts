@@ -991,11 +991,6 @@ export const FEEDBACK_TABLE_ROW = [
 
 //-----------CONFIGURATION TABLE DATA ----------//
 export const CONFIGURATION_TABLE_HEAD = ['S no', 'Title', 'Icon', 'Action'];
-export const CONFIGURATION_TABLE_ROW = [
-  { title: 'Pariking', icon: '/icons/Parking.png' },
-  { title: 'Water bottle', icon: '/icons/bottle.png' },
-  { title: 'Security', icon: '/icons/securityCamera.png' },
-];
 
 //---------CLUB CONFIGURATION TABLE DATA--------//
 export const CLUB_CONFIGURATION_TABLE_HEAD = [

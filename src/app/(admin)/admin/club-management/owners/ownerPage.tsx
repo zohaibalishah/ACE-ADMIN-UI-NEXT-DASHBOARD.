@@ -15,45 +15,56 @@ import {
 import { routes } from '@/app/utils/const';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import api from '@/lib/api-client';
+
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BiEditAlt } from 'react-icons/bi';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
-import api from '@/lib/api-client';
 
 const clubsOwnersHead = [
   'S No',
   'Name',
   'Email',
   'Phone number',
-
   'Total clubs',
   'Action',
 ];
-// 'Contract duration',
-// 'Contract date',
+
 function ClubManagement() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isClubOpen, setIsClubOpen] = useState<boolean>(false);
   const router = useRouter();
 
-  const actions: IAction[] = [
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await api.delete(`clubOwner/delete/${id}`);
+      if (response.data.status === 1) {
+        console.log('Owner deleted successfully:', response.data.status);
+        setData((prevData) => prevData.filter((user) => user.id !== id));
+      }
+    } catch (error) {
+      console.error('Error deleting owner:', error);
+    }
+  };
+
+  const [data, setData] = useState<any[]>([]);
+
+  const actions = (id: number): IAction[] => [
     {
       icon: <BiEditAlt />,
       title: 'Edit',
     },
-
     {
       icon: <AiOutlineDelete />,
       title: 'Delete',
+      onClick: () => handleDelete(id),
     },
     {
       icon: <MdOutlineLibraryBooks />,
       title: 'Club',
-      onClick: () => router.push(`${routes.ownersManagement}/44`),
+      onClick: () => router.push(`${routes.ownersManagement}/${id}`),
     },
   ];
-
-  const [data, setData] = useState([]);
 
   const [dashboardCount, setDashboardCount] = useState({
     newUsers: 0,
@@ -69,7 +80,6 @@ function ClubManagement() {
       try {
         const response = await api.get('clubOwner/list');
         if (response.data) {
-          // console.log("response",response)
           setData(response.data.users);
         }
       } catch (error) {
@@ -79,6 +89,34 @@ function ClubManagement() {
 
     fetchData();
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    role: 'club_owner',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await api.post('clubOwner/create', formData);
+      if (response.data.status === 1) {
+        console.log('Owner created successfully:', response.data.status);
+        setData((u) => [...u, response.data.user]);
+        setIsOpen(false);
+      }
+    } catch (error) {
+      console.error('Error creating owner:', error);
+    }
+  };
 
   return (
     <>
@@ -113,28 +151,24 @@ function ClubManagement() {
                   {td?.phone}
                 </Typography>
               </td>
-              {/* <td className="border-boxOutline">
-                <Typography className="text-SecondaryColor">
-                  One year
-                </Typography>
-              </td>
-              <td className="border-boxOutline">
-                <Typography className="text-SecondaryColor">
-                  2024-07-31
-                </Typography>
-              </td> */}
               <td className="border-boxOutline">
                 <Typography className="text-SecondaryColor">
                   {td?.clubCount}
                 </Typography>
               </td>
               <td className="border-boxOutline pl-3">
-                <ActionsDropdown actions={actions} />
+                <ActionsDropdown actions={actions(td.id)} />
               </td>
             </tr>
           ))}
       </TableWrapper>
-      <CreateOwnerModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CreateOwnerModal
+        handleSubmit={handleSubmit}
+        formData={formData}
+        handleChange={handleChange}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
       <OwnerClubs isOpen={isClubOpen} setIsOpen={setIsClubOpen} />
     </>
   );
