@@ -39,9 +39,18 @@ const ClubWalletPage = () => {
 
     fetchData();
   }, []);
+
+  const [dashboardCount, setDashboardCount] = useState({
+    newUsers: 0,
+    totalBookings: 0,
+    totalClubOwners: 0,
+    totalClubs: 0,
+    totalRevenue: 0,
+    totalUsers: 0,
+  });
   return (
     <>
-      <ClubCardSection />
+      <ClubCardSection dashboardCount={dashboardCount}/>
       {/* <ClubFilters title="Club Wallet" showButton={false} /> */}
       <TableWrapper TableHeadData={clubsOwnersHead}>
         {data&& data.map((td, index) => (

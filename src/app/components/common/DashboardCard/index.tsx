@@ -26,19 +26,17 @@ interface ICard {
 }
 
 export const DashboardCard = ({
-  card,
-  dashboardCount,
-}: ICard): React.ReactElement => {
+}): React.ReactElement => {
   return (
     <div className="bg-bgBox p-4 rounded-xl border-[1px] border-newLinear/30">
       <div className="text-SecondaryColor flex items-start justify-between">
         <div>
-          <Typography variant="bodyRegular">{card.user}</Typography>
+          <Typography variant="bodyRegular">text</Typography>
           <Typography variant="h2" className="text-PrimaryColor py-4">
-            
-            {dashboardCount
+          dashboardCount
+            {/* {dashboardCount
               ? dashboardCount[card.keyValue as keyof typeof dashboardCount]
-              : 0}
+              : 0} */}
           </Typography>
         </div>
         <div className="w-[48px] h-[48px] bg-boxOutline flex items-center justify-center rounded-xl cursor-pointer">
@@ -47,7 +45,7 @@ export const DashboardCard = ({
       </div>
       <div className="flex justify-between items-center">
         <div>
-          {card.up ? (
+          {/* {card.up ? (
             <Typography
               variant="bodyMedium"
               className="flex items-center text-SecondaryColor"
@@ -67,7 +65,7 @@ export const DashboardCard = ({
               </span>
               <span className="text-bgdanger pr-1">-10% </span>Since last week
             </Typography>
-          )}
+          )} */}
         </div>
         {/* {card.select && <Monthly />} */}
       </div>
