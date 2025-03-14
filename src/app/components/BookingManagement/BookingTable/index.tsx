@@ -21,6 +21,12 @@ export const BookingTable = () => {
       title: "Cancel",
     },
   ];
+  const statuesColors: Record<string, string> = {
+    Confirmed: "#93B10B",
+    Cancel: "#DC2626",
+    Refund: "#10B981",
+  };
+
   return (
     <>
       <TableWrapper TableHeadData={TABLE_HEAD}>
@@ -60,12 +66,17 @@ export const BookingTable = () => {
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
-              <div className="px-5 py-1 rounded-xl bg-PrimaryColor inline-flex justify-center items-center">
+              <div
+                className="px-5 py-1 rounded-xl bg-PrimaryColor inline-flex justify-center items-center"
+                style={{
+                  backgroundColor: statuesColors[data.status],
+                }}
+              >
                 <Typography
                   variant="bodyMedium"
                   className="text-SecondaryColor"
                 >
-                  1/4 Confirmed
+                  {data.status}
                 </Typography>
               </div>
             </td>

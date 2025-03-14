@@ -45,11 +45,7 @@ const TotalClubsHome = () => {
       title: "View",
       onClick: () => setIsView(true),
     },
-    {
-      icon: <MdOutlineLibraryBooks />,
-      title: "Contract",
-      onClick: () => setIsContractOpen(true),
-    },
+
     {
       icon: <LuCalendarDays />,
       title: "Reservation",
@@ -113,7 +109,7 @@ const TotalClubsHome = () => {
       </TableWrapper>
       <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <ClubDetails isOpen={isView} setIsOpen={setIsView} />
-      <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} />
+      {/* <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} /> */}
       <ReservationDetails isOpen={isOpenRes} setIsOpen={setIsOpenRes} />
     </>
   );

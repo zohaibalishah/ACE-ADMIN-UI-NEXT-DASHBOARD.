@@ -464,6 +464,12 @@ export const TABLE_ROWS = [
   },
   {
     sno: 2,
+    img: "AS",
+    name: "Asim Shah",
+    clubName: "Sport Life",
+    bookingDate: "2024-07-18 10:00",
+    status: "Cancel",
+    location: "Jeddah, KSA",
     img: 'AS',
     name: 'Asim Shah',
     clubName: 'Sport Life',
@@ -473,6 +479,12 @@ export const TABLE_ROWS = [
   },
   {
     sno: 3,
+    img: "NA",
+    name: "Nabi Ameen",
+    clubName: "Sport Life",
+    bookingDate: "2024-07-18 10:00",
+    status: "Refund",
+    location: "Jeddah, KSA",
     img: 'NA',
     name: 'Nabi Ameen',
     clubName: 'Sport Life',
@@ -494,6 +506,11 @@ export const MATCHES_TABLE_HEAD = [
 ];
 export const MATCHES_TABLE_ROW = [
   {
+    name: "John vs Jane",
+    clubName: "Sport Life",
+    matcheDate: "2024-07-18 10:00",
+    status: " 1/4 Confirmed",
+    location: "Jeddah, KSA",
     name: 'John vs Jane',
     clubName: 'Sport Life',
     matcheDate: '2024-07-18 10:00',
