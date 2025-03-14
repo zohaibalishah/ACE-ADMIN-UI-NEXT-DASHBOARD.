@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { PrimaryButton, SearchInput, Typography } from "../../common";
-import { HiOutlinePlus } from "react-icons/hi";
+import { SearchInput, Typography } from "../../common";
 
 export const ClubRequestHeader = ({
   title,

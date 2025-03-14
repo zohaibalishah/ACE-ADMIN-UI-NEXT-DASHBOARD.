@@ -1,28 +1,44 @@
-import React from "react";
-import { MImage, Monthly, Typography } from "../../common";
-import { dashboardIcons } from "../../../../../public/icons/dashboardIcons";
-import { GoArrowDown, GoArrowUp } from "react-icons/go";
-import { Url } from "next/dist/shared/lib/router/router";
+import React from 'react';
+import { MImage, Monthly, Typography } from '../../common';
+import { dashboardIcons } from '../../../../../public/icons/dashboardIcons';
+import { GoArrowDown, GoArrowUp } from 'react-icons/go';
+import { Url } from 'next/dist/shared/lib/router/router';
 
 interface ICard {
   card: {
     user: string;
-    figure: string | number;
+    keyValue: string;
     up?: boolean;
     down?: boolean;
     select?: boolean;
     link?: Url | undefined;
   };
+  dashboardCount: {
+    totalUsers?: number;
+    newUsers?: number;
+    totalClubOwners?: number;
+    totalBookings?: number;
+    totalRevenue?: number;
+    totalClubs?: number;
+    newClubs?: number;
+    totalCourts?: number;
+  };
 }
 
-export const DashboardCard = ({ card }: ICard): React.ReactElement => {
+export const DashboardCard = ({
+  card,
+  dashboardCount,
+}: ICard): React.ReactElement => {
   return (
     <div className="bg-bgBox p-4 rounded-xl border-[1px] border-newLinear/30">
       <div className="text-SecondaryColor flex items-start justify-between">
         <div>
           <Typography variant="bodyRegular">{card.user}</Typography>
           <Typography variant="h2" className="text-PrimaryColor py-4">
-            {card.figure}
+            
+            {dashboardCount
+              ? dashboardCount[card.keyValue as keyof typeof dashboardCount]
+              : 0}
           </Typography>
         </div>
         <div className="w-[48px] h-[48px] bg-boxOutline flex items-center justify-center rounded-xl cursor-pointer">
@@ -53,7 +69,7 @@ export const DashboardCard = ({ card }: ICard): React.ReactElement => {
             </Typography>
           )}
         </div>
-        <div>{card.select ? <Monthly /> : null}</div>
+        {/* {card.select && <Monthly />} */}
       </div>
     </div>
   );
