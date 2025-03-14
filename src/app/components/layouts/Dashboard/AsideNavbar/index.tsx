@@ -1,9 +1,11 @@
 "use client";
+
 import { MImage, Typography } from "@/app/components/common";
 import { AsideNavbarData } from "@/app/utils/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { SetStateAction } from "react";
+import { DropDownMenu } from "./DropDownMenu";
 
 interface IIsopen {
   isOpen: boolean;
@@ -18,7 +20,7 @@ export const AsideNavbar = ({
 
   return (
     <div
-      className={`z-20 pt-5 pb-20 px-5 w-[300px] h-screen overflow-y-scroll scroll-smooth fixed box-border border-r-2 border-boxOutline bg-gradient-to-t from-black via-bgDark to-bgBox transition-all duration-300 ${
+      className={`z-20 pt-5 pb-20 px-3 w-[300px] h-screen overflow-y-scroll scroll-smooth fixed box-border border-r-2 border-boxOutline bg-gradient-to-t from-black via-bgDark to-bgBox transition-all duration-300 ${
         isOpen
           ? "translate-x-0 visible opacity-100"
           : "-translate-x-full invisible opacity-0 lg:translate-x-0 lg:block lg:opacity-100 lg:visible"
@@ -28,16 +30,22 @@ export const AsideNavbar = ({
         {AsideNavbarData.map((nav, index) => {
           const active = pathname.includes(nav.link);
 
-          return (
+          return typeof nav?.dropdown !== "undefined" &&
+            nav?.dropdown.length > 0 ? (
+            <DropDownMenu item={nav} key={index} setIsOpen={setIsOpen} />
+          ) : (
             <div
               key={index}
               className={`${
                 active ? "bg-PrimaryColor text-SecondaryColor" : ""
-              }  hover:bg-PrimaryColor rounded-2xl px-3 py-2 md:p-3 transition-all duration-300`}
+              }  hover:bg-PrimaryColor/40 rounded-xl px-4 flex items-center h-[48px] transition-all duration-300`}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               <Link
                 href={nav.link}
-                className="flex items-center gap-x-3 gap-y-3"
+                className="flex gap-x-3 gap-y-3"
                 onClick={() => setIsOpen(false)}
               >
                 <MImage src={nav.icon} w={24} h={24} alt="iconNav" />
@@ -48,7 +56,10 @@ export const AsideNavbar = ({
             </div>
           );
         })}
-        <Typography variant="bodyMedium" className="text-white px-3 py-10">
+        <Typography
+          variant="bodyMedium"
+          className="text-white text-center px-3 py-10"
+        >
           © Copyright All Right Reserved
         </Typography>
       </div>

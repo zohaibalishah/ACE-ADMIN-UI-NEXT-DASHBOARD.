@@ -16,7 +16,6 @@ import { colors } from "@/app/styles/colors";
 interface ISelectField<OptionType>
   extends Omit<SelectProps<OptionType>, "onChange" | "value"> {
   placeholder?: string;
-  error?: string | null;
   value?: SingleValue<OptionType> | null;
   className?: string;
   label?: string;
@@ -36,14 +35,21 @@ const customStyles = {
   }),
   singleValue: (baseStyles: any) => ({
     ...baseStyles,
-    color: colors.bgShadow,
+    color: colors.SecondaryColor,
+  }),
+  menu: (style: any) => ({
+    ...style,
+    background: colors.bgShadow,
+  }),
+  option: (style: any) => ({
+    ...style,
+    background: colors.bgShadow,
   }),
 };
 
 export const SelectField = <OptionType,>({
   placeholder,
   className,
-  error,
   value,
   onChange,
   label,
@@ -67,15 +73,11 @@ export const SelectField = <OptionType,>({
         </Typography>
       )}
       <div
-        className={`${className} flex-1 h-[44px] sm:h-[56px] shadow-lg shadow-black/5 rounded-full bg-transparent flex items-center justify-between text-sm sm:text-base relative ${
-          variant === "white"
-            ? "text-secondary placeholder-tertiary border-transparent focus:border-primary"
-            : "text-tertiary placeholder-tertiary"
-        }`}
+        className={`${className} flex-1 h-[44px] sm:h-[56px] shadow-lg shadow-black/5 rounded-full bg-transparent flex items-center text-sm sm:text-base text-left relative text-SecondaryColor placeholder-tertiary`}
       >
         <Select
           placeholder={placeholder}
-          className="w-full text-tertiary"
+          className="w-full"
           value={value}
           onChange={handleChange}
           components={{
@@ -87,16 +89,12 @@ export const SelectField = <OptionType,>({
           }}
           styles={{
             ...customStyles,
-            placeholder: (baseStyles: any) => ({
-              ...baseStyles,
-              color: variant === "white" ? colors.PrimaryColor : "tertiary",
-            }),
           }}
-          theme={(theme: { Colors: any }) => ({
+          theme={(theme) => ({
             ...theme,
             colors: {
-              ...theme.Colors,
-              primary: colors.black,
+              ...theme.colors,
+              primary: colors.PrimaryColor,
             },
           })}
           {...rest}

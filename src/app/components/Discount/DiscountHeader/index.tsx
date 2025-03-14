@@ -2,7 +2,11 @@ import React from "react";
 import { DatePickerSecondary, PrimaryButton, Typography } from "../../common";
 import { HiOutlinePlus } from "react-icons/hi";
 
-export const DiscountHeader = (): React.ReactElement => {
+export const DiscountHeader = ({
+  onAdd,
+}: {
+  onAdd: () => void;
+}): React.ReactElement => {
   return (
     <div className="flex items-center justify-between flex-wrap gap-y-2 sm:gap-y-0">
       <Typography variant="h5Bold" className="text-secondary">
@@ -14,6 +18,7 @@ export const DiscountHeader = (): React.ReactElement => {
           title="Add new code"
           icon={<HiOutlinePlus />}
           className="w-full sm:!w-[164px] !h-[44px]"
+          onClick={onAdd}
         />
       </div>
     </div>

@@ -1,69 +1,68 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { PrimaryButton, Typography } from "../../common";
+import React, { SetStateAction, useState } from "react";
+import { Modal, PrimaryButton, Typography } from "../../common";
 import { DatePickerField, SelectField, TextField } from "../../form";
 
-export const CreateClubModal = () => {
-  const [open, setOpen] = useState(true);
-
+interface IProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<SetStateAction<boolean>>;
+}
+export const CreateClubModal = ({ isOpen, setIsOpen }: IProps) => {
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-10">
-      <DialogBackdrop
-        transition
-        className="fixed inset-0 bg-bgDark bg-opacity-60  transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
-      />
-
-      <div className="fixed inset-0 z-30 w-screen overflow-y-auto ">
-        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-          <DialogPanel
-            transition
-            className="relative transform overflow-hidden transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 w-full  sm:max-w-[598px] data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 text-left"
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      className="w-[598px] border-2 border-boxOutline/50 rounded-xl"
+    >
+      <div className="relative p-3.5 sm:p-6 rounded-xl bg-bgShadow border border-SecondaryColor/70">
+        <form className="flex flex-col gap-3.5 sm:gap-6">
+          <Typography
+            variant="h5Bold"
+            className="text-SecondaryColor text-start"
           >
-            <div className="relative p-6 rounded-xl bg-bgShadow border-[1px] border-SecondaryColor/70">
-              <form action="" className="flex flex-col gap-y-4">
-                <Typography variant="h5Bold" className="text-SecondaryColor">
-                  Add new club
-                </Typography>
-                <TextField placeholder="Club Name" />
-                <div>
-                  <SelectField placeholder="Country" />
-                </div>
-                <div>
-                  <SelectField placeholder="City" className="mt-3" />
-                </div>
-                <TextField placeholder="Street address" />
-                <TextField placeholder="Club owner" />
-                <Typography variant="bodyMedium" className="text-white">
-                  Contract
-                </Typography>
-                <div className="flex gap-x-8">
-                  <div>
-                    <DatePickerField
-                      placeholder="Start Date of Contract"
-                      className="w-[255px]"
-                    />
-                  </div>
-                  <div>
-                    <DatePickerField
-                      placeholder="End Date of Contract"
-                      className="w-[255px]"
-                    />
-                  </div>
-                </div>
-                <TextField placeholder="Profit percentage" />
-                <PrimaryButton title="Add" className="!w-[222px] !h-[48px]" />
-              </form>
-            </div>
-          </DialogPanel>
-        </div>
+            Add new club
+          </Typography>
+          <TextField placeholder="Club Name" />
+          <SelectField
+            placeholder="Country"
+            options={[{ label: "Pakistan", value: "pakistan" }]}
+          />
+          <SelectField
+            placeholder="City"
+            options={[{ label: "Peshawar", value: "Peshawar" }]}
+          />
+          <TextField placeholder="Street address" />
+          <TextField placeholder="Club owner" />
+          <Typography
+            variant="bodyRegular"
+            className="text-white text-start font-medium"
+          >
+            Contract
+          </Typography>
+          <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-6">
+            <TextField
+              type="date"
+              placeholder="Start contract date"
+              className="flex-1"
+            />
+            <TextField
+              type="date"
+              placeholder="Start contract date"
+              className="flex-1"
+            />
+            {/* <DatePickerField
+              placeholder="End Date of Contract"
+              className="w-[255px]"
+            /> */}
+          </div>
+          <TextField placeholder="Profit percentage" />
+          <PrimaryButton
+            title="Add"
+            className="sm:max-w-[222px] !h-[48px] mt-4"
+          />
+        </form>
       </div>
-    </Dialog>
+    </Modal>
   );
 };

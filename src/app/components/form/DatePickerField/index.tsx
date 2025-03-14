@@ -25,9 +25,9 @@ export const DatePickerField = ({
         type="text"
         placeholder={placeholder}
         readOnly
-        className="w-full bg-transparent rounded-full p-3 read-only placeholder:text-tertiary"
+        className="w-full bg-transparent rounded-full p-3 read-only placeholder:text-tertiary outline-none"
       />
-      <button onClick={() => setIsOpen((prev) => !prev)}>
+      <button type="button" onClick={() => setIsOpen((prev) => !prev)}>
         <MImage
           src={"/icons/Calendar.png"}
           w={18}

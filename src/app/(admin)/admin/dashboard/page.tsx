@@ -14,7 +14,7 @@ const HomePage = () => {
     <>
       <section className="w-full">
         <DashboardCardSection />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-6 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-4 xl:gap-x-6 py-6">
           <TotalBookingChart />
           <CourtChart />
         </div>

@@ -1,17 +1,17 @@
 .resContainer {
   width: 1440px;
-  max-width: 94%;
+  max-width: 100%;
   margin: auto;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .resContainer {
     width: 100%;
     max-width: 100%;
     margin: auto;
     padding: 0 3px;
   }
-}
+} */
 
 ::-webkit-scrollbar {
   display: none;
@@ -36,4 +36,26 @@ select {
   background-repeat: no-repeat;
   background-position: right 10px center; /* Adjust right padding to fit your design */
   background-position-y: 70%;
+}
+
+.MonthlyDropDown > select {
+  background-position-y: 70%;
+}
+
+.financialSelect > select {
+  background-position-y: 50%;
+}
+
+.treasurySelect > select {
+  background-position-y: 55%;
+}
+
+.modalRadio {
+  width: 20px;
+  height: 20px;
+  accent-color: #93b10b;
+}
+
+.juBESy {
+  width: 100% !important;
 }
