@@ -15,7 +15,7 @@ export const LoginPage = (): React.ReactElement => {
   const [loading, setLoading] = useState(false);
   const [payload, setPayload] = useState<{ email: string; password: string }>({
     email: 'admin@gmail.com',
-    password: 'club',
+    password: 'admin',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

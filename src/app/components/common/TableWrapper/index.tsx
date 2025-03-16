@@ -45,7 +45,7 @@ export const TableWrapper = ({
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-end py-6">
+      {/* <div className="flex justify-end py-6">
         <div className="flex gap-5 items-centere">
           <Typography variant="bodyRegular" className="text-SecondaryColor">
             Showing 1-10 out of 102
@@ -59,7 +59,7 @@ export const TableWrapper = ({
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

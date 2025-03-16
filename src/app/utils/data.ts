@@ -131,6 +131,11 @@ export const AsideNavbarData: IMenuItem[] = [
         title: 'Club configuration',
         link: routes.clubConfiguration,
       },
+      {
+        icon: IconsNav.paper,
+        title: 'Country / City ',
+        link: routes.countryConfiguration,
+      },
     ],
   },
   {
@@ -933,46 +938,8 @@ export const MARKETING_TABLE_ROW = [
 
 //---------------SUPPORT AND FEEDBACK TABLE DATA-----------//
 
-export const FEEDBACK_TABLE_HEAD = [
-  'S no',
-  'Type',
-  'Subject',
-  'Description',
-  'Status',
-  'Action',
-];
-export const FEEDBACK_TABLE_ROW = [
-  {
-    type: 'Suggestion',
-    subject: 'Need suggestion',
-    description: 'I have faced some issue like..',
-    status: 'Open',
-  },
-  {
-    type: 'Suggestion',
-    subject: 'Need suggestion',
-    description: 'I have faced some issue like..',
-    status: 'Open',
-  },
-  {
-    type: 'Suggestion',
-    subject: 'Need suggestion',
-    description: 'I have faced some issue like..',
-    status: 'Open',
-  },
-  {
-    type: 'Suggestion',
-    subject: 'Need suggestion',
-    description: 'I have faced some issue like..',
-    status: 'Open',
-  },
-  {
-    type: 'Suggestion',
-    subject: 'Need suggestion',
-    description: 'I have faced some issue like..',
-    status: 'Open',
-  },
-];
+
+
 
 //-----------CONFIGURATION TABLE DATA ----------//
 export const CONFIGURATION_TABLE_HEAD = ['S no', 'Title', 'Icon', 'Action'];

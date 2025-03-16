@@ -25,4 +25,7 @@ export const routes = {
   supportAndFeedback: "/admin/feedback",
   applicationConfiguration: "/admin/application-configuration",
   clubConfiguration: "/admin/application-configuration/club-configuration",
+  countryConfiguration: "/admin/application-configuration/country-configuration",
+
+  
 };
