@@ -17,7 +17,7 @@ export const GenerateReport = ({
             Generate report
           </Typography>
         </button>
-        <DatePickerSecondary className="w-[219px] h-[49px]" />
+        {/* <DatePickerSecondary className="w-[219px] h-[49px]" /> */}
       </div>
     </div>
   );

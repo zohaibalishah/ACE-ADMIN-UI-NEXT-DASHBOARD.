@@ -4,10 +4,8 @@ import { IAction } from "@/app/base/types";
 import {
   ClubCardSection,
   ClubDetails,
-  ClubFilters,
   CreateClubModal,
   ReservationDetails,
-  UpdateContract,
 } from "@/app/components/ClubManagement";
 import {
   ActionsDropdown,
@@ -19,21 +17,41 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { LuCalendarDays } from "react-icons/lu";
-import { MdOutlineLibraryBooks } from "react-icons/md";
 
-interface Club {
+interface Country {
+  id: number;
+  title: string;
+}
+
+interface City {
+  id: number;
+  title: string;
+}
+
+interface IClub {
   id: number;
   name: string;
   address: string;
   owner?: {
     name: string;
   };
+  status: string;
   wallet: {
     balance: number;
   };
+  street: string;
+  zip: string;
+  country: Country;
+  city: City;
+  facilities: Array<{ title: string; image: string }>;
+  openingHours: Array<{
+    day: string;
+    openingTime: string;
+    closingTime: string;
+  }>;
 }
 
-const clubsOwnersHead = [
+const clubsOwnersHead: string[] = [
   "S No",
   "ID",
   "Club name",
@@ -43,14 +61,14 @@ const clubsOwnersHead = [
   "Action",
 ];
 
-const TotalClubsHome = () => {
+const TotalClubsHome: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isView, setIsView] = useState<boolean>(false);
-  const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isOpenRes, setIsOpenRes] = useState<boolean>(false);
-  const [data, setData] = useState<Club[]>([]);
+  const [data, setData] = useState<IClub[]>([]);
+  const [clubInfo, setClubInfo] = useState<IClub | null>(null);
   
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number): Promise<void> => {
     try {
       const response = await api.delete(`clubs/delete/${id}`);
       if (response.data.status === 1) {
@@ -63,9 +81,9 @@ const TotalClubsHome = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       try {
-        const response = await api.get('clubs/list');
+        const response = await api.get('clubs/list?status=approved');
         if (response.data) {
           setData(response.data.clubs);
         }
@@ -76,6 +94,7 @@ const TotalClubsHome = () => {
 
     fetchData();
   }, []);
+
   interface DashboardCount {
     totalUsers?: number;
     newUsers?: number;
@@ -108,6 +127,7 @@ const TotalClubsHome = () => {
       onClick: () => handleDelete(id),
     },
   ];
+
   const [dashboardCount, setDashboardCount] = useState<DashboardCount>({
     totalUsers: 0,
     newUsers: 0,
@@ -122,7 +142,7 @@ const TotalClubsHome = () => {
   return (
     <>
       <ClubCardSection dashboardCount={dashboardCount} />
-      {/* <ClubFilters
+        {/* <ClubFilters
         onAdd={() => setIsOpen(true)}
         title="Clubs Management"
         showButton={false}
@@ -150,12 +170,12 @@ const TotalClubsHome = () => {
             </td>
             <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
-                {club.owner?.name}
+                {club?.owner?.name}
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
               <Typography className="text-SecondaryColor">
-                {club.wallet.balance || 0}
+                {club?.wallet?.balance || 0}
               </Typography>
             </td>
             <td className="px-3 text-nowrap">
@@ -166,8 +186,9 @@ const TotalClubsHome = () => {
       </TableWrapper>
       <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <ClubDetails isOpen={isView} setIsOpen={setIsView} />
-      {/* <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} /> */}
-      <ReservationDetails isOpen={isOpenRes} setIsOpen={setIsOpenRes} />
+      <ReservationDetails 
+        clubInfo={clubInfo as IClub}
+        isOpen={isOpenRes} handleClosed={setIsOpenRes} />
     </>
   );
 };

@@ -16,16 +16,16 @@ const links = [
     icon: icons.settings,
   },
   { name: 'Manage profile', link: '#', icon: icons.mp },
-  {
-    name: 'Activity log',
-    link: '#',
-    icon: icons.al,
-  },
-  {
-    name: 'Support ticket',
-    link: routes.supportAndFeedback,
-    icon: icons.st,
-  },
+  // {
+  //   name: 'Activity log',
+  //   link: '#',
+  //   icon: icons.al,
+  // },
+  // {
+  //   name: 'Support ticket',
+  //   link: routes.supportAndFeedback,
+  //   icon: icons.st,
+  // },
 ];
 
 export const ProfileDropdown = (): React.ReactElement => {
