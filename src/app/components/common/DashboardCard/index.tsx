@@ -33,10 +33,10 @@ export const DashboardCard = ({
         <div>
           <Typography variant="bodyRegular">text</Typography>
           <Typography variant="h2" className="text-PrimaryColor py-4">
-          dashboardCount
+            0
             {/* {dashboardCount
               ? dashboardCount[card.keyValue as keyof typeof dashboardCount]
-              : 0} */}
+              : 0}  */}
           </Typography>
         </div>
         <div className="w-[48px] h-[48px] bg-boxOutline flex items-center justify-center rounded-xl cursor-pointer">

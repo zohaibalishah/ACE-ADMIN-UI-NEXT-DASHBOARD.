@@ -1,9 +1,5 @@
-import { TablePagination } from '@/app/components/common';
-import { FeedBackTAble } from '@/app/components/FeedBack';
-import {
-  SecurityIncidentBar,
-  SecurityStatics,
-} from '@/app/components/SecurityIncidents';
+import CountryPage from  './CountryPage';
+
 import React, { ReactElement } from 'react';
 
 import { redirect } from 'next/navigation';
@@ -19,10 +15,7 @@ export default async function FeedBackPage(): Promise<ReactElement> {
   return (
     <>
       <div>
-        {/* <SecurityStatics /> */}
-        <SecurityIncidentBar label="Support and Feedback" />
-        <FeedBackTAble />
-        {/* <TablePagination /> */}
+        <CountryPage />
       </div>
     </>
   );
