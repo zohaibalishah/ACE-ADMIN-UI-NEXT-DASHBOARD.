@@ -1,9 +1,12 @@
 import { PrimaryButton, Typography } from '@/app/components/common';
-import React, { useState } from 'react';
+import React from 'react';
 import { FiPlus } from 'react-icons/fi';
 
-export const CountryTitle = ({setIsOpen}): React.ReactElement => {
+interface CountryTitleProps {
+  setIsOpen: (isOpen: boolean) => void;
+}
 
+export const CountryTitle: React.FC<CountryTitleProps> = ({ setIsOpen }) => {
   return (
     <div className="flex items-center justify-between flex-wrap gap-4">
       <Typography variant="h5Bold" className="text-SecondaryColor">
