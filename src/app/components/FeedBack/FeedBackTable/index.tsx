@@ -1,72 +1,86 @@
+import { IAction } from '@/app/base/types';
+import {
+  ActionsDropdown,
+  MImage,
+  TableWrapper,
+  Typography,
+} from '@/app/components/common';
 
-'use client'
-import React, { useState, useEffect } from 'react';
-import { Typography } from '../../common';
-import api from '@/lib/api-client';
-import { FeedBackTableRow } from './FeedBackTableRow';
+import React from 'react';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BiEditAlt } from 'react-icons/bi';
 
-export const FeedBackTAble = (): React.ReactElement => {
-  const [data, setData] = useState<any[]>([]);
+interface ConfigurationData {
+  id: number;
+  subject: string;
+  type: string;
+  description: string;
+  status: string; // Added missing 'status' property
+  reply?:string
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get('clubOwner/list');
-        if (response.data) {
-          setData(response.data.users);
-        }
-      } catch (error) {
-        console.error('Error ', error);
-      }
-    };
+interface ConfigurationTableProps {
+  data: ConfigurationData[];
+  setResolvedData: (data: ConfigurationData,action:string) => void;
+}
 
-    fetchData();
-  }, []);
-
-  const FEEDBACK_TABLE_HEAD = [
-    'S no',
-    'Type',
-    'Subject',
-    'Description',
-    'Status',
-    'Action',
+export const FeedBackTable: React.FC<ConfigurationTableProps> = ({
+  data,
+  setResolvedData,
+}) => {
+  const actions: Omit<IAction, 'onClick'>[] = [
+    {
+      icon: <BiEditAlt />,
+      title: 'View',
+    },
+    {
+      icon: <AiOutlineDelete />,
+      title: 'Resolved',
+    },
   ];
 
   return (
-    <div className="w-full overflow-hidden overflow-x-scroll">
-      <table className="min-w-[700px] w-full table-auto text-left">
-        <thead>
-          <tr>
-            {FEEDBACK_TABLE_HEAD.map((data, index) => (
-              <th
-                key={index}
-                className={` bg-boxOutline ${
-                  index === 0 ? 'pl-2 rounded-tl-2xl' : ''
-                } ${index === 1 ? 'pl-2' : ''}
-                  ${
-                    index === FEEDBACK_TABLE_HEAD.length - 1
-                      ? 'pl-3 rounded-tr-2xl'
-                      : ''
-                  } py-3`}
-              >
-                <Typography
-                  variant="bodyRegular"
-                  className="text-SecondaryColor font-normal"
-                >
-                  {data}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {data &&
-            data.map((data, index) => {
-              return <FeedBackTableRow data={data} index={index} key={index} />;
-            })}
-        </tbody>
-      </table>
-    </div>
+    <TableWrapper
+      TableHeadData={['S no', 'Subject', 'Type', 'Description', 'Status','Action']}
+    >
+      {data.map((td, index) => (
+        <tr key={td.id} className="border-2 border-boxOutline cursor-pointer">
+          <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <Typography className="text-SecondaryColor">{index + 1}</Typography>
+          </td>
+          <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <Typography className="text-SecondaryColor pl-4">
+              {td.subject}
+            </Typography>
+          </td>
+          <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <Typography className="text-SecondaryColor pl-4">
+              {td.type}
+            </Typography>
+          </td>
+          <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <Typography className="text-SecondaryColor pl-4">
+              {td.description}
+            </Typography>
+          </td>
+          <td className="pl-2 border-r-2 border-boxOutline h-[60px]">
+            <Typography className="text-SecondaryColor pl-4">
+              {td.status}
+            </Typography>
+          </td>
+          <td className="h-full border-boxOutline pl-4 text-white">
+            <ActionsDropdown
+              actions={actions.map((action) => ({
+                ...action,
+                onClick:
+                  action.title === 'Resolved' ||action.title ===  'View'
+                    ? () => setResolvedData(td,action.title)
+                    : undefined,
+              }))}
+            />
+          </td>
+        </tr>
+      ))}
+    </TableWrapper>
   );
 };
