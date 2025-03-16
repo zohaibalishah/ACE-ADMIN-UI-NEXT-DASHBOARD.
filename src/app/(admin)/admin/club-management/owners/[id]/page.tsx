@@ -118,7 +118,7 @@ const OwnerClubsPage = () => {
       <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <ClubDetails isOpen={isView} setIsOpen={setIsView} />
       <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} />
-      <ReservationDetails isOpen={isOpenRes} setIsOpen={setIsOpenRes} />
+      <ReservationDetails isOpen={isOpenRes} handleClosed={setIsOpenRes} />
     </section>
   );
 };

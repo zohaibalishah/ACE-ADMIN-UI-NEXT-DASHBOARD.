@@ -38,7 +38,7 @@ interface IProps {
   isOpen: boolean;
   handleClosed: React.Dispatch<SetStateAction<boolean>>;
   isRequest?: boolean;
-  clubInfo: ClubInfo;
+  clubInfo?: ClubInfo;
   updateStatus?: (clubId: number, status: string) => void;
 }
 
@@ -49,6 +49,12 @@ export const ReservationDetails: React.FC<IProps> = ({
   isRequest = false,
   updateStatus,
 }) => {
+  const handleUpdateStatus = (status: string) => {
+    if (clubInfo?.id !== undefined && updateStatus) {
+      updateStatus(clubInfo.id, status);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -146,12 +152,11 @@ export const ReservationDetails: React.FC<IProps> = ({
         ></iframe>
       </div> */}
 
-      {/* Show if is request */}
       {isRequest && updateStatus && (
         <div className="mt-7 flex gap-6 items-center">
           <button
             className={`bg-bgBox flex-1 h-[46px] xl:h-[52px] flex items-center justify-center  rounded-full text-white`}
-            onClick={() => updateStatus(clubInfo.id, 'declined')}
+            onClick={() => handleUpdateStatus('declined')}
           >
             <Typography variant="bodyMedium" className="flex items-center">
               Decline
@@ -160,7 +165,7 @@ export const ReservationDetails: React.FC<IProps> = ({
           <PrimaryButton
             title="Accept"
             className="flex-1"
-            onClick={() => updateStatus(clubInfo.id, 'approved')}
+            onClick={() => handleUpdateStatus('approved')}
           />
         </div>
       )}
