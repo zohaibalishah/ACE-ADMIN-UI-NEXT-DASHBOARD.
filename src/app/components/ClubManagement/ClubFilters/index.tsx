@@ -32,7 +32,7 @@ export const ClubFilters = ({
                 onClick={onAdd}
               />
             )}
-            <OwnersDropdown />
+            {/* <OwnersDropdown /> */}
           </div>
         </div>
       </section>

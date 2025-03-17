@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
     ],
     pages: {
         signIn: '/',
+         error: "/auth/error"
     },
     secret: 'q+jO8xmrhEvWlXhXw/FbFtK5/jP0PCgYTwxFHzajAdY=',
     session: {

@@ -16,7 +16,7 @@ import { routes } from '@/app/utils/const';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import api from '@/lib/api-client';
-
+import { toast } from 'react-hot-toast';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BiEditAlt } from 'react-icons/bi';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
@@ -39,11 +39,12 @@ function ClubManagement() {
     try {
       const response = await api.delete(`clubOwner/delete/${id}`);
       if (response.data.status === 1) {
-        console.log('Owner deleted successfully:', response.data.status);
+        toast.success('Owner deleted successfully');
         setData((prevData) => prevData.filter((user) => user.id !== id));
       }
-    } catch (error) {
-      console.error('Error deleting owner:', error);
+    } catch (error:any) {
+      toast.error(error?.message || 'An error occurred');
+
     }
   };
 
@@ -106,15 +107,30 @@ function ClubManagement() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
+      toast.error('All fields are required');
+      return;
+    }
+
     try {
       const response = await api.post('clubOwner/create', formData);
       if (response.data.status === 1) {
-        console.log('Owner created successfully:', response.data.status);
+        toast.success('Owner created successfully');
         setData((u) => [...u, response.data.user]);
         setIsOpen(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          password: '',
+          confirmPassword: '',
+          role: 'club_owner',
+        })
       }
-    } catch (error) {
-      console.error('Error creating owner:', error);
+    } catch (error: any) {
+      toast.error(error?.message || 'An error occurred');
     }
   };
 
