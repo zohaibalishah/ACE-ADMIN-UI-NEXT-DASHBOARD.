@@ -57,3 +57,17 @@ export interface ICourt {
 
   }
 
+  export interface ISysmetLogs {
+    id: number;
+    description: string;
+    logType: string;
+    date: string;
+    action: string;
+    userId: ICourt;
+    user: IUser;
+    status:string;
+
+
+  }
+
+  

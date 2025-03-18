@@ -7,7 +7,6 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { icons } from '../../../../../../public/icons';
 import Link from 'next/link';
 import Image from 'next/image';
-import { routes } from '@/app/utils/const';
 import { signOut, useSession } from 'next-auth/react';
 const links = [
   {

@@ -126,11 +126,11 @@ export const AsideNavbarData: IMenuItem[] = [
         title: 'Application configuration',
         link: routes.applicationConfiguration,
       },
-      {
-        icon: IconsNav.paper,
-        title: 'Club configuration',
-        link: routes.clubConfiguration,
-      },
+      // {
+      //   icon: IconsNav.paper,
+      //   title: 'Club configuration',
+      //   link: routes.clubConfiguration,
+      // },
       {
         icon: IconsNav.paper,
         title: 'Country / City ',

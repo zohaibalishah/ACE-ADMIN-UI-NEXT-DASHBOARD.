@@ -12,7 +12,7 @@ export const SecurityIncidentBar = ({ label }: ILabel): React.ReactElement => {
         <Typography variant="h5Bold" className="text-SecondaryColor">
           {label}
         </Typography>
-        <DatePickerSecondary className="!w-[219px] !h-[49px]" />
+        {/* <DatePickerSecondary className="!w-[219px] !h-[49px]" /> */}
       </div>
     </>
   );

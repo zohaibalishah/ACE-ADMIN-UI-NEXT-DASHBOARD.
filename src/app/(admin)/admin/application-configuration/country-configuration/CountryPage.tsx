@@ -6,6 +6,7 @@ import {
 } from '@/app/components/Configuration/CountryConfiguration';
 import React, { useState, useEffect } from 'react';
 import api from '@/lib/api-client';
+import { toast } from 'react-hot-toast';
 
 const ApplicationConfigurationHome = () => {
   const [data, setData] = useState<any[]>([]);
@@ -20,8 +21,9 @@ const ApplicationConfigurationHome = () => {
         if (response.data) {
           setData(response.data);
         }
-      } catch (error) {
-        console.error('Error ', error);
+      } catch (error: any) {
+        console.error('Error  country', error);
+        toast.error(error?.message);
       }
     };
 
@@ -37,9 +39,11 @@ const ApplicationConfigurationHome = () => {
         setData((prevData) => [...prevData, response.data.country]);
         setNewCountryTitle(''); // Clear the input field after adding
         setIsOpen(false);
+        toast.success('Country added successfully');
       }
-    } catch (error) {
-      console.error('Error adding country', error);
+    } catch (error: any) {
+      console.error('Error added country', error);
+      toast.error(error?.message);
     }
   };
 
@@ -48,14 +52,13 @@ const ApplicationConfigurationHome = () => {
       const response = await api.delete(`country/delete/${id}`);
       if (response.status === 200) {
         setData((prevData) => prevData.filter((country) => country.id !== id));
+        toast.success('Country deleted successfully');
       } else {
-        console.error(
-          'Failed to delete country, status code:',
-          response.status
-        );
+        toast.error('Failed to delete country');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting country', error);
+      toast.error(error?.message);
     }
   };
 
@@ -64,7 +67,7 @@ const ApplicationConfigurationHome = () => {
       <CountryTitle setIsOpen={setIsOpen} />
       <AddCountryModal
         isOpen={isOpen}
-        placeholder='Country Title'
+        placeholder="Country Title"
         setIsOpen={setIsOpen}
         onChangeTitle={setNewCountryTitle}
         onSubmit={addCountry}
