@@ -66,8 +66,23 @@ export interface ICourt {
     userId: ICourt;
     user: IUser;
     status:string;
-
+    reply:string;
+    
 
   }
 
+  export interface INotification {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    createdBy: string;
+    createdFor: string;
+    notificationType: string;
+    payload: any;
+    createdAt:string;
+  }
+
   
+
+ 
