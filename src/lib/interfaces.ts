@@ -97,3 +97,14 @@ export interface ICourt {
   }
 
  
+
+  export interface IMatch {
+    creator: { name: string };
+    club: { name: string; address: string };
+    date: string;
+    startTime: string;
+    endTime: string;
+    participants: any[];
+    maxParticipants: number;
+  }
+  

@@ -1,78 +1,93 @@
-"use client";
+'use client';
+import { ActionsDropdown, TableWrapper, Typography } from '../../common';
+import { IAction } from '@/app/base/types';
+import { LuEye } from 'react-icons/lu';
+import { BiEditAlt } from 'react-icons/bi';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { MatchDetails } from './MatchDetails';
+import { useState, FC } from 'react';
+import moment from 'moment';
+import { IMatch } from '@/lib/interfaces';
 
-import { ActionsDropdown, TableWrapper, Typography } from "../../common";
-import { MATCHES_TABLE_HEAD, MATCHES_TABLE_ROW } from "@/app/utils/data";
-import { IAction } from "@/app/base/types";
-import { LuEye } from "react-icons/lu";
-import { BiEditAlt } from "react-icons/bi";
-import { AiOutlineDelete } from "react-icons/ai";
-import { MatchDetails } from "./MatchDetails";
-import { useState } from "react";
 
-export const MatchesTable = () => {
+interface MatchesTableProps {
+  data: IMatch[];
+}
+
+export const MatchesTable: FC<MatchesTableProps> = ({ data }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const actions: IAction[] = [
     {
       icon: <LuEye />,
-      title: "View",
+      title: 'View',
       onClick: () => setIsOpen(true),
     },
     {
       icon: <BiEditAlt />,
-      title: "Edit",
+      title: 'Edit',
     },
     {
       icon: <AiOutlineDelete />,
-      title: "Cancel",
+      title: 'Cancel',
     },
   ];
   return (
     <>
-      <TableWrapper TableHeadData={MATCHES_TABLE_HEAD}>
-        {MATCHES_TABLE_ROW.map((data, index) => (
+      <TableWrapper
+        TableHeadData={[
+          'S no',
+          'Name',
+          'Club Name',
+          'Matches Date',
+          'Status',
+          'Location',
+          'Action',
+        ]}
+      >
+        {data && data.map((match, index) => (
           <tr
-            key={data.name}
-            className="border-2 border-boxOutline px-3 text-nowrap"
+            key={index}
+            className="border-2 border-boxOutline text-nowrap px-3"
           >
-            <td className="h-[40px] sm:h-[60px] border-r-[1px] border-boxOutline">
+            <td className="border-boxOutline border-r-[1px] h-[40px] sm:h-[60px]">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {index + 1}
               </Typography>
             </td>
-            <td className="px-3 text-nowrap">
+            <td className="text-nowrap px-3">
               <Typography
                 variant="bodyRegular"
                 className="text-SecondaryColor pl-3"
               >
-                {data.name}
+                {match.creator.name}
               </Typography>
             </td>
-            <td className="px-3 text-nowrap">
+            <td className="text-nowrap px-3">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
-                {data.clubName}
+                {match.club.name}
               </Typography>
             </td>
-            <td className="px-3 text-nowrap">
+            <td className="text-nowrap px-3">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
-                {data.matcheDate}
+                {moment(match.date).format("MM-DD-YYYY")} | {moment(match.startTime, "HH:mm").format("hh:mm A")} - {moment(match.endTime, "HH:mm").format("hh:mm A")}
               </Typography>
             </td>
-            <td className="px-3 text-nowrap">
-              <div className="px-5 py-1 rounded-xl bg-PrimaryColor inline-flex justify-center items-center">
+            <td className="text-nowrap px-3">
+              <div className="bg-PrimaryColor justify-center rounded-xl inline-flex items-center px-5 py-1">
                 <Typography
                   variant="bodyMedium"
                   className="text-SecondaryColor"
                 >
-                  {data.status}
+                 {match.participants.length} / {match.maxParticipants} Confirmed
                 </Typography>
               </div>
             </td>
-            <td className="px-3 text-nowrap">
+            <td className="text-nowrap px-3">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
-                {data.location}
+                {match.club.address}
               </Typography>
             </td>
-            <td className="border-boxOutline pl-3 relative text-nowrap px-3">
+            <td className="border-boxOutline text-nowrap pl-3 px-3 relative">
               <ActionsDropdown actions={actions} />
             </td>
           </tr>
