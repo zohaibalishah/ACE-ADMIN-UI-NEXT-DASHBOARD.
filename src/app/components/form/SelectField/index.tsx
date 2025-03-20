@@ -13,10 +13,15 @@ import { Typography } from "../../common";
 import styles from "./Select.module.css";
 import { colors } from "@/app/styles/colors";
 
-interface ISelectField<OptionType>
+interface OptionType {
+  label: string;
+  value: string;
+}
+
+interface ISelectField
   extends Omit<SelectProps<OptionType>, "onChange" | "value"> {
   placeholder?: string;
-  value?: SingleValue<OptionType> | null;
+  value?: OptionType | null;
   className?: string;
   label?: string;
   variant?: "primary" | "white";
@@ -47,7 +52,7 @@ const customStyles = {
   }),
 };
 
-export const SelectField = <OptionType,>({
+export const SelectField = ({
   placeholder,
   className,
   value,
@@ -55,20 +60,21 @@ export const SelectField = <OptionType,>({
   label,
   variant = "primary",
   ...rest
-}: ISelectField<OptionType>): React.ReactElement => {
+}: ISelectField): React.ReactElement => {
+
   const handleChange = (
     newValue: SingleValue<OptionType> | MultiValue<OptionType>,
     actionMeta: ActionMeta<OptionType>
   ): void => {
-    if (typeof onChange !== "undefined") {
+    if (onChange) {
       onChange(newValue as SingleValue<OptionType>, actionMeta);
     }
   };
 
   return (
     <div className="flex-1 bg-bgBox bg-opacity-80 rounded-full">
-      {typeof label !== "undefined" && (
-        <Typography className="font-medium text-body block mb-1.5 text-tertiary">
+      {label && (
+        <Typography className="text-body text-tertiary block font-medium mb-1.5">
           {label}
         </Typography>
       )}
@@ -99,7 +105,7 @@ export const SelectField = <OptionType,>({
           })}
           {...rest}
         />
-        <button className="absolute top-1/2 -translate-y-1/2 right-4  text-SecondaryColor text-xl">
+        <button className="text-SecondaryColor text-xl -translate-y-1/2 absolute right-4 top-1/2">
           <RxChevronDown />
         </button>
       </div>

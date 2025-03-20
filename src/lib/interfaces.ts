@@ -83,6 +83,17 @@ export interface ICourt {
     createdAt:string;
   }
 
+
+  export interface IDiscount {
+    id: number;
+    code: string;
+    discountValue: string |null;
+    discountType: string;
+    usageType: string;
+    fromDate: string;
+    toDate: string;
+    status?: string;
   
+  }
 
  

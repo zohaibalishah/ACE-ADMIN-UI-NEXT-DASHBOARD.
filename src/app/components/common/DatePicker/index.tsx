@@ -17,9 +17,19 @@ import { Typography } from "../Typography";
 interface Props {
   className?: string;
   placeholder?: string;
+  onChange?: (date: Date | undefined) => void;
+  defaultValue?: Date; // Added defaultValue prop
 }
-export function DatePicker({ className, placeholder }: Props) {
-  const [date, setDate] = React.useState<Date>();
+
+export function DatePicker({ className, placeholder, onChange, defaultValue }: Props) {
+  const [date, setDate] = React.useState<Date | undefined>(defaultValue); // Use defaultValue as initial state
+
+  const handleDateChange = (selectedDate: Date | undefined) => {
+    setDate(selectedDate);
+    if (onChange) {
+      onChange(selectedDate);
+    }
+  };
 
   return (
     <Popover>
@@ -40,14 +50,14 @@ export function DatePicker({ className, placeholder }: Props) {
             </Typography>
           )}
 
-          <CalendarIcon className=" h-4 w-4 text-SecondaryColor" />
+          <CalendarIcon className="h-4 text-SecondaryColor w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 z-[1050]">
+      <PopoverContent className="p-0 w-auto z-[1050]">
         <Calendar
           mode="single"
           selected={date}
-          onSelect={setDate}
+          onSelect={handleDateChange}
           initialFocus
           pagedNavigation
         />

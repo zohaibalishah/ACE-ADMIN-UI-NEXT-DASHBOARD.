@@ -566,41 +566,9 @@ export const TRANSECTION_TABLE_ROW = [
   },
 ];
 
-// ---------Discont Table Data --------//
 
-export const DISCOUNT_TABLE_HEAD = [
-  'S no',
-  'Code Title',
-  'Discount Type',
-  'Discount Value',
-  'Validity Period',
-  'Status',
-  'Action',
-];
 
-export const DISCOUNT_TABLE_ROW = [
-  {
-    title: 'SUMMER20',
-    type: 'Percentage',
-    value: '20%',
-    period: '2024-07-01 to 2024-07-31',
-    status: 'Active',
-  },
-  {
-    title: 'WINTER10',
-    type: 'Fixed',
-    value: 'SAR 10',
-    period: '2024-07-01 to 2024-07-31',
-    status: 'Expired',
-  },
-  {
-    title: 'SPRING15',
-    type: 'Percentage',
-    value: '20%',
-    period: '2024-07-01 to 2024-07-31',
-    status: 'Active',
-  },
-];
+
 
 //-------------Financial Management----------//
 export const revenueReportCardData = [

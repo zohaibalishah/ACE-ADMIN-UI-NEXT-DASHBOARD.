@@ -8,16 +8,16 @@ export const DiscountHeader = ({
   onAdd: () => void;
 }): React.ReactElement => {
   return (
-    <div className="flex items-center justify-between flex-wrap gap-y-2 sm:gap-y-0">
+    <div className="flex flex-wrap justify-between gap-y-2 items-center sm:gap-y-0">
       <Typography variant="h5Bold" className="text-secondary">
         Discount code
       </Typography>
-      <div className="flex flex-col sm:flex-row items-center gap-x-4 w-full sm:w-auto gap-y-2 sm:gap-y-0">
-        <DatePickerSecondary className="w-full !sm:w-[219px] sm:!h-[49px]" />
+      <div className="flex flex-col w-full gap-x-4 gap-y-2 items-center sm:flex-row sm:gap-y-0 sm:w-auto">
+        {/* <DatePickerSecondary className="w-full !sm:w-[219px] sm:!h-[49px]" /> */}
         <PrimaryButton
           title="Add new code"
           icon={<HiOutlinePlus />}
-          className="w-full sm:!w-[164px] !h-[44px]"
+          className="w-full !h-[44px] sm:!w-[164px]"
           onClick={onAdd}
         />
       </div>
