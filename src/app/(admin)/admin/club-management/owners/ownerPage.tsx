@@ -42,9 +42,8 @@ function ClubManagement() {
         toast.success('Owner deleted successfully');
         setData((prevData) => prevData.filter((user) => user.id !== id));
       }
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error?.message || 'An error occurred');
-
     }
   };
 
@@ -68,13 +67,27 @@ function ClubManagement() {
   ];
 
   const [dashboardCount, setDashboardCount] = useState({
-    newUsers: 0,
-    totalBookings: 0,
-    totalClubOwners: 0,
     totalClubs: 0,
-    totalRevenue: 0,
-    totalUsers: 0,
+    newClubs: 0,
+    totalCourts: 0,
   });
+
+
+  useEffect(() => {
+    const fetchDataCount = async () => {
+      try {
+        const response = await api.get('dashbaord/club-management');
+        if (response.data) {
+          setDashboardCount(response.data);
+        }
+      } catch (error) {
+        console.error('Error ', error);
+      }
+    };
+
+    fetchDataCount();
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +122,13 @@ function ClubManagement() {
     e.preventDefault();
 
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
       toast.error('All fields are required');
       return;
     }
@@ -127,7 +146,7 @@ function ClubManagement() {
           password: '',
           confirmPassword: '',
           role: 'club_owner',
-        })
+        });
       }
     } catch (error: any) {
       toast.error(error?.message || 'An error occurred');

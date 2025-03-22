@@ -4,39 +4,28 @@ import { dashboardIcons } from '../../../../../public/icons/dashboardIcons';
 import { GoArrowDown, GoArrowUp } from 'react-icons/go';
 import { Url } from 'next/dist/shared/lib/router/router';
 
-interface ICard {
-  card: {
-    user: string;
-    keyValue: string;
-    up?: boolean;
-    down?: boolean;
-    select?: boolean;
-    link?: Url | undefined;
-  };
-  dashboardCount: {
-    totalUsers?: number;
-    newUsers?: number;
-    totalClubOwners?: number;
-    totalBookings?: number;
-    totalRevenue?: number;
-    totalClubs?: number;
-    newClubs?: number;
-    totalCourts?: number;
-  };
+interface CardProps {
+  cardup: boolean;
+  catdselect: boolean;
+  label: string;
+  keyValue: number;
+  carddown: boolean;
 }
 
-export const DashboardCard = ({
-}): React.ReactElement => {
+export const DashboardCard: React.FC<CardProps> = ({
+  cardup,
+  catdselect,
+  label,
+  keyValue,
+  carddown,
+}) => {
   return (
     <div className="bg-bgBox p-4 rounded-xl border-[1px] border-newLinear/30">
       <div className="text-SecondaryColor flex items-start justify-between">
         <div>
-          <Typography variant="bodyRegular">text</Typography>
+          <Typography variant="bodyRegular">{label}</Typography>
           <Typography variant="h2" className="text-PrimaryColor py-4">
-            0
-            {/* {dashboardCount
-              ? dashboardCount[card.keyValue as keyof typeof dashboardCount]
-              : 0}  */}
+            {keyValue}
           </Typography>
         </div>
         <div className="w-[48px] h-[48px] bg-boxOutline flex items-center justify-center rounded-xl cursor-pointer">
@@ -45,7 +34,7 @@ export const DashboardCard = ({
       </div>
       <div className="flex justify-between items-center">
         <div>
-          {/* {card.up ? (
+          {cardup && (
             <Typography
               variant="bodyMedium"
               className="flex items-center text-SecondaryColor"
@@ -55,7 +44,9 @@ export const DashboardCard = ({
               </span>
               <span className="text-bgSucces pr-1">+6%</span>Since last week
             </Typography>
-          ) : (
+          )}
+
+          {carddown && (
             <Typography
               variant="bodyMedium"
               className="flex items-center text-SecondaryColor"
@@ -65,9 +56,9 @@ export const DashboardCard = ({
               </span>
               <span className="text-bgdanger pr-1">-10% </span>Since last week
             </Typography>
-          )} */}
+          )}
         </div>
-        {/* {card.select && <Monthly />} */}
+        {catdselect && <Monthly />}
       </div>
     </div>
   );

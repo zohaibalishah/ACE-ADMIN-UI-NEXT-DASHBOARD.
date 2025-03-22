@@ -95,16 +95,7 @@ const TotalClubsHome: React.FC = () => {
     fetchData();
   }, []);
 
-  interface DashboardCount {
-    totalUsers?: number;
-    newUsers?: number;
-    totalClubOwners?: number;
-    totalBookings?: number;
-    totalRevenue?: number;
-    totalClubs?: number;
-    newClubs?: number;
-    totalCourts?: number;
-  }
+
   
   const actions = (id: number): IAction[] => [
     {
@@ -128,16 +119,28 @@ const TotalClubsHome: React.FC = () => {
     },
   ];
 
-  const [dashboardCount, setDashboardCount] = useState<DashboardCount>({
-    totalUsers: 0,
-    newUsers: 0,
-    totalClubOwners: 0,
-    totalBookings: 0,
-    totalRevenue: 0,
+  const [dashboardCount, setDashboardCount] = useState({
     totalClubs: 0,
     newClubs: 0,
     totalCourts: 0,
   });
+
+
+  useEffect(() => {
+    const fetchDataCount = async () => {
+      try {
+        const response = await api.get('dashbaord/club-management');
+        if (response.data) {
+          setDashboardCount(response.data);
+        }
+      } catch (error) {
+        console.error('Error ', error);
+      }
+    };
+
+    fetchDataCount();
+  }, []);
+
 
   return (
     <>

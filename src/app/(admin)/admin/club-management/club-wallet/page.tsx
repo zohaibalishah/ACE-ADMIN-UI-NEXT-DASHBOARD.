@@ -41,13 +41,27 @@ const ClubWalletPage = () => {
   }, []);
 
   const [dashboardCount, setDashboardCount] = useState({
-    newUsers: 0,
-    totalBookings: 0,
-    totalClubOwners: 0,
     totalClubs: 0,
-    totalRevenue: 0,
-    totalUsers: 0,
+    newClubs: 0,
+    totalCourts: 0,
   });
+
+
+  useEffect(() => {
+    const fetchDataCount = async () => {
+      try {
+        const response = await api.get('dashbaord/club-management');
+        if (response.data) {
+          setDashboardCount(response.data);
+        }
+      } catch (error) {
+        console.error('Error ', error);
+      }
+    };
+
+    fetchDataCount();
+  }, []);
+
   return (
     <>
       <ClubCardSection dashboardCount={dashboardCount}/>

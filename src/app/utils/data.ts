@@ -192,24 +192,7 @@ export const dashboardCardData = [
   },
 ];
 
-export const ClubManagementCardData = [
-  {
-    user: 'Total Clubs',
-    up: true,
-    down: false,
-    link: routes.totalclubs,
-    keyValue: 'totalClubs',
-  },
-  {
-    user: 'New Clubs',
-    keyValue: 'newClubs',
-    up: false,
-    down: true,
-    select: true,
-    link: '#',
-  },
-  { user: 'Total Courts', keyValue: 'totalCourts', up: true, down: false },
-];
+
 
 export const clubOwnersTableData = [
   {
@@ -290,21 +273,6 @@ export const CLUBS_TABLE_ROW = [
   },
 ];
 
-export const userManagementCardData = [
-  {
-    user: 'Total Users',
-    figure: '101,980',
-    up: true,
-    down: false,
-  },
-  {
-    user: 'New Users',
-    figure: '1,287',
-    up: false,
-    down: true,
-    select: true,
-  },
-];
 
 export const UserTableData = [
   {
