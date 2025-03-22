@@ -16,7 +16,7 @@ import { IBooking, Transaction } from '@/lib/interfaces';
 const TransectionPage = () => {
   const [isView, setIsView] = useState<boolean>(false);
   const [data, setData] = useState<Transaction[]>([]);
-  const [bookingInfo, setBookingInfo] = useState<IBooking | null>(null);
+  const [bookingInfo, setBookingInfo] = useState<Transaction | null>(null);
   const [bookingId, setBookingId] = useState<number | null>(null);
 
 
@@ -24,7 +24,7 @@ const TransectionPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('booking/list');
+        const response = await api.get('booking/transactions');
         if (response.data) {
           setData(response.data.booking);
         }
