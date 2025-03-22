@@ -1,31 +1,23 @@
-import { revenueReportCardData } from "@/app/utils/data";
-import React from "react";
-import { DashboardCard } from "../../common";
+import React from 'react';
+import { DashboardCard } from '../../common';
 
-
-const dummyBookingManagementCardData = [
+export const revenueReportCardData = [
   {
-    user: "User 1",
-    keyValue: "totalBookings",
+    user: 'Total Revenue',
+    figure: 'SAR 40,980',
     up: true,
     down: false,
-    link: "/link1",
   },
   {
-    user: "User 2",
-    keyValue: "totalRevenue",
+    user: 'This Month Revenue',
+    figure: 'SAR 2,520',
     up: false,
     down: true,
-    link: "/link2",
+    link: '#',
   },
-  {
-    user: "User 3",
-    keyValue: "totalUsers",
-    up: true,
-    down: false,
-    link: "/link3",
-  },
+  { user: 'Total Clubs', figure: '1,346', up: true, down: false },
 ];
+
 const dummyDashboardCount = {
   totalBookings: 100,
   totalRevenue: 5000,
@@ -36,7 +28,14 @@ export const RevenueReportStatics = (): React.ReactElement => {
     <>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {revenueReportCardData.map((data, index) => (
-          <DashboardCard  key={index}  />
+          <DashboardCard
+            key={index}
+            cardup={data.up}
+            catdselect={false}
+            label={data.user}
+            keyValue={0}
+            carddown={false}
+          />
         ))}
       </div>
     </>

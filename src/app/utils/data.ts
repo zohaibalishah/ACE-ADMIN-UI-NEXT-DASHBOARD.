@@ -386,31 +386,6 @@ export const ACTIVITY_TRACKING_TABLE_ROW = [
 
 //---------Booking management card data-----------//
 
-export const bookingmanagementCardData = [
-  {
-    user: 'Total Booking',
-    figure: '101,980',
-    up: true,
-    down: false,
-    link: '#',
-  },
-  {
-    user: 'New Bookings',
-    figure: '1,287',
-    up: false,
-    down: true,
-    select: true,
-    link: '#',
-  },
-  {
-    user: 'Cancelled Bookings',
-    figure: '1,287',
-    up: false,
-    down: true,
-    select: true,
-    link: '#',
-  },
-];
 
 //......Booking Management table data.......//
 
@@ -478,23 +453,7 @@ export const TRANSECTION_TABLE_ROW = [
 
 
 //-------------Financial Management----------//
-export const revenueReportCardData = [
-  {
-    user: 'Total Revenue',
-    figure: 'SAR 40,980',
-    up: true,
-    down: false,
-    link: routes.totalclubs,
-  },
-  {
-    user: 'This Month Revenue',
-    figure: 'SAR 2,520',
-    up: false,
-    down: true,
-    link: '#',
-  },
-  { user: 'Total Clubs', figure: '1,346', up: true, down: false },
-];
+
 
 //===========FINANCIAL MANAGEMNT=============//
 export const FINANCIAL_TABLE_HEAD = [
