@@ -43,7 +43,7 @@ export const BookingTable: React.FC<BookingTableProps> = ({ data }) => {
           'Booking Date',
           'Booking Time',
           'Status',
-          'Location',
+          // 'Location',
           'Actions',
         ]}
       >
@@ -110,11 +110,11 @@ export const BookingTable: React.FC<BookingTableProps> = ({ data }) => {
                 </Typography>
               </div>
             </td>
-            <td className="px-3 text-nowrap ">
+            {/* <td className="px-3 text-nowrap ">
               <Typography variant="bodyRegular" className="text-SecondaryColor">
                 {booking.club.address}
               </Typography>
-            </td>
+            </td> */}
             <td className="border-boxOutline pl-3 relative">
               <ActionsDropdown actions={actions} />
             </td>
