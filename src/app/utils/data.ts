@@ -405,48 +405,7 @@ export const TABLE_HEAD = [
 
 
 
-//--------BOOKING MANAGAEMENT--TRANSECTIONS TABLE DATA --------//
-export const TRANSECTIONS_TABLE_HEAD = [
-  'S no',
-  'Type',
-  'User Name',
-  'Club name',
-  'Amount',
-  'Type',
-  'Date',
-  'Status',
-  'Action',
-];
 
-export const TRANSECTION_TABLE_ROW = [
-  {
-    type: 'Booking',
-    userName: 'Aqib Javid',
-    clubName: 'Fit Club',
-    amount: '50$',
-    paymentType: 'Payment',
-    date: '2024-07-18',
-    status: 'Complete',
-  },
-  {
-    type: 'Booking',
-    userName: 'Aqib Javid',
-    clubName: 'Fit Club',
-    amount: '50$',
-    paymentType: 'Payment',
-    date: '2024-07-18',
-    status: 'Complete',
-  },
-  {
-    type: 'Booking',
-    userName: 'Aqib Javid',
-    clubName: 'Fit Club',
-    amount: '50$',
-    paymentType: 'Payment',
-    date: '2024-07-18',
-    status: 'Complete',
-  },
-];
 
 
 

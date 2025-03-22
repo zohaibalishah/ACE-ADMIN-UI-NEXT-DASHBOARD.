@@ -140,3 +140,19 @@ export interface ICourt {
       closingTime: string;
     }>;
   }
+
+
+
+  export interface Transaction {
+    type: string;
+    user?: {
+      name: string;
+    };
+    club?: {
+      name: string;
+    };
+    amount: number;
+    status: string;
+    createdAt: string;
+    paymentMethod: string;
+  }
