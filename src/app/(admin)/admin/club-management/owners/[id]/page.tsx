@@ -1,70 +1,120 @@
-"use client";
+'use client';
 
-import { IAction } from "@/app/base/types";
+import { IAction } from '@/app/base/types';
 import {
   ClubDetails,
   ClubFilters,
   CreateClubModal,
   ReservationDetails,
   UpdateContract,
-} from "@/app/components/ClubManagement";
+} from '@/app/components/ClubManagement';
 import {
   ActionsDropdown,
   TableWrapper,
   ToggleButton,
   Typography,
-} from "@/app/components/common";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
-import { BiEditAlt } from "react-icons/bi";
-import { FiEye } from "react-icons/fi";
-import { IoChevronBackOutline } from "react-icons/io5";
-import { LuCalendarDays } from "react-icons/lu";
-import { MdOutlineLibraryBooks } from "react-icons/md";
+} from '@/app/components/common';
+import { useRouter, useParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import api from '@/lib/api-client';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { BiEditAlt } from 'react-icons/bi';
+import { FiEye } from 'react-icons/fi';
+import { IoChevronBackOutline } from 'react-icons/io5';
+import { LuCalendarDays } from 'react-icons/lu';
+import { MdOutlineLibraryBooks } from 'react-icons/md';
+import toast from 'react-hot-toast';
+import { IClub, IClubInfo } from '@/lib/interfaces';
 
-const clubsOwnersHead = [
-  "S No",
-  "ID",
-  "Club name",
-  "Contract duration",
-  "Contract date",
-  "Address",
-  "Action",
+const clubsOwnersHead: string[] = [
+  'S No',
+  'Club name',
+  'Contract duration',
+  'Contract date',
+  'Address',
+  'Action',
 ];
 
-const OwnerClubsPage = () => {
+interface User {
+  name: string;
+}
+
+const OwnerClubsPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isView, setIsView] = useState<boolean>(false);
   const [isContractOpen, setIsContractOpen] = useState<boolean>(false);
   const [isOpenRes, setIsOpenRes] = useState<boolean>(false);
-  const router = useRouter();
+  const [clubInfo, setClubInfo] = useState<IClubInfo | undefined>(undefined);
 
-  const actions: IAction[] = [
+  const router = useRouter();
+  const { id } = useParams(); // Get id from params
+  const [data, setData] = useState<IClub[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+
+  const actions = (club: IClubInfo): IAction[] => [
     {
       icon: <FiEye />,
-      title: "View",
+      title: 'View',
       onClick: () => setIsView(true),
     },
     {
       icon: <MdOutlineLibraryBooks />,
-      title: "Contract",
+      title: 'Contract',
       onClick: () => setIsContractOpen(true),
     },
     {
       icon: <LuCalendarDays />,
-      title: "Reservation",
-      onClick: () => setIsOpenRes(true),
+      title: 'Reservation',
+      onClick: () => {
+        setIsOpenRes(true);
+        setClubInfo(club);
+      },
     },
     {
       icon: <BiEditAlt />,
-      title: "Edit",
+      title: 'Edit',
     },
     {
       icon: <AiOutlineDelete />,
-      title: "Delete",
+      title: 'Delete',
+      onClick: () => handleDelete(club.id),
     },
   ];
+
+  useEffect(() => {
+    const fetchDataCount = async (userId: string) => {
+      try {
+        const response = await api.get(`clubs/list-by-userId/${userId}`);
+        if (response.data) {
+          setData(response.data.clubs);
+          setUser(response.data.user);
+        }
+      } catch (error) {
+        console.error('Error ', error);
+      }
+    };
+
+    if (typeof id === 'string') {
+      fetchDataCount(id);
+    }
+  }, [id]);
+
+  const handleDelete = async (clubId: number) => {
+    try {
+      const response = await api.delete(`clubs/delete/${clubId}`);
+      if (response.data.status === 1) {
+        toast.success('Club deleted successfully');
+        setData((prevData) => prevData.filter((c) => c.id !== clubId));
+      }
+    } catch (error: any) {
+      toast.error(error?.message || 'An error occurred');
+    }
+  };
+
+  const handleClosed = () => {
+    setClubInfo(undefined);
+    setIsOpenRes(false);
+  };
 
   return (
     <section>
@@ -78,47 +128,47 @@ const OwnerClubsPage = () => {
         <Typography className="text-SecondaryColor">Back</Typography>
       </button>
       <Typography variant="h5Light" className="text-SecondaryColor mt-6">
-        Aqib Javid Clubs
+        {user?.name}
       </Typography>
       <TableWrapper TableHeadData={clubsOwnersHead}>
-        {Array.from({ length: 4 }).map((td, index) => (
-          <tr className="border-b border-boxOutline h-[60px]" key={index}>
-            <td className="px-3 text-nowrap border-r-2 border-boxOutline">
-              <Typography className="text-SecondaryColor">
-                {index + 1}
-              </Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">101</Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">
-                Downtown Club
-              </Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">One year</Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">
-                2024-07-31
-              </Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <Typography className="text-SecondaryColor">
-                Markazi Dist, Riyadh, KSA
-              </Typography>
-            </td>
-            <td className="border-boxOutline px-3 text-nowrap">
-              <ActionsDropdown actions={actions} />
-            </td>
-          </tr>
-        ))}
+        {data &&
+          data.map((td, index) => (
+            <tr className="border-b border-boxOutline h-[60px]" key={index}>
+              <td className="px-3 text-nowrap border-r-2 border-boxOutline">
+                <Typography className="text-SecondaryColor">
+                  {index + 1}
+                </Typography>
+              </td>
+              <td className="border-boxOutline px-3 text-nowrap">
+                <Typography className="text-SecondaryColor">
+                  {td?.name}
+                </Typography>
+              </td>
+              <td className="border-boxOutline px-3 text-nowrap">
+                <Typography className="text-SecondaryColor">-</Typography>
+              </td>
+              <td className="border-boxOutline px-3 text-nowrap">
+                <Typography className="text-SecondaryColor">-</Typography>
+              </td>
+              <td className="border-boxOutline px-3 text-nowrap">
+                <Typography className="text-SecondaryColor">
+                  {td.address}
+                </Typography>
+              </td>
+              <td className="border-boxOutline px-3 text-nowrap">
+                <ActionsDropdown actions={actions(td)} />
+              </td>
+            </tr>
+          ))}
       </TableWrapper>
       <CreateClubModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <ClubDetails isOpen={isView} setIsOpen={setIsView} />
       <UpdateContract isOpen={isContractOpen} setIsOpen={setIsContractOpen} />
-      <ReservationDetails isOpen={isOpenRes} handleClosed={setIsOpenRes} />
+      <ReservationDetails
+        clubInfo={clubInfo}
+        isOpen={isOpenRes}
+        handleClosed={handleClosed}
+      />
     </section>
   );
 };

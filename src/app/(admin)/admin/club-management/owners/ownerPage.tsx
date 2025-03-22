@@ -33,6 +33,16 @@ const clubsOwnersHead = [
 function ClubManagement() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isClubOpen, setIsClubOpen] = useState<boolean>(false);
+  const [userId, setUserId] = useState<number |null>(null);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    role: 'club_owner',
+  });
   const router = useRouter();
 
   const handleDelete = async (id: number) => {
@@ -47,22 +57,25 @@ function ClubManagement() {
     }
   };
 
+
+
   const [data, setData] = useState<any[]>([]);
 
-  const actions = (id: number): IAction[] => [
+  const actions = (user: any): IAction[] => [
     {
       icon: <BiEditAlt />,
       title: 'Edit',
+      onClick: () => handleEdit(user),
     },
     {
       icon: <AiOutlineDelete />,
       title: 'Delete',
-      onClick: () => handleDelete(id),
+      onClick: () => handleDelete(user.id),
     },
     {
       icon: <MdOutlineLibraryBooks />,
       title: 'Club',
-      onClick: () => router.push(`${routes.ownersManagement}/${id}`),
+      onClick: () => router.push(`${routes.ownersManagement}/${user.id}`),
     },
   ];
 
@@ -72,11 +85,11 @@ function ClubManagement() {
     totalCourts: 0,
   });
 
-
   useEffect(() => {
     const fetchDataCount = async () => {
       try {
-        const response = await api.get('dashbaord/club-management');
+        const response = await api.get('dashboard/club-management');
+        console.log(response.data);
         if (response.data) {
           setDashboardCount(response.data);
         }
@@ -87,7 +100,6 @@ function ClubManagement() {
 
     fetchDataCount();
   }, []);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,14 +116,7 @@ function ClubManagement() {
     fetchData();
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    role: 'club_owner',
-  });
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -126,31 +131,50 @@ function ClubManagement() {
       !formData.name ||
       !formData.email ||
       !formData.phone ||
-      !formData.password ||
-      !formData.confirmPassword
+      (!userId && (!formData.password || !formData.confirmPassword))
     ) {
       toast.error('All fields are required');
       return;
     }
 
     try {
-      const response = await api.post('clubOwner/create', formData);
-      if (response.data.status === 1) {
-        toast.success('Owner created successfully');
-        setData((u) => [...u, response.data.user]);
-        setIsOpen(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          password: '',
-          confirmPassword: '',
-          role: 'club_owner',
-        });
+      let response:any;
+      if (userId) {
+        response = await api.put(`clubOwner/update/${userId}`, formData);
+        if (response.data.status === 1) {
+          toast.success('Owner updated successfully');
+          setData((prevData) =>
+            prevData.map((user) =>
+              user.id === userId ? response.data.user : user
+            )
+          );
+        }
+      } else {
+        response = await api.post('clubOwner/create', formData);
+        if (response.data.status === 1) {
+          toast.success('Owner created successfully');
+          setData((u) => [...u, response.data.user]);
+        }
       }
+      setIsOpen(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        role: 'club_owner',
+      });
     } catch (error: any) {
       toast.error(error?.message || 'An error occurred');
     }
+  };
+  
+  const handleEdit = async (user: any) => {
+    setFormData(user);
+    setIsOpen(true);
+    setUserId(user.id)
+
   };
 
   return (
@@ -192,7 +216,7 @@ function ClubManagement() {
                 </Typography>
               </td>
               <td className="border-boxOutline pl-3">
-                <ActionsDropdown actions={actions(td.id)} />
+                <ActionsDropdown actions={actions(td)} />
               </td>
             </tr>
           ))}
@@ -203,6 +227,7 @@ function ClubManagement() {
         handleChange={handleChange}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        userId={userId}
       />
       <OwnerClubs isOpen={isClubOpen} setIsOpen={setIsClubOpen} />
     </>

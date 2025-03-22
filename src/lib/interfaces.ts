@@ -108,3 +108,35 @@ export interface ICourt {
     maxParticipants: number;
   }
   
+
+
+  export interface ICountry {
+    id: number;
+    title: string;
+  }
+  export interface ICity {
+    id: number;
+    title: string;
+  }
+  export interface IClubInfo {
+    id: number;
+    name: string;
+    address: string;
+    owner?: {
+      name: string;
+    };
+    status: string;
+    wallet: {
+      balance: number;
+    };
+    street: string;
+    zip: string;
+    country: Country;
+    city: City;
+    facilities: Array<{ title: string; image: string }>;
+    openingHours: Array<{
+      day: string;
+      openingTime: string;
+      closingTime: string;
+    }>;
+  }

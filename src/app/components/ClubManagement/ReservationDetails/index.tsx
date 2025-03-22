@@ -2,43 +2,15 @@
 import React, { SetStateAction } from 'react';
 import { Modal, PrimaryButton, Typography } from '../../common';
 import Image from 'next/image';
+import { IClubInfo } from '@/lib/interfaces';
 
-interface Country {
-  id: number;
-  title: string;
-}
-interface City {
-  id: number;
-  title: string;
-}
-interface ClubInfo {
-  id: number;
-  name: string;
-  address: string;
-  owner?: {
-    name: string;
-  };
-  status: string;
-  wallet: {
-    balance: number;
-  };
-  street: string;
-  zip: string;
-  country: Country;
-  city: City;
-  facilities: Array<{ title: string; image: string }>;
-  openingHours: Array<{
-    day: string;
-    openingTime: string;
-    closingTime: string;
-  }>;
-}
+
 
 interface IProps {
   isOpen: boolean;
   handleClosed: React.Dispatch<SetStateAction<boolean>>;
   isRequest?: boolean;
-  clubInfo?: ClubInfo;
+  clubInfo?: IClubInfo;
   updateStatus?: (clubId: number, status: string) => void;
 }
 
